@@ -1,0 +1,82 @@
+{
+  "/convertir": {
+    "es": {
+      "title": "Convertir imágenes online gratis — PNG, JPG, WebP, AVIF | RoLuck",
+      "description": "Convierte imágenes entre PNG, JPEG, WebP y AVIF gratis y sin límites. Todo en tu navegador: tus archivos nunca se suben a ningún servidor."
+    },
+    "en": {
+      "title": "Convert Images Online Free — PNG, JPG, WebP, AVIF | RoLuck",
+      "description": "Convert images between PNG, JPEG, WebP and AVIF free, with no limits. All in your browser — your files are never uploaded to any server."
+    }
+  },
+  "/comprimir": {
+    "es": {
+      "title": "Comprimir imágenes online — reduce el peso sin perder calidad | RoLuck",
+      "description": "Comprime PNG, JPG, WebP y AVIF y reduce su tamaño en KB apuntando a un peso objetivo. Gratis y privado: se procesa en tu navegador."
+    },
+    "en": {
+      "title": "Compress Images Online — shrink file size, keep quality | RoLuck",
+      "description": "Compress PNG, JPG, WebP and AVIF and hit a target file size in KB. Free and private — everything runs in your browser."
+    }
+  },
+  "/editor": {
+    "es": {
+      "title": "Editor de imágenes online — recortar, filtros, quitar fondo | RoLuck",
+      "description": "Edita imágenes en tu navegador: recortar, rotar, filtros, marca de agua y quitar el fondo automáticamente. Gratis, sin instalar nada y sin subir archivos."
+    },
+    "en": {
+      "title": "Online Image Editor — crop, filters, remove background | RoLuck",
+      "description": "Edit images in your browser: crop, rotate, filters, watermark and automatic background removal. Free, no install, nothing uploaded."
+    }
+  },
+  "/redimensionar": {
+    "es": {
+      "title": "Redimensionar imágenes online — cambiar tamaño en píxeles | RoLuck",
+      "description": "Cambia el tamaño de tus imágenes por píxeles o con presets para redes sociales y genera srcset. Gratis y en tu navegador, sin pérdida de privacidad."
+    },
+    "en": {
+      "title": "Resize Images Online — change dimensions in pixels | RoLuck",
+      "description": "Resize images by pixels or with social media presets and generate srcset. Free and in your browser, with full privacy."
+    }
+  },
+  "/lote": {
+    "es": {
+      "title": "Convertir imágenes por lotes — varias a la vez en ZIP | RoLuck",
+      "description": "Convierte y comprime muchas imágenes a la vez y descárgalas en un ZIP. Procesamiento por lotes gratis y privado, directo en tu navegador."
+    },
+    "en": {
+      "title": "Batch Image Converter — many at once, download as ZIP | RoLuck",
+      "description": "Convert and compress many images at once and download them as a ZIP. Free, private batch processing right in your browser."
+    }
+  },
+  "/pdf": {
+    "es": {
+      "title": "Imágenes a PDF online — convierte JPG y PNG a PDF gratis | RoLuck",
+      "description": "Combina tus imágenes JPG, PNG o WebP en un único PDF. Gratis, sin marcas de agua y sin subir nada: todo se genera en tu navegador."
+    },
+    "en": {
+      "title": "Images to PDF Online — convert JPG and PNG to PDF free | RoLuck",
+      "description": "Combine your JPG, PNG or WebP images into a single PDF. Free, no watermarks and nothing uploaded — generated in your browser."
+    }
+  },
+  "/crear": {
+    "es": {
+      "title": "Crear GIF, spritesheet y collage desde imágenes | RoLuck",
+      "description": "Crea GIFs animados, spritesheets con CSS, collages y divide imágenes en cuadrícula. Gratis y en tu navegador, sin subir tus archivos."
+    },
+    "en": {
+      "title": "Create GIF, Spritesheet and Collage from images | RoLuck",
+      "description": "Create animated GIFs, CSS spritesheets, collages and split images into a grid. Free and in your browser, with no uploads."
+    }
+  },
+  "/herramientas": {
+    "es": {
+      "title": "Herramientas de imagen — favicon, Base64, EXIF, OCR | RoLuck",
+      "description": "Genera favicons, convierte a Base64/Data URI, extrae la paleta de colores, lee metadatos EXIF y aplica OCR. Gratis y privado en tu navegador."
+    },
+    "en": {
+      "title": "Image Tools — favicon, Base64, EXIF, OCR | RoLuck",
+      "description": "Generate favicons, convert to Base64/Data URI, extract color palettes, read EXIF metadata and run OCR. Free and private in your browser."
+    }
+  }
+}

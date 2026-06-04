@@ -1,0 +1,212 @@
+{
+  "/convertir": {
+    "es": {
+      "heading": "Convertir imágenes online gratis",
+      "intro": [
+        "RoLuck convierte imágenes entre PNG, JPEG, WebP y AVIF directamente en tu navegador. No hay límite de archivos ni marcas de agua, y la conversión es instantánea porque se ejecuta en tu propio dispositivo.",
+        "Elige el formato de destino, ajusta la calidad y descarga el resultado. Tus imágenes nunca se suben a ningún servidor, así que mantienes el control total de tu privacidad."
+      ],
+      "faq": [
+        { "q": "¿Convertir imágenes en RoLuck es gratis?", "a": "Sí. Convertir entre PNG, JPG, WebP y AVIF es totalmente gratis, sin registro y sin límite de archivos." },
+        { "q": "¿Se suben mis imágenes a un servidor?", "a": "No. Toda la conversión ocurre en tu navegador con tecnología local. Tus archivos nunca salen de tu dispositivo." },
+        { "q": "¿Qué formatos de imagen puedo convertir?", "a": "Puedes convertir entre PNG, JPEG, WebP y AVIF, y también abrir formatos como HEIC para pasarlos a un formato compatible." },
+        { "q": "¿Pierdo calidad al convertir?", "a": "Puedes controlar la calidad de salida. Para máxima fidelidad usa PNG; para fotos ligeras, WebP o AVIF ofrecen muy buena calidad con menos peso." }
+      ]
+    },
+    "en": {
+      "heading": "Convert images online for free",
+      "intro": [
+        "RoLuck converts images between PNG, JPEG, WebP and AVIF right in your browser. There are no file limits or watermarks, and conversion is instant because it runs on your own device.",
+        "Pick the target format, adjust quality and download the result. Your images are never uploaded to any server, so you keep full control of your privacy."
+      ],
+      "faq": [
+        { "q": "Is converting images on RoLuck free?", "a": "Yes. Converting between PNG, JPG, WebP and AVIF is completely free, with no sign-up and no file limits." },
+        { "q": "Are my images uploaded to a server?", "a": "No. All conversion happens in your browser locally. Your files never leave your device." },
+        { "q": "Which image formats can I convert?", "a": "You can convert between PNG, JPEG, WebP and AVIF, and also open formats like HEIC to save them in a compatible format." },
+        { "q": "Do I lose quality when converting?", "a": "You control the output quality. For maximum fidelity use PNG; for lightweight photos, WebP or AVIF offer great quality at a smaller size." }
+      ]
+    }
+  },
+  "/comprimir": {
+    "es": {
+      "heading": "Comprimir imágenes online sin perder calidad",
+      "intro": [
+        "Reduce el peso de tus imágenes PNG, JPG, WebP y AVIF para que tu web cargue más rápido o para enviarlas por correo. Puedes apuntar a un tamaño objetivo en KB y RoLuck ajusta la calidad automáticamente.",
+        "Como todo se procesa en tu navegador, la compresión es rápida y privada: no hay subidas ni esperas en cola."
+      ],
+      "faq": [
+        { "q": "¿Cómo reduzco el tamaño de una imagen a un peso concreto?", "a": "Indica el tamaño objetivo en KB y RoLuck busca la calidad que mejor se acerca a ese peso sin estropear la imagen." },
+        { "q": "¿La compresión afecta a la calidad?", "a": "La compresión con pérdida reduce algo de detalle, pero puedes equilibrar peso y calidad. Para logos o gráficos, PNG conserva los bordes nítidos." },
+        { "q": "¿Hay límite de tamaño o cantidad?", "a": "No imponemos límites artificiales. El único límite real es la memoria de tu dispositivo, ya que el proceso es local." }
+      ]
+    },
+    "en": {
+      "heading": "Compress images online without losing quality",
+      "intro": [
+        "Shrink the size of your PNG, JPG, WebP and AVIF images so your site loads faster or so you can email them. You can target a file size in KB and RoLuck adjusts quality automatically.",
+        "Because everything is processed in your browser, compression is fast and private: no uploads and no queue."
+      ],
+      "faq": [
+        { "q": "How do I reduce an image to a specific file size?", "a": "Enter a target size in KB and RoLuck finds the quality that best matches that size without ruining the image." },
+        { "q": "Does compression affect quality?", "a": "Lossy compression drops some detail, but you can balance size and quality. For logos or graphics, PNG keeps edges crisp." },
+        { "q": "Is there a size or quantity limit?", "a": "We don't impose artificial limits. The only real limit is your device's memory, since processing is local." }
+      ]
+    }
+  },
+  "/editor": {
+    "es": {
+      "heading": "Editor de imágenes online",
+      "intro": [
+        "Recorta, rota, voltea, aplica filtros, añade marcas de agua y quita el fondo de tus imágenes sin instalar nada. El editor de RoLuck trabaja con una pila de ediciones no destructiva, así que puedes deshacer cambios cuando quieras.",
+        "La función de quitar fondo se ejecuta con un modelo de IA dentro de tu navegador, sin enviar la foto a ningún servidor."
+      ],
+      "faq": [
+        { "q": "¿Puedo quitar el fondo de una foto gratis?", "a": "Sí. RoLuck detecta y elimina el fondo automáticamente en tu navegador, gratis y sin subir la imagen." },
+        { "q": "¿Las ediciones son reversibles?", "a": "Sí. Las ediciones se apilan de forma no destructiva, así que puedes quitar o reordenar pasos antes de exportar." },
+        { "q": "¿Qué ediciones puedo aplicar?", "a": "Recortar, rotar, voltear, filtros, ajustes, marca de agua y quitar fondo, entre otras." }
+      ]
+    },
+    "en": {
+      "heading": "Online image editor",
+      "intro": [
+        "Crop, rotate, flip, apply filters, add watermarks and remove backgrounds from your images without installing anything. RoLuck's editor uses a non-destructive edit stack, so you can undo changes anytime.",
+        "Background removal runs with an AI model inside your browser, without sending your photo to any server."
+      ],
+      "faq": [
+        { "q": "Can I remove a photo's background for free?", "a": "Yes. RoLuck detects and removes the background automatically in your browser, free and without uploading the image." },
+        { "q": "Are edits reversible?", "a": "Yes. Edits are stacked non-destructively, so you can remove or reorder steps before exporting." },
+        { "q": "What edits can I apply?", "a": "Crop, rotate, flip, filters, adjustments, watermark and background removal, among others." }
+      ]
+    }
+  },
+  "/redimensionar": {
+    "es": {
+      "heading": "Redimensionar imágenes online",
+      "intro": [
+        "Cambia el tamaño de tus imágenes indicando los píxeles exactos o usando presets para redes sociales (Instagram, historias, miniaturas de YouTube y más). También puedes generar un srcset responsive para tu web.",
+        "El redimensionado mantiene la proporción si lo deseas y se ejecuta al instante en tu navegador."
+      ],
+      "faq": [
+        { "q": "¿Cómo cambio el tamaño de una imagen en píxeles?", "a": "Introduce el ancho y el alto deseados. Puedes bloquear la proporción para evitar deformaciones." },
+        { "q": "¿Hay tamaños predefinidos para redes sociales?", "a": "Sí. Incluimos presets para los formatos más comunes de Instagram, historias, YouTube y otras plataformas." },
+        { "q": "¿Qué es el srcset y para qué sirve?", "a": "Es un conjunto de versiones a distintos tamaños que tu web sirve según la pantalla, mejorando la velocidad de carga." }
+      ]
+    },
+    "en": {
+      "heading": "Resize images online",
+      "intro": [
+        "Resize your images by entering exact pixels or using social media presets (Instagram, stories, YouTube thumbnails and more). You can also generate a responsive srcset for your website.",
+        "Resizing keeps the aspect ratio if you want and runs instantly in your browser."
+      ],
+      "faq": [
+        { "q": "How do I change an image's size in pixels?", "a": "Enter the desired width and height. You can lock the aspect ratio to avoid distortion." },
+        { "q": "Are there preset sizes for social media?", "a": "Yes. We include presets for the most common Instagram, stories, YouTube and other platform formats." },
+        { "q": "What is srcset and what is it for?", "a": "It's a set of versions at different sizes that your site serves based on the screen, improving load speed." }
+      ]
+    }
+  },
+  "/lote": {
+    "es": {
+      "heading": "Convertir imágenes por lotes y descargar en ZIP",
+      "intro": [
+        "Procesa muchas imágenes a la vez: convierte y comprime un lote completo y descárgalo en un único archivo ZIP. Ideal cuando tienes decenas de fotos que pasar al mismo formato.",
+        "Todo el lote se procesa en tu navegador, sin subir nada y sin esperas en servidores externos."
+      ],
+      "faq": [
+        { "q": "¿Cuántas imágenes puedo procesar a la vez?", "a": "Puedes añadir tantas como tu dispositivo pueda manejar en memoria; no imponemos un tope artificial." },
+        { "q": "¿Cómo descargo todas las imágenes convertidas?", "a": "Al terminar el lote, RoLuck las empaqueta en un único archivo ZIP listo para descargar." },
+        { "q": "¿Puedo aplicar el mismo formato a todas?", "a": "Sí. Eliges el formato y la calidad una vez y se aplican a todo el lote." }
+      ]
+    },
+    "en": {
+      "heading": "Batch convert images and download as ZIP",
+      "intro": [
+        "Process many images at once: convert and compress a whole batch and download it as a single ZIP file. Ideal when you have dozens of photos to move to the same format.",
+        "The entire batch is processed in your browser, with no uploads and no waiting on external servers."
+      ],
+      "faq": [
+        { "q": "How many images can I process at once?", "a": "You can add as many as your device can hold in memory; we don't impose an artificial cap." },
+        { "q": "How do I download all the converted images?", "a": "When the batch finishes, RoLuck packs them into a single ZIP file ready to download." },
+        { "q": "Can I apply the same format to all of them?", "a": "Yes. You choose the format and quality once and they apply to the whole batch." }
+      ]
+    }
+  },
+  "/pdf": {
+    "es": {
+      "heading": "Convertir imágenes a PDF online",
+      "intro": [
+        "Combina varias imágenes JPG, PNG o WebP en un solo documento PDF. Ordena las páginas, ajusta el tamaño y descarga un PDF limpio, sin marcas de agua.",
+        "La generación del PDF ocurre íntegramente en tu navegador, así que tus documentos siguen siendo privados."
+      ],
+      "faq": [
+        { "q": "¿Cómo convierto varias imágenes en un solo PDF?", "a": "Añade las imágenes en el orden que quieras y RoLuck las combina en un único PDF descargable." },
+        { "q": "¿El PDF lleva marca de agua?", "a": "No. El PDF se genera limpio, sin marcas de agua ni límites de páginas." },
+        { "q": "¿Mis documentos son privados?", "a": "Sí. El PDF se crea en tu navegador; las imágenes no se envían a ningún servidor." }
+      ]
+    },
+    "en": {
+      "heading": "Convert images to PDF online",
+      "intro": [
+        "Combine several JPG, PNG or WebP images into a single PDF document. Reorder the pages, adjust the size and download a clean PDF with no watermarks.",
+        "PDF generation happens entirely in your browser, so your documents stay private."
+      ],
+      "faq": [
+        { "q": "How do I combine several images into one PDF?", "a": "Add the images in any order and RoLuck merges them into a single downloadable PDF." },
+        { "q": "Does the PDF have a watermark?", "a": "No. The PDF is generated clean, with no watermarks or page limits." },
+        { "q": "Are my documents private?", "a": "Yes. The PDF is created in your browser; the images are never sent to any server." }
+      ]
+    }
+  },
+  "/crear": {
+    "es": {
+      "heading": "Crear GIF, spritesheet y collage desde imágenes",
+      "intro": [
+        "Convierte una secuencia de imágenes en un GIF animado, genera un spritesheet con su CSS, monta un collage o divide una imagen en una cuadrícula. Herramientas creativas listas para usar, sin software de escritorio.",
+        "Cada creación se genera en tu navegador y se descarga al instante."
+      ],
+      "faq": [
+        { "q": "¿Puedo crear un GIF animado a partir de imágenes?", "a": "Sí. Añade tus fotogramas, ajusta la velocidad y RoLuck genera el GIF animado en tu navegador." },
+        { "q": "¿Qué es un spritesheet y cómo lo uso?", "a": "Es una sola imagen que agrupa varios fotogramas; RoLuck también te da el CSS para mostrarlos en tu web." },
+        { "q": "¿Puedo hacer un collage o dividir una imagen?", "a": "Sí. Puedes combinar varias imágenes en un collage o dividir una imagen en una cuadrícula de partes." }
+      ]
+    },
+    "en": {
+      "heading": "Create GIF, spritesheet and collage from images",
+      "intro": [
+        "Turn a sequence of images into an animated GIF, generate a spritesheet with its CSS, build a collage or split an image into a grid. Creative tools ready to use, with no desktop software.",
+        "Each creation is generated in your browser and downloads instantly."
+      ],
+      "faq": [
+        { "q": "Can I create an animated GIF from images?", "a": "Yes. Add your frames, set the speed and RoLuck generates the animated GIF in your browser." },
+        { "q": "What is a spritesheet and how do I use it?", "a": "It's a single image grouping several frames; RoLuck also gives you the CSS to display them on your site." },
+        { "q": "Can I make a collage or split an image?", "a": "Yes. You can combine several images into a collage or split one image into a grid of parts." }
+      ]
+    }
+  },
+  "/herramientas": {
+    "es": {
+      "heading": "Herramientas de imagen: favicon, Base64, EXIF, OCR",
+      "intro": [
+        "Un conjunto de utilidades para desarrolladores y diseñadores: genera favicons en .ico con su manifest, convierte imágenes a Base64 o Data URI, extrae la paleta de colores, lee los metadatos EXIF y aplica OCR para extraer texto.",
+        "Todas las herramientas funcionan en tu navegador, sin subir archivos ni instalar nada."
+      ],
+      "faq": [
+        { "q": "¿Cómo genero un favicon para mi web?", "a": "Sube una imagen y RoLuck crea el .ico con múltiples tamaños, los PNG y un manifest, empaquetados en un ZIP." },
+        { "q": "¿Puedo extraer el texto de una imagen (OCR)?", "a": "Sí. El OCR reconoce el texto de la imagen directamente en tu navegador." },
+        { "q": "¿Qué son los metadatos EXIF?", "a": "Son los datos que la cámara guarda en la foto (modelo, fecha, exposición, GPS). El visor EXIF te los muestra sin enviar la imagen a ningún sitio." }
+      ]
+    },
+    "en": {
+      "heading": "Image tools: favicon, Base64, EXIF, OCR",
+      "intro": [
+        "A set of utilities for developers and designers: generate favicons as .ico with a manifest, convert images to Base64 or Data URI, extract the color palette, read EXIF metadata and run OCR to extract text.",
+        "All tools run in your browser, with no uploads and nothing to install."
+      ],
+      "faq": [
+        { "q": "How do I generate a favicon for my site?", "a": "Upload an image and RoLuck creates the .ico in multiple sizes, the PNGs and a manifest, packed into a ZIP." },
+        { "q": "Can I extract text from an image (OCR)?", "a": "Yes. OCR recognizes the text in the image directly in your browser." },
+        { "q": "What is EXIF metadata?", "a": "It's the data the camera stores in a photo (model, date, exposure, GPS). The EXIF viewer shows it without sending the image anywhere." }
+      ]
+    }
+  }
+}

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://roluck.app/sitemap.xml
