@@ -1,204 +1,167 @@
+<div align="center">
+
+<img src="public/og-image.png" alt="RoLuck Convertidor" width="640" />
+
 # RoLuck Convertidor
 
-Aplicación web para **convertir y editar imágenes directamente en el navegador**, sin
-backend. Todo el procesamiento ocurre 100% del lado del cliente con la **Canvas API** y
-códecs WASM — ninguna imagen se sube a ningún servidor.
+**Convierte, edita y crea imágenes — 100% en tu navegador.**
 
-> Estética *dark tech / utility tool*: fondo casi negro, acento verde lima y tipografía
-> monoespaciada para los valores numéricos.
+Sin servidores · sin subidas · sin límites · sin cuentas.
 
----
+[![React](https://img.shields.io/badge/React-18-61dafb?logo=react&logoColor=white)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-5-646cff?logo=vite&logoColor=white)](https://vitejs.dev)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-38bdf8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![PWA](https://img.shields.io/badge/PWA-instalable-5a0fc8?logo=pwa&logoColor=white)](#-extras-a-nivel-app)
 
-## ¿Qué hace?
-
-Subes una imagen (o varias) y puedes:
-
-- **Convertir** entre formatos: PNG, JPEG, WebP y **AVIF**.
-- **Editar** antes de exportar: recortar, rotar, voltear y quitar el fondo.
-- **Comprimir** ajustando la calidad o apuntando a un **peso objetivo** (ej. "máx. 500 KB").
-- **Redimensionar** la salida.
-- Procesar **por lotes** y descargar todo en un **ZIP**.
-- Combinar varias imágenes en un **PDF** multipágina.
-
-Privacidad por diseño: como la conversión redibuja la imagen en un canvas, **se eliminan
-los metadatos EXIF** (geolocalización, datos de cámara) automáticamente.
+</div>
 
 ---
 
-## Formatos
+## ✨ ¿Qué es?
 
-| | Formatos |
-|---|---|
-| **Entrada** | PNG, JPEG, WebP, GIF, BMP, SVG, **HEIC/HEIF** (fotos de iPhone) |
-| **Salida** | PNG, JPEG, WebP, **AVIF** |
+RoLuck Convertidor es un **hub de herramientas de imagen** que funciona por completo del
+lado del cliente. Todo el procesamiento ocurre en tu dispositivo con la **Canvas API**,
+**códecs WASM** y modelos de **IA en el navegador** — ninguna imagen sale de tu equipo.
 
-> GIF y BMP se aceptan, pero la salida aplana animaciones a un solo frame.
-
----
-
-## Modos de uso
-
-La app tiene tres modos (selector arriba a la derecha):
-
-### 1. Una imagen
-Flujo de edición no destructivo en dos columnas:
-
-- **Izquierda — controles**
-  - *Editar imagen*: recortar, quitar fondo, rotar 90° (izq/der) y espejo (H/V).
-  - *Exportar*: formato, calidad, peso objetivo y redimensionar.
-- **Derecha — etapa visual**: muestra la imagen de trabajo en vivo (refleja cada
-  edición al instante), el progreso al quitar fondo, y tras convertir el **comparador
-  antes/después** con el botón de descarga.
-
-El **original es inmutable**: cada edición se apila y se puede **deshacer** o
-**revertir al original**. Las ediciones aplicadas se muestran como *badges*.
-
-### 2. Lote + ZIP
-Subes varias imágenes, defines un formato/calidad/escala común y la app las convierte
-**en serie** (para no saturar la memoria en móvil), mostrando el estado de cada una.
-Al terminar, descargas todo en un único `.zip`.
-
-### 3. A PDF
-Combina las imágenes en un PDF multipágina (una imagen por página, centrada y escalada).
-Permite reordenar las páginas (arrastrar o flechas), elegir orientación (auto/vertical/
-horizontal), tamaño (A4/Carta) y el nombre del archivo.
-
-> Los modos *Lote* y *A PDF* comparten la misma cola de imágenes.
+> Estética *dark tech*: fondo casi negro, acento verde lima y tipografía monoespaciada
+> para los valores numéricos. 🦙
 
 ---
 
-## Stack técnico
+## 🧰 Las 8 categorías
 
-- **React 18 + TypeScript**
-- **Vite** como bundler
-- **Tailwind CSS v3** (sin librerías de UI externas; todos los íconos son SVG inline)
-- Sin backend ni API externa
-
-### Librerías de apoyo (todas cargadas de forma diferida / *lazy*)
-
-| Librería | Para qué | Peso |
+| | Categoría | Qué hace |
 |---|---|---|
-| `@jsquash/avif` | Codificar AVIF (WASM) | ~3.5 MB WASM |
-| `heic2any` | Decodificar HEIC/HEIF | ~1.3 MB |
-| `@imgly/background-removal` | Quitar fondo (modelo ML en el navegador) | ~5 MB |
-| `jszip` | Empaquetar el ZIP del lote | ~30 KB gzip |
-| `jspdf` | Generar el PDF | ~128 KB gzip |
-| `react-image-crop` | Recorte con manijas redimensionables | liviano |
+| 🔄 | **Convertir** | Entre PNG, JPEG, WebP y **AVIF**. También abre HEIC/HEIF. |
+| 🗜️ | **Comprimir** | Reduce el peso o apunta a un **tamaño objetivo en KB**. |
+| ✏️ | **Editor** | Recortar, rotar, voltear, filtros, marca de agua y **quitar fondo** (IA). |
+| 📐 | **Redimensionar** | Por píxeles o con **presets de redes**, y genera `srcset`. |
+| 📦 | **Lote + ZIP** | Procesa muchas imágenes a la vez y descarga todo en un `.zip`. |
+| 📄 | **A PDF** | Combina imágenes en un PDF multipágina, reordenable. |
+| 🎨 | **Crear** | GIF animado, spritesheet + CSS, collage y dividir en cuadrícula. |
+| 🛠️ | **Herramientas** | Favicon `.ico`, Base64/Data URI, paleta de colores, visor EXIF y **OCR**. |
 
-Gracias al *lazy loading*, el **bundle inicial es de ~63 KB gzip**: esas dependencias
-pesadas solo se descargan cuando el usuario realmente usa AVIF, HEIC, quitar fondo, ZIP
-o PDF.
+**Privacidad por diseño:** como cada conversión redibuja la imagen en un canvas, se
+**eliminan los metadatos EXIF** (geolocalización, datos de cámara) automáticamente.
 
 ---
 
-## Arquitectura del código
+## 🚀 Extras a nivel app
+
+- 📲 **PWA instalable** — funciona offline tras la primera carga (service worker propio).
+- 🌐 **i18n ES / EN** — solución propia, sin librería, con detección automática.
+- ⭐ **Presets guardados** — guarda tus combinaciones de formato/calidad favoritas.
+- 🕘 **Historial de sesión** — re-descarga resultados recientes sin reconvertir.
+- 📋 **Pegar del portapapeles** — `Ctrl/Cmd + V` para cargar una imagen al instante.
+- 🔎 **SEO técnico** — meta por ruta, **prerender** estático por página y `FAQPage` JSON-LD.
+- 📊 **Analítica opcional** — [Umami](https://umami.is) auto-hospedado, sin cookies (opt-in).
+
+---
+
+## 🧩 Stack
+
+- **React 18 + TypeScript** · **Vite** · **Tailwind CSS v3**
+- **React Router** (hub multipágina) · **Zustand** (estado: pila de edición + cola)
+- Sin backend, sin API externa, sin librerías de UI (iconos: `@tabler/icons-react`)
+
+### Dependencias pesadas (todas *lazy*)
+
+| Librería | Para qué |
+|---|---|
+| `@jsquash/avif` | Codificar/decodificar AVIF (WASM) |
+| `heic2any` | Decodificar HEIC/HEIF (fotos de iPhone) |
+| `@imgly/background-removal` | Quitar fondo con modelo de IA |
+| `tesseract.js` | OCR (reconocimiento de texto) |
+| `jszip` · `jspdf` · `pdfjs-dist` | ZIP, PDF y render de PDF |
+| `gif.js` · `react-image-crop` | GIF animado y recorte |
+
+> El *lazy loading* mantiene el bundle inicial liviano: estas librerías solo se descargan
+> cuando realmente usas esa función.
+
+---
+
+## 📁 Estructura
 
 ```
 src/
-├── App.tsx                       # Raíz: estado global y los tres modos
-├── main.tsx · index.css          # Entrada + estilos (Tailwind + variables de color)
-├── components/
-│   ├── DropZone.tsx              # Drag & drop (single y múltiple)
-│   ├── ImagePreview.tsx          # Imagen + metadata
-│   ├── ConversionPanel.tsx       # Formato destino + slider de calidad
-│   ├── ConvertButton.tsx
-│   ├── ResultCard.tsx            # Resultado, ahorro %, badge EXIF y descarga
-│   ├── ComparisonSlider.tsx      # Comparador antes/después (mouse + touch)
-│   ├── CropModal.tsx             # Recorte (react-image-crop)
-│   ├── ResizePanel.tsx           # Redimensionar
-│   ├── TransformPanel.tsx        # Rotar/voltear (modo lote, diferido)
-│   ├── TransformActions.tsx      # Rotar/voltear (modo single, en vivo)
-│   ├── TargetSizePanel.tsx       # Comprimir a peso objetivo
-│   ├── ModeToggle.tsx            # single / batch / pdf
-│   ├── BatchList.tsx             # Cola del lote con estados
-│   ├── PdfPanel.tsx              # Opciones de PDF + reordenar páginas
-│   └── FormatBadge.tsx
-├── hooks/
-│   ├── useImageConverter.ts      # Pipeline canvas + pila de edición reversible
-│   ├── useBatchConverter.ts      # Conversión por lotes + ZIP
-│   ├── useTargetSize.ts          # Búsqueda binaria de calidad
-│   ├── usePdfExport.ts           # Generación de PDF (jsPDF)
-│   └── useBackgroundRemoval.ts   # Quitar fondo (ML, lazy)
-├── utils/
-│   ├── canvasUtils.ts            # loadImage · renderToCanvas · canvasToBlob
-│   ├── imageUtils.ts             # Formatos, bytes, nombres, ahorro
-│   ├── heicDecoder.ts            # Decodificar HEIC antes del canvas
-│   ├── avifEncoder.ts            # Codificar AVIF con WASM
-│   ├── editUtils.ts              # Aplicar rotación/espejo como edición
-│   └── cropImage.ts              # Generar el recorte
-└── types/index.ts                # Tipos compartidos
+├── App.tsx                 # Router con las 8 rutas (lazy)
+├── main.tsx                # Entrada: I18nProvider, SW, analítica
+├── pages/                  # Una página por categoría
+├── components/             # UI compartida (+ create/ y tools/)
+│   └── RailLayout.tsx      # Riel lateral persistente + logo
+├── store/                  # Zustand: app, presets, historial
+├── hooks/                  # Conversión, lote, target size, PDF, quitar fondo…
+├── utils/                  # canvas, AVIF, HEIC, GIF, favicon, EXIF, OCR…
+├── i18n/                   # Diccionario ES/EN + contexto
+├── seo/                    # Meta por ruta, hook useSeo, contenido on-page
+└── types/
+
+public/                     # Assets de marca, manifest, sw.js, robots, sitemap
+brand/logo-master.png       # Logo master (fuente de los assets de marca)
+scripts/
+├── gen-brand.cjs           # Genera logo/favicons/PWA/OG desde el master
+└── prerender.cjs           # Prerender SEO por ruta (post-build)
+deploy/                     # nginx.conf, deploy.sh y guía de despliegue
 ```
-
-### Pipeline de conversión (`useImageConverter`)
-
-1. Recibe un `File` y crea una Object URL temporal.
-2. Lo carga en un `Image` (decodificando HEIC primero si hace falta).
-3. Lo dibuja en un `<canvas>` aplicando redimensionado / rotación / espejo.
-4. Exporta con `canvas.toBlob(...)` (o el WASM de AVIF para ese formato).
-5. Genera la descarga con una nueva Object URL.
-6. Revoca todas las Object URLs con `URL.revokeObjectURL()` para evitar fugas de memoria.
-
-El modelo de edición es **no destructivo**: el original queda intacto en la base de una
-pila; recortar, quitar fondo y rotar/voltear apilan una "imagen de trabajo" reversible.
 
 ---
 
-## Desarrollo
+## 🛠️ Desarrollo
 
-Requisitos: Node 18+.
+Requisitos: **Node 18+**.
 
 ```bash
 npm install      # instalar dependencias
-npm run dev      # servidor de desarrollo (http://localhost:5173)
-npm run build    # build de producción → /dist
+npm run dev      # servidor de desarrollo → http://localhost:5173
+npm run build    # build de producción + prerender SEO → /dist
 npm run preview  # previsualizar el build
 ```
 
----
+### Regenerar los assets de marca
 
-## Deploy (VPS con Nginx)
-
-```bash
-npm run build
-rsync -avz --delete dist/ usuario@IP_VPS:/var/www/roluck-convertidor/
-```
-
-Server block de Nginx:
-
-```nginx
-server {
-    listen 80;
-    server_name roluck.tudominio.cl;
-    root /var/www/roluck-convertidor;
-    index index.html;
-
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
-
-    # Cache agresivo para los assets con hash que genera Vite
-    location /assets/ {
-        expires 1y;
-        add_header Cache-Control "public, immutable";
-    }
-
-    # Servir los .wasm (AVIF / quitar fondo) con el MIME correcto
-    types { application/wasm wasm; }
-}
-```
-
-Luego activar SSL con Certbot:
+El logo, favicons, iconos PWA y la imagen OG se generan desde `brand/logo-master.png`.
+`sharp` se usa solo de forma puntual (no es dependencia del proyecto):
 
 ```bash
-sudo certbot --nginx -d roluck.tudominio.cl
+npm i -D sharp && npm run gen:brand && npm rm sharp
 ```
 
 ---
 
-## Notas
+## 🌍 Deploy
 
-- **Siempre dark**: la app no tiene toggle de tema claro.
-- **Compatibilidad AVIF**: se codifica con WASM (no con `canvas.toBlob`, que es
-  inconsistente entre navegadores). En navegadores antiguos conviene usar JPEG o WebP.
-- **Sin conexión tras la primera carga**: una vez cacheada, la app funciona offline,
-  salvo la primera descarga del modelo de quitar fondo.
+Los artefactos están en [`deploy/`](deploy/):
+
+- **`nginx.conf`** — SPA + prerender (`try_files $uri $uri.html …`), MIME de `.wasm`/
+  `.webmanifest`, caché de assets con hash y `sw.js` sin caché.
+- **`deploy.sh`** — `build` + `rsync --delete` al VPS.
+- **`DEPLOY.md`** — guía paso a paso (incluye Umami con Docker).
+
+```bash
+# 1. Configura tu dominio y (opcional) Umami
+cp .env.example .env   # edita VITE_SITE_URL y, si aplica, las vars de Umami
+
+# 2. Construye y despliega
+bash deploy/deploy.sh
+
+# 3. SSL
+sudo certbot --nginx -d roluck.app
+```
+
+---
+
+## 📝 Notas
+
+- **Siempre dark** — no hay tema claro.
+- **AVIF vía WASM** — más consistente entre navegadores que `canvas.toBlob`.
+- **Offline** — tras la primera carga la app funciona sin conexión (salvo la descarga
+  inicial del modelo de quitar fondo).
+
+---
+
+<div align="center">
+
+Hecho con 🦙 y verde lima · **[roluck.app](https://roluck.app)**
+
+</div>
