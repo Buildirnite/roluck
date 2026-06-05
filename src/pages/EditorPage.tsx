@@ -17,10 +17,14 @@ import { useBackgroundRemoval } from '../hooks/useBackgroundRemoval';
 import {
   applyTransform,
   applyFilters,
+  applyWatermark,
+  applyScale,
+  applyBackgroundColor,
   buildFilterString,
   DEFAULT_FILTERS,
   isNeutralFilter,
   type FilterValues,
+  type WatermarkOptions,
 } from '../utils/editUtils';
 import SingleImageLayout from '../components/SingleImageLayout';
 import { useI18n } from '../i18n/I18nContext';
@@ -29,6 +33,11 @@ import EditBadges from '../components/EditBadges';
 import ToolPalette, { type EditorTool } from '../components/ToolPalette';
 import FiltersPanel from '../components/FiltersPanel';
 import CropModal from '../components/CropModal';
+import WatermarkPanel from '../components/WatermarkPanel';
+import RegionModal from '../components/RegionModal';
+import AnnotateModal from '../components/AnnotateModal';
+
+const SCALE_FACTORS = [2, 3, 4] as const;
 
 type ToolKey =
   | 'crop' | 'removebg' | 'rotate' | 'flip' | 'filters'
@@ -40,12 +49,12 @@ const TOOL_META: { id: ToolKey; Icon: EditorTool['Icon']; available: boolean }[]
   { id: 'rotate', Icon: IconRotate, available: true },
   { id: 'flip', Icon: IconFlipHorizontal, available: true },
   { id: 'filters', Icon: IconAdjustments, available: true },
-  { id: 'watermark', Icon: IconDroplet, available: false },
-  { id: 'blur', Icon: IconBlurOff, available: false },
-  { id: 'annotate', Icon: IconPencil, available: false },
-  { id: 'upscale', Icon: IconArrowsMaximize, available: false },
-  { id: 'redact', Icon: IconRectangle, available: false },
-  { id: 'replacebg', Icon: IconWallpaper, available: false },
+  { id: 'watermark', Icon: IconDroplet, available: true },
+  { id: 'blur', Icon: IconBlurOff, available: true },
+  { id: 'annotate', Icon: IconPencil, available: true },
+  { id: 'upscale', Icon: IconArrowsMaximize, available: true },
+  { id: 'redact', Icon: IconRectangle, available: true },
+  { id: 'replacebg', Icon: IconWallpaper, available: true },
 ];
 
 /** Ruta /editor — herramientas de edición con divulgación progresiva. */
@@ -56,6 +65,9 @@ export default function EditorPage() {
   const tools: EditorTool[] = TOOL_META.map((m) => ({ ...m, label: t.editorTools[m.id] }));
   const [tool, setTool] = useState('crop');
   const [showCrop, setShowCrop] = useState(false);
+  const [region, setRegion] = useState<'obscure' | 'redact' | null>(null);
+  const [showAnnotate, setShowAnnotate] = useState(false);
+  const [bgColor, setBgColor] = useState('#ffffff');
   const [bgResult, setBgResult] = useState<{ url: string; blob: Blob } | null>(null);
   const [localError, setLocalError] = useState<string | null>(null);
   const [editBusy, setEditBusy] = useState(false);
@@ -95,6 +107,52 @@ export default function EditorPage() {
   function handleCropConfirm(blob: Blob) {
     img.applyEdit(new File([blob], 'recorte.png', { type: 'image/png' }), 'Recortada');
     setShowCrop(false);
+  }
+
+  async function handleWatermark(opts: WatermarkOptions) {
+    if (!img.file || editing) return;
+    setEditBusy(true);
+    try {
+      const next = await applyWatermark(img.file, opts);
+      if (next) img.applyEdit(next, 'Marca de agua');
+      else setLocalError(t.editor.errEdit);
+    } finally {
+      setEditBusy(false);
+    }
+  }
+
+  async function handleScale(factor: number) {
+    if (!img.file || editing) return;
+    setEditBusy(true);
+    try {
+      const next = await applyScale(img.file, factor);
+      if (next) img.applyEdit(next, 'Escalada');
+      else setLocalError(t.editor.errEdit);
+    } finally {
+      setEditBusy(false);
+    }
+  }
+
+  async function handleReplaceBg() {
+    if (!img.file || editing) return;
+    setEditBusy(true);
+    try {
+      const next = await applyBackgroundColor(img.file, bgColor);
+      if (next) img.applyEdit(next, 'Fondo');
+      else setLocalError(t.editor.errEdit);
+    } finally {
+      setEditBusy(false);
+    }
+  }
+
+  function handleRegionConfirm(file: File) {
+    img.applyEdit(file, region === 'redact' ? 'Tapada' : 'Difuminada');
+    setRegion(null);
+  }
+
+  function handleAnnotateConfirm(file: File) {
+    img.applyEdit(file, 'Anotada');
+    setShowAnnotate(false);
   }
 
   async function handleApplyFilters() {
@@ -190,6 +248,78 @@ export default function EditorPage() {
             disabled={editing}
           />
         );
+      case 'watermark':
+        return <WatermarkPanel onApply={handleWatermark} disabled={editing} />;
+      case 'blur':
+        return (
+          <button
+            type="button"
+            onClick={() => setRegion('obscure')}
+            disabled={editing}
+            className="min-h-[44px] w-full rounded-xl bg-accent px-4 text-sm font-semibold text-bg-primary transition-colors hover:bg-accent/90 disabled:opacity-40"
+          >
+            {t.editor.selectRegion}
+          </button>
+        );
+      case 'redact':
+        return (
+          <button
+            type="button"
+            onClick={() => setRegion('redact')}
+            disabled={editing}
+            className="min-h-[44px] w-full rounded-xl bg-accent px-4 text-sm font-semibold text-bg-primary transition-colors hover:bg-accent/90 disabled:opacity-40"
+          >
+            {t.editor.selectRegion}
+          </button>
+        );
+      case 'annotate':
+        return (
+          <button
+            type="button"
+            onClick={() => setShowAnnotate(true)}
+            disabled={editing}
+            className="min-h-[44px] w-full rounded-xl bg-accent px-4 text-sm font-semibold text-bg-primary transition-colors hover:bg-accent/90 disabled:opacity-40"
+          >
+            {t.editor.openAnnotate}
+          </button>
+        );
+      case 'upscale':
+        return (
+          <div className="flex flex-col gap-3">
+            <p className="text-xs text-text-muted">{t.editor.upscaleHint}</p>
+            <div className="grid grid-cols-3 gap-2">
+              {SCALE_FACTORS.map((f) => (
+                <button
+                  key={f}
+                  type="button"
+                  onClick={() => handleScale(f)}
+                  disabled={editing}
+                  className="min-h-[44px] rounded-lg border border-border bg-bg-elevated text-sm font-semibold text-text-muted hover:border-accent/40 hover:text-text-primary disabled:opacity-40"
+                >
+                  {f}×
+                </button>
+              ))}
+            </div>
+          </div>
+        );
+      case 'replacebg':
+        return (
+          <div className="flex flex-col gap-3">
+            <p className="text-xs text-text-muted">{t.editor.replaceBgHint}</p>
+            <label className="flex items-center justify-between">
+              <span className="text-xs uppercase tracking-wide text-text-muted">{t.watermark.color}</span>
+              <input type="color" value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="h-8 w-12 cursor-pointer rounded border border-border bg-transparent" />
+            </label>
+            <button
+              type="button"
+              onClick={handleReplaceBg}
+              disabled={editing}
+              className="min-h-[44px] rounded-xl bg-accent px-4 text-sm font-semibold text-bg-primary transition-colors hover:bg-accent/90 disabled:opacity-40"
+            >
+              {t.common.apply}
+            </button>
+          </div>
+        );
       default:
         return (
           <p className="rounded-xl border border-dashed border-border bg-bg-surface px-4 py-6 text-center text-sm text-text-muted">
@@ -275,6 +405,18 @@ export default function EditorPage() {
       />
       {showCrop && img.preview && (
         <CropModal imageSrc={img.preview} onCancel={() => setShowCrop(false)} onConfirm={handleCropConfirm} />
+      )}
+      {region && img.file && img.preview && (
+        <RegionModal
+          file={img.file}
+          imageSrc={img.preview}
+          kind={region}
+          onCancel={() => setRegion(null)}
+          onConfirm={handleRegionConfirm}
+        />
+      )}
+      {showAnnotate && img.file && (
+        <AnnotateModal file={img.file} onCancel={() => setShowAnnotate(false)} onConfirm={handleAnnotateConfirm} />
       )}
     </>
   );

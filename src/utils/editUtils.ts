@@ -136,6 +136,22 @@ export async function applyWatermark(file: File, o: WatermarkOptions): Promise<F
   return new File([blob], toPngName(file.name), { type: 'image/png' });
 }
 
+// ── Escalar (ampliar) ──────────────────────────────────────────────────────
+/**
+ * Reescala una imagen por un factor (>1 amplía) con suavizado de alta calidad y
+ * devuelve un nuevo File PNG. Pensado para "Escalar" en el editor.
+ */
+export async function applyScale(file: File, factor: number): Promise<File | null> {
+  const img = await loadImageFile(file);
+  const w = Math.max(1, Math.round(img.naturalWidth * factor));
+  const h = Math.max(1, Math.round(img.naturalHeight * factor));
+  const canvas = renderToCanvas(img, { width: w, height: h });
+  if (!canvas) return null;
+  const blob = await canvasToBlob(canvas, 'image/png');
+  if (!blob) return null;
+  return new File([blob], toPngName(file.name), { type: 'image/png' });
+}
+
 // ── Reemplazar fondo (color sólido) ────────────────────────────────────────
 /** Compone la imagen sobre un color sólido (aplana la transparencia). */
 export async function applyBackgroundColor(file: File, color: string): Promise<File | null> {
@@ -187,13 +203,18 @@ export async function applyRegionEffect(
     ctx.fillStyle = '#000000';
     ctx.fillRect(rx, ry, rw, rh);
   } else if (mode === 'blur') {
-    ctx.save();
-    ctx.beginPath();
-    ctx.rect(rx, ry, rw, rh);
-    ctx.clip();
-    ctx.filter = `blur(${intensity}px)`;
-    ctx.drawImage(canvas, 0, 0); // se redibuja recortado a la región, difuminado
-    ctx.restore();
+    // Difuminamos la imagen completa en un canvas aparte y copiamos solo la
+    // región de vuelta. Así el borde de la región queda nítido (sin sangrado de
+    // píxeles externos como ocurría al difuminar con clip sobre el mismo canvas).
+    const blurred = document.createElement('canvas');
+    blurred.width = canvas.width;
+    blurred.height = canvas.height;
+    const bctx = blurred.getContext('2d');
+    if (bctx) {
+      bctx.filter = `blur(${intensity}px)`;
+      bctx.drawImage(canvas, 0, 0);
+      ctx.drawImage(blurred, rx, ry, rw, rh, rx, ry, rw, rh);
+    }
   } else {
     // pixelar: reducir y ampliar sin suavizado
     const factor = Math.max(2, intensity);
