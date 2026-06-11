@@ -1,4 +1,56 @@
 {
+  "/": {
+    "es": {
+      "heading": "RoLuck — herramientas de imagen gratis en tu navegador",
+      "intro": [
+        "RoLuck es un conjunto gratuito de herramientas para trabajar con imágenes sin instalar nada y sin subir tus archivos a ningún servidor. Convierte entre PNG, JPEG, WebP y AVIF, comprime para reducir el peso, redimensiona, edita (recortar, quitar fondo, marca de agua, filtros), exporta a PDF, procesa lotes y crea GIF, collages o spritesheets.",
+        "Todo ocurre dentro de tu navegador, en tu propio dispositivo, así que tus imágenes nunca salen de tu equipo: máxima privacidad, sin registro y sin límites de archivos. RoLuck funciona en cualquier sistema operativo y se puede instalar como app (PWA) para usarla incluso sin conexión."
+      ],
+      "faq": [
+        {
+          "q": "¿Qué es RoLuck?",
+          "a": "RoLuck es un conjunto gratuito de herramientas de imagen que funcionan dentro del navegador: convertir, comprimir, editar, redimensionar, exportar a PDF, procesar lotes y crear GIF, collages y spritesheets. Todo se procesa en tu dispositivo, sin subir nada a un servidor."
+        },
+        {
+          "q": "¿RoLuck es gratis?",
+          "a": "Sí. Todas las herramientas de RoLuck son gratuitas, sin registro, sin marcas de agua y sin límite de archivos."
+        },
+        {
+          "q": "¿Mis imágenes se suben a algún servidor?",
+          "a": "No. RoLuck procesa todo localmente en tu navegador, así que tus imágenes nunca salen de tu dispositivo."
+        },
+        {
+          "q": "¿Necesito instalar algo para usar RoLuck?",
+          "a": "No hace falta instalar nada: funciona en el navegador. Si quieres, puedes instalarla como aplicación (PWA) para abrirla más rápido e incluso usarla sin conexión."
+        }
+      ]
+    },
+    "en": {
+      "heading": "RoLuck — free image tools in your browser",
+      "intro": [
+        "RoLuck is a free set of tools to work with images without installing anything and without uploading your files to any server. Convert between PNG, JPEG, WebP and AVIF, compress to reduce file size, resize, edit (crop, remove background, watermark, filters), export to PDF, batch process and create GIFs, collages or spritesheets.",
+        "Everything runs inside your browser, on your own device, so your images never leave your computer: maximum privacy, no sign-up and no file limits. RoLuck works on any operating system and can be installed as an app (PWA) to use it even offline."
+      ],
+      "faq": [
+        {
+          "q": "What is RoLuck?",
+          "a": "RoLuck is a free set of browser-based image tools: convert, compress, edit, resize, export to PDF, batch process and create GIFs, collages and spritesheets. Everything is processed on your device, with nothing uploaded to a server."
+        },
+        {
+          "q": "Is RoLuck free?",
+          "a": "Yes. All RoLuck tools are free, with no sign-up, no watermarks and no file limits."
+        },
+        {
+          "q": "Are my images uploaded to a server?",
+          "a": "No. RoLuck processes everything locally in your browser, so your images never leave your device."
+        },
+        {
+          "q": "Do I need to install anything to use RoLuck?",
+          "a": "No installation is needed: it runs in the browser. If you want, you can install it as an app (PWA) to open it faster and even use it offline."
+        }
+      ]
+    }
+  },
   "/convertir": {
     "es": {
       "heading": "Convertir imágenes online gratis",

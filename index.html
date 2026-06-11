@@ -28,17 +28,42 @@
     <meta name="twitter:description" content="Convierte y edita imágenes en tu navegador. Privado, gratis y sin límites." />
     <meta name="twitter:image" content="https://roluck.app/og-image.png" />
 
-    <!-- Structured data -->
+    <!-- Structured data: marca (Organization + WebSite) y la propia app (WebApplication).
+         Organization/WebSite fijan el nombre "RoLuck" para las búsquedas de marca. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "RoLuck Convertidor",
-      "url": "https://roluck.app",
-      "description": "Convierte y edita imágenes directamente en el navegador. Sin subir archivos.",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "Any",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://roluck.app/#organization",
+          "name": "RoLuck",
+          "url": "https://roluck.app",
+          "logo": "https://roluck.app/pwa-512.png",
+          "image": "https://roluck.app/og-image.png",
+          "description": "RoLuck es un conjunto gratuito de herramientas de imagen que funcionan dentro del navegador, sin subir archivos a ningún servidor."
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://roluck.app/#website",
+          "name": "RoLuck Convertidor",
+          "alternateName": "RoLuck",
+          "url": "https://roluck.app",
+          "inLanguage": "es",
+          "publisher": { "@id": "https://roluck.app/#organization" }
+        },
+        {
+          "@type": "WebApplication",
+          "name": "RoLuck Convertidor",
+          "url": "https://roluck.app",
+          "description": "Convierte y edita imágenes directamente en el navegador. Sin subir archivos.",
+          "applicationCategory": "MultimediaApplication",
+          "operatingSystem": "Any",
+          "browserRequirements": "Requires JavaScript. Requires HTML5.",
+          "publisher": { "@id": "https://roluck.app/#organization" },
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+        }
+      ]
     }
     </script>
 

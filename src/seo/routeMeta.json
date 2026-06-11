@@ -1,4 +1,14 @@
 {
+  "/": {
+    "es": {
+      "title": "RoLuck — Convertidor y editor de imágenes gratis en tu navegador",
+      "description": "RoLuck convierte, comprime, edita, redimensiona y crea imágenes gratis y sin límites, todo dentro de tu navegador. Tus archivos nunca se suben a ningún servidor."
+    },
+    "en": {
+      "title": "RoLuck — Free image converter and editor in your browser",
+      "description": "RoLuck converts, compresses, edits, resizes and creates images for free with no limits, all inside your browser. Your files are never uploaded to any server."
+    }
+  },
   "/convertir": {
     "es": {
       "title": "Convertir imágenes online gratis — PNG, JPG, WebP, AVIF | RoLuck",

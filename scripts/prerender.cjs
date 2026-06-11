@@ -100,7 +100,9 @@ for (const [route, langs] of Object.entries(meta)) {
   const m = langs[LANG];
   const c = content[route] ? content[route][LANG] : null;
   const html = renderRoute(route, m, c);
-  const file = path.join(dist, `${route.replace(/^\//, '')}.html`);
+  // La home ('/') reescribe el propio index.html; el resto generan <ruta>.html.
+  const file =
+    route === '/' ? templatePath : path.join(dist, `${route.replace(/^\//, '')}.html`);
   fs.writeFileSync(file, html);
   count++;
   console.log(`  ✓ ${path.relative(dist, file)}`);

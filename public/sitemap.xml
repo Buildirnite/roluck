@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://roluck.app/</loc><priority>1.0</priority></url>
-  <url><loc>https://roluck.app/convertir</loc><priority>0.9</priority></url>
-  <url><loc>https://roluck.app/comprimir</loc><priority>0.8</priority></url>
-  <url><loc>https://roluck.app/editor</loc><priority>0.8</priority></url>
-  <url><loc>https://roluck.app/redimensionar</loc><priority>0.7</priority></url>
-  <url><loc>https://roluck.app/lote</loc><priority>0.7</priority></url>
-  <url><loc>https://roluck.app/pdf</loc><priority>0.7</priority></url>
-  <url><loc>https://roluck.app/crear</loc><priority>0.6</priority></url>
-  <url><loc>https://roluck.app/herramientas</loc><priority>0.6</priority></url>
+  <url><loc>https://roluck.app/</loc><lastmod>2026-06-11</lastmod><priority>1.0</priority></url>
+  <url><loc>https://roluck.app/convertir</loc><lastmod>2026-06-11</lastmod><priority>0.9</priority></url>
+  <url><loc>https://roluck.app/comprimir</loc><lastmod>2026-06-11</lastmod><priority>0.8</priority></url>
+  <url><loc>https://roluck.app/editor</loc><lastmod>2026-06-11</lastmod><priority>0.8</priority></url>
+  <url><loc>https://roluck.app/redimensionar</loc><lastmod>2026-06-11</lastmod><priority>0.7</priority></url>
+  <url><loc>https://roluck.app/lote</loc><lastmod>2026-06-11</lastmod><priority>0.7</priority></url>
+  <url><loc>https://roluck.app/pdf</loc><lastmod>2026-06-11</lastmod><priority>0.7</priority></url>
+  <url><loc>https://roluck.app/crear</loc><lastmod>2026-06-11</lastmod><priority>0.6</priority></url>
+  <url><loc>https://roluck.app/herramientas</loc><lastmod>2026-06-11</lastmod><priority>0.6</priority></url>
 </urlset>
