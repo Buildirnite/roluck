@@ -107,6 +107,12 @@ export const es = {
     label: 'Privacidad',
     note: 'Tus imágenes se procesan en tu navegador y nunca se suben a ningún servidor. Usamos estadísticas de uso anónimas (sin cookies) para mejorar la herramienta.',
   },
+  donate: {
+    label: 'Apóyanos',
+    title: 'Invítanos un café',
+    scan: 'Escanea el código con tu móvil o pulsa el botón para donar con PayPal.',
+    cta: 'Donar con PayPal',
+  },
   resizePanel: {
     title: 'Redimensionar',
     original: (w: number, h: number) => `Original: ${w} × ${h} px`,
@@ -491,6 +497,12 @@ export const en: Dict = {
   privacy: {
     label: 'Privacy',
     note: 'Your images are processed in your browser and never uploaded to any server. We use anonymous, cookieless usage stats to improve the tool.',
+  },
+  donate: {
+    label: 'Support us',
+    title: 'Buy us a coffee',
+    scan: 'Scan the code with your phone or tap the button to donate with PayPal.',
+    cta: 'Donate with PayPal',
   },
   resizePanel: {
     title: 'Resize',

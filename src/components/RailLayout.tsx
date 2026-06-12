@@ -1,6 +1,6 @@
 import { Suspense, useCallback, useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { IconChevronLeft, IconChevronRight, IconDots, IconX, IconHistory, IconClipboardCheck, IconLock } from '@tabler/icons-react';
+import { IconChevronLeft, IconChevronRight, IconDots, IconX, IconHistory, IconClipboardCheck, IconLock, IconHeart } from '@tabler/icons-react';
 import { NAV_ITEMS } from '../navItems';
 import { useI18n } from '../i18n/I18nContext';
 import { useSeo } from '../seo/useSeo';
@@ -59,6 +59,79 @@ function PrivacyNote({ collapsed }: { collapsed: boolean }) {
         <p className="px-3 pb-2 text-[11px] leading-snug text-text-muted">{t.privacy.note}</p>
       )}
     </div>
+  );
+}
+
+// URL de donaciones (Ko-fi, Buy Me a Coffee, PayPal…). Configurable por entorno para
+// no hardcodear la cuenta; si está vacía, el botón no se muestra.
+const DONATE_URL = (import.meta.env.VITE_DONATE_URL as string | undefined)?.trim();
+
+/**
+ * Botón de apoyo: abre un modal con el código QR de donación + un CTA a PayPal.
+ * Privacidad intacta — sin scripts ni cookies de terceros, solo un enlace externo.
+ * Se oculta por completo si no hay URL configurada.
+ */
+function DonateButton({ collapsed }: { collapsed: boolean }) {
+  const { t } = useI18n();
+  const [open, setOpen] = useState(false);
+  if (!DONATE_URL) return null;
+  return (
+    <>
+      <div className="px-2">
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          title={t.donate.title}
+          className={`flex w-full items-center gap-2 rounded-lg border border-accent/40 bg-accent/10 px-3 py-2 text-xs font-semibold text-accent transition-colors hover:bg-accent/20 ${
+            collapsed ? 'justify-center' : ''
+          }`}
+        >
+          <IconHeart size={16} stroke={2} className="flex-shrink-0" />
+          {!collapsed && <span className="truncate">{t.donate.label}</span>}
+        </button>
+      </div>
+
+      {open && (
+        <div
+          className="fixed inset-0 z-[70] flex items-center justify-center bg-black/70 p-4"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setOpen(false)}
+        >
+          <div
+            className="w-full max-w-xs rounded-2xl border border-border bg-bg-surface p-5 text-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="mb-3 flex items-center justify-between">
+              <span className="flex items-center gap-2 text-sm font-semibold text-text-primary">
+                <IconHeart size={18} stroke={2} className="text-accent" />
+                {t.donate.label}
+              </span>
+              <button type="button" onClick={() => setOpen(false)} aria-label={t.nav.close}>
+                <IconX size={18} className="text-text-muted transition-colors hover:text-text-primary" />
+              </button>
+            </div>
+            <p className="mb-4 text-xs leading-snug text-text-muted">{t.donate.scan}</p>
+            <img
+              src="/donate-qr.png"
+              alt={t.donate.title}
+              className="mx-auto mb-4 h-44 w-44 rounded-lg bg-white p-2"
+              width={176}
+              height={176}
+            />
+            <a
+              href={DONATE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-bg-primary transition-opacity hover:opacity-90"
+            >
+              <IconHeart size={16} stroke={2} />
+              {t.donate.cta}
+            </a>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
@@ -135,6 +208,8 @@ export default function RailLayout() {
           </span>
           {!collapsed && <span className="truncate">{t.history.title}</span>}
         </button>
+
+        <DonateButton collapsed={collapsed} />
 
         <PrivacyNote collapsed={collapsed} />
 
@@ -238,6 +313,7 @@ export default function RailLayout() {
               <IconHistory size={20} stroke={1.8} />
               <span>{t.history.title}{historyCount > 0 && ` (${historyCount})`}</span>
             </button>
+            <DonateButton collapsed={false} />
             <PrivacyNote collapsed={false} />
             <LanguageSwitcher />
           </div>

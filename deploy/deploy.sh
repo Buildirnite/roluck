@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 # Despliegue de RoLuck Convertidor: build local + rsync de /dist al VPS.
 #
-# Requiere acceso SSH por clave al servidor. Ajusta las variables de abajo o
-# pásalas por entorno:  REMOTE=usuario@host  REMOTE_PATH=/var/www/roluck  ./deploy/deploy.sh
+# El destino es el alias `roluck-vps` definido en ~/.ssh/config (IP, puerto 22022 y
+# usuario viven ahí, NO en el repo, que es público y revelaría el origen tras Cloudflare).
+# Puedes sobreescribir:  REMOTE=usuario@host  REMOTE_PATH=/var/www/roluck  ./deploy/deploy.sh
 set -euo pipefail
 
-REMOTE="${REMOTE:-deploy@roluck.app}"          # ← usuario@host del VPS
-REMOTE_PATH="${REMOTE_PATH:-/var/www/roluck}"  # ← raíz que sirve Nginx
+REMOTE="${REMOTE:-roluck-vps}"                              # ← alias en ~/.ssh/config (IP+puerto+user)
+REMOTE_PATH="${REMOTE_PATH:-/var/www/roluck-convertidor}"  # ← raíz que sirve Nginx (webroot real)
 
 cd "$(dirname "$0")/.."
 
