@@ -12,6 +12,7 @@ import {
 import ToolShell from '../components/ToolShell';
 import ProBadge from '../components/ProBadge';
 import { useI18n } from '../i18n/I18nContext';
+import { localize } from '../i18n/localize';
 import { useProStore } from '../store/useProStore';
 import {
   qrToDataUrl,
@@ -75,7 +76,7 @@ export default function QrPage() {
 /* ── Generar ──────────────────────────────────────────────────────────────── */
 
 function Generate({ isPro }: { isPro: boolean }) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [type, setType] = useState<QrType>('text');
   const [level, setLevel] = useState<QrLevel>('M');
 
@@ -295,7 +296,7 @@ function Generate({ isPro }: { isPro: boolean }) {
               </button>
             ) : (
               <Link
-                to="/pro"
+                to={localize('/pro', lang)}
                 className="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-bg-surface px-4 py-2.5 text-sm font-medium text-text-muted transition-colors hover:border-accent/50"
               >
                 {t.qr.downloadSvg}
@@ -311,7 +312,7 @@ function Generate({ isPro }: { isPro: boolean }) {
 
 /** Aviso de función Pro con CTA a /pro (para los tipos bloqueados). */
 function ProNotice() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   return (
     <div className="flex flex-col items-start gap-3 rounded-xl border border-accent/30 bg-accent/5 p-4">
       <div className="flex items-center gap-2">
@@ -320,7 +321,7 @@ function ProNotice() {
       </div>
       <p className="text-sm text-text-muted">{t.qr.proFeatureDesc}</p>
       <Link
-        to="/pro"
+        to={localize('/pro', lang)}
         className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-accent-ink transition-opacity hover:opacity-90"
       >
         <IconSparkles size={16} stroke={2} />

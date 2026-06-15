@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { IconArrowRight, IconLock, IconSparkles } from '@tabler/icons-react';
 import { FAMILIES, toolsByFamily, tr, type Tool } from '../catalog';
 import { useI18n } from '../i18n/I18nContext';
+import { localize } from '../i18n/localize';
 import ProBadge from '../components/ProBadge';
 
 /** Tarjeta de una herramienta en línea: enlaza a su subruta. */
@@ -10,7 +11,7 @@ function ToolCard({ tool }: { tool: Tool }) {
   const { Icon } = tool;
   return (
     <Link
-      to={tool.to}
+      to={localize(tool.to, lang)}
       className="group flex flex-col rounded-xl border border-border bg-bg-surface p-4 transition-colors hover:border-accent/40 hover:bg-bg-elevated"
     >
       <div className="mb-3 flex items-center justify-between">
@@ -137,7 +138,7 @@ export default function HomePage() {
           </div>
         </div>
         <Link
-          to="/pro"
+          to={localize('/pro', lang)}
           className="inline-flex flex-shrink-0 items-center gap-2 rounded-lg border border-accent px-4 py-2.5 text-sm font-semibold text-accent transition-colors hover:bg-accent hover:text-accent-ink"
         >
           {t.pro.cta}

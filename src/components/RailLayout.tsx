@@ -3,6 +3,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { IconChevronLeft, IconChevronRight, IconDots, IconX, IconHistory, IconClipboardCheck, IconLock, IconHeart, IconHome2 } from '@tabler/icons-react';
 import { liveTools, FAMILIES, toolsByFamily, tr } from '../catalog';
 import { useI18n } from '../i18n/I18nContext';
+import { localize } from '../i18n/localize';
 import { useModal } from '../hooks/useModal';
 import { useSeo } from '../seo/useSeo';
 import SeoContent from './SeoContent';
@@ -185,7 +186,7 @@ export default function RailLayout() {
         <nav className="flex flex-1 flex-col gap-1 overflow-y-auto px-2">
           {/* Inicio (hub) */}
           <NavLink
-            to="/"
+            to={localize('/', lang)}
             end
             title={collapsed ? t.home.inicio : undefined}
             className={({ isActive }) =>
@@ -212,7 +213,7 @@ export default function RailLayout() {
                 {tools.map(({ to, name, Icon }) => (
                   <NavLink
                     key={to}
-                    to={to}
+                    to={localize(to, lang)}
                     title={collapsed ? tr(name, lang) : undefined}
                     className={({ isActive }) =>
                       `${linkBase} ${isActive ? linkActive : linkIdle} ${collapsed ? 'justify-center' : ''}`
@@ -287,7 +288,7 @@ export default function RailLayout() {
       {/* ── Barra inferior (móvil) ── */}
       <nav className="fixed inset-x-0 bottom-0 z-40 flex border-t border-border bg-bg-surface pb-[env(safe-area-inset-bottom)] md:hidden">
         <NavLink
-          to="/"
+          to={localize('/', lang)}
           end
           className={({ isActive }) =>
             `flex flex-1 flex-col items-center gap-1 py-2 text-[11px] font-medium transition-colors ${
@@ -301,7 +302,7 @@ export default function RailLayout() {
         {primary.map(({ to, name, Icon }) => (
           <NavLink
             key={to}
-            to={to}
+            to={localize(to, lang)}
             className={({ isActive }) =>
               `flex flex-1 flex-col items-center gap-1 py-2 text-[11px] font-medium transition-colors ${
                 isActive ? 'text-accent' : 'text-text-muted'
@@ -345,7 +346,7 @@ export default function RailLayout() {
             {secondary.map(({ to, name, Icon }) => (
               <NavLink
                 key={to}
-                to={to}
+                to={localize(to, lang)}
                 onClick={() => setMoreOpen(false)}
                 className={({ isActive }) =>
                   `${linkBase} ${isActive ? linkActive : linkIdle}`

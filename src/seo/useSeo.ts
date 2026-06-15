@@ -1,10 +1,29 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useI18n } from '../i18n/I18nContext';
 import routeMeta from './routeMeta.json';
 import onPageContent from './onPageContent.json';
+import catalog from '../catalog.data.json';
+import { langFromPath, localize, stripLang } from '../i18n/localize';
 
 const SITE_URL = 'https://roluck.app';
+
+type Lang = 'es' | 'en';
+
+/** URL absoluta de una ruta lógica en un idioma (`/convertir`, en → …/en/convertir). */
+function urlFor(route: string, lang: Lang): string {
+  const p = localize(route, lang);
+  return p === '/' ? SITE_URL : `${SITE_URL}${p}`;
+}
+
+// Nombre de cada familia y herramienta por ruta, para armar la miga de pan
+// (Inicio → Familia → Herramienta). Misma fuente que el prerender (catalog.data.json).
+const HOME_NAME: Record<Lang, string> = { es: 'Inicio', en: 'Home' };
+const FAMILY_NAME = Object.fromEntries(
+  catalog.families.map((f) => [f.id, f.name]),
+) as Record<string, Record<Lang, string>>;
+const TOOL_BY_ROUTE = Object.fromEntries(
+  catalog.tools.map((t) => [t.to, t]),
+) as Record<string, (typeof catalog.tools)[number]>;
 
 // Valores por defecto (home) — coinciden con los estáticos de index.html.
 const DEFAULT = {
@@ -57,6 +76,42 @@ function applyFaqJsonLd(faq: FaqItem[] | undefined) {
   });
 }
 
+const BREADCRUMB_SCRIPT_ID = 'breadcrumb-jsonld';
+
+/**
+ * Inserta/actualiza el BreadcrumbList JSON-LD (Inicio → Familia → Herramienta) de la
+ * ruta, o lo elimina en la home y en rutas sin herramienta asociada (p. ej. /pro).
+ */
+function applyBreadcrumbJsonLd(route: string, lang: Lang) {
+  let script = document.getElementById(BREADCRUMB_SCRIPT_ID) as HTMLScriptElement | null;
+  const tool = TOOL_BY_ROUTE[route];
+  if (!tool) {
+    if (script) script.remove();
+    return;
+  }
+  if (!script) {
+    script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = BREADCRUMB_SCRIPT_ID;
+    document.head.appendChild(script);
+  }
+  const trail = [
+    { name: HOME_NAME[lang], item: urlFor('/', lang) },
+    { name: FAMILY_NAME[tool.family][lang], item: undefined },
+    { name: tool.name[lang], item: urlFor(tool.to, lang) },
+  ];
+  script.textContent = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: trail.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.name,
+      ...(c.item ? { item: c.item } : {}),
+    })),
+  });
+}
+
 /** Crea o actualiza un <meta>/<link> en el <head> por atributo identificador. */
 function setTag(selector: string, create: () => HTMLElement, attr: string, value: string) {
   let el = document.head.querySelector<HTMLElement>(selector);
@@ -67,8 +122,38 @@ function setTag(selector: string, create: () => HTMLElement, attr: string, value
   el.setAttribute(attr, value);
 }
 
-function applyMeta(title: string, description: string, canonical: string) {
+/**
+ * Mantiene los `<link rel="alternate" hreflang>` recíprocos (es / en / x-default) de la
+ * ruta actual. Cada versión de idioma vive en su propia URL, así Google sabe cuál servir.
+ */
+function applyHreflang(route: string) {
+  const alts: Array<[string, string]> = [
+    ['es', urlFor(route, 'es')],
+    ['en', urlFor(route, 'en')],
+    ['x-default', urlFor(route, 'es')],
+  ];
+  for (const [hreflang, href] of alts) {
+    setTag(
+      `link[rel="alternate"][hreflang="${hreflang}"]`,
+      () => {
+        const l = document.createElement('link');
+        l.setAttribute('rel', 'alternate');
+        l.setAttribute('hreflang', hreflang);
+        return l;
+      },
+      'href',
+      href,
+    );
+  }
+}
+
+function applyMeta(title: string, description: string, canonical: string, lang: Lang) {
   document.title = title;
+  setTag('meta[property="og:locale"]', () => {
+    const m = document.createElement('meta');
+    m.setAttribute('property', 'og:locale');
+    return m;
+  }, 'content', lang === 'en' ? 'en_US' : 'es_ES');
   setTag('meta[name="description"]', () => {
     const m = document.createElement('meta');
     m.setAttribute('name', 'description');
@@ -111,13 +196,16 @@ function applyMeta(title: string, description: string, canonical: string) {
  */
 export function useSeo() {
   const { pathname } = useLocation();
-  const { lang } = useI18n();
 
   useEffect(() => {
-    const entry = META[pathname];
+    // El idioma y la ruta lógica se derivan de la URL (ES en raíz, EN bajo /en).
+    const lang = langFromPath(pathname);
+    const route = stripLang(pathname);
+    const entry = META[route];
     const meta = entry ? entry[lang] : DEFAULT[lang];
-    const canonical = pathname === '/' ? SITE_URL : `${SITE_URL}${pathname}`;
-    applyMeta(meta.title, meta.description, canonical);
-    applyFaqJsonLd(CONTENT[pathname]?.[lang]?.faq);
-  }, [pathname, lang]);
+    applyMeta(meta.title, meta.description, urlFor(route, lang), lang);
+    applyHreflang(route);
+    applyFaqJsonLd(CONTENT[route]?.[lang]?.faq);
+    applyBreadcrumbJsonLd(route, lang);
+  }, [pathname]);
 }

@@ -1,39 +1,29 @@
-import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, type ReactNode } from 'react';
+import { useLocation } from 'react-router-dom';
 import { DICTS, type Dict, type Lang } from './translations';
-
-const STORAGE_KEY = 'roluck-lang';
+import { langFromPath } from './localize';
 
 interface I18nValue {
   lang: Lang;
-  setLang: (lang: Lang) => void;
   t: Dict;
 }
 
 const I18nContext = createContext<I18nValue | null>(null);
 
-/** Idioma inicial: preferencia guardada, si no el del navegador, con ES por defecto. */
-function detectLang(): Lang {
-  const saved = localStorage.getItem(STORAGE_KEY);
-  if (saved === 'es' || saved === 'en') return saved;
-  return navigator.language.toLowerCase().startsWith('en') ? 'en' : 'es';
-}
-
+/**
+ * El idioma se deriva de la URL (ES en la raíz, EN bajo `/en`). Debe renderizarse dentro
+ * del router (es un layout en App.tsx). Cambiar de idioma = navegar a la otra URL, lo hace
+ * `LanguageSwitcher`. Mantiene `<html lang>` sincronizado (accesibilidad + SEO).
+ */
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(detectLang);
+  const { pathname } = useLocation();
+  const lang = langFromPath(pathname);
 
-  // Mantener <html lang> sincronizado (accesibilidad y SEO).
   useEffect(() => {
     document.documentElement.lang = lang;
   }, [lang]);
 
-  const setLang = useCallback((next: Lang) => {
-    localStorage.setItem(STORAGE_KEY, next);
-    setLangState(next);
-  }, []);
-
-  return (
-    <I18nContext.Provider value={{ lang, setLang, t: DICTS[lang] }}>{children}</I18nContext.Provider>
-  );
+  return <I18nContext.Provider value={{ lang, t: DICTS[lang] }}>{children}</I18nContext.Provider>;
 }
 
 /** Acceso a las traducciones y al idioma activo. `t` es el diccionario resuelto. */

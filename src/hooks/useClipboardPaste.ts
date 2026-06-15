@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppStore } from '../store/useAppStore';
 import { isAcceptedImage } from '../utils/imageUtils';
+import { langFromPath, localize, stripLang } from '../i18n/localize';
 
 /** Rutas que trabajan sobre la cola compartida (la imagen pegada se añade a ella). */
 const QUEUE_ROUTES = ['/lote', '/pdf', '/crear'];
@@ -35,14 +36,18 @@ export function useClipboardPaste(onPasted: (kind: 'single' | 'queued') => void)
       if (!file || !isAcceptedImage(file)) return;
 
       e.preventDefault();
-      if (QUEUE_ROUTES.some((r) => location.pathname.startsWith(r))) {
+      // La ruta lógica sin el prefijo de idioma, para comparar igual en ES y /en.
+      const route = stripLang(location.pathname);
+      if (QUEUE_ROUTES.some((r) => route.startsWith(r))) {
         addToQueue([file]);
         onPasted('queued');
       } else {
         setActiveFile(file);
         // Si la ruta actual no muestra la imagen activa (ej. /herramientas o raíz),
-        // llevar al usuario a Convertir para que vea lo que pegó.
-        if (!SINGLE_ROUTES.some((r) => location.pathname.startsWith(r))) navigate('/convertir');
+        // llevar al usuario a Convertir (en el idioma actual) para que vea lo que pegó.
+        if (!SINGLE_ROUTES.some((r) => route.startsWith(r))) {
+          navigate(localize('/convertir', langFromPath(location.pathname)));
+        }
         onPasted('single');
       }
     };

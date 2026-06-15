@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { useI18n } from '../i18n/I18nContext';
+import { stripLang } from '../i18n/localize';
 import content from '../seo/onPageContent.json';
 
 type FaqItem = { q: string; a: string };
@@ -21,7 +22,7 @@ const FAQ_TITLE = { es: 'Preguntas frecuentes', en: 'Frequently asked questions'
 export default function SeoContent() {
   const { pathname } = useLocation();
   const { lang } = useI18n();
-  const entry = CONTENT[pathname];
+  const entry = CONTENT[stripLang(pathname)];
   if (!entry) return null;
   const page = entry[lang];
 
