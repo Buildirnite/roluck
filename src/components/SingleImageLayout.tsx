@@ -3,10 +3,13 @@ import { decodeHeic } from '../utils/heicDecoder';
 import { SIZE_WARNING_BYTES, formatBytes } from '../utils/imageUtils';
 import { useI18n } from '../i18n/I18nContext';
 import DropZone from './DropZone';
+import ToolShell from './ToolShell';
 
 interface SingleImageLayoutProps {
   title: string;
   subtitle?: string;
+  /** La herramienta tiene funciones Pro (muestra la etiqueta junto al título). */
+  pro?: boolean;
   hasImage: boolean;
   /** Recibe el archivo ya decodificado (HEIC → JPEG si hace falta). */
   onImage: (file: File) => void;
@@ -26,6 +29,7 @@ interface SingleImageLayoutProps {
 export default function SingleImageLayout({
   title,
   subtitle,
+  pro,
   hasImage,
   onImage,
   onReset,
@@ -57,14 +61,12 @@ export default function SingleImageLayout({
   }
 
   return (
-    <div className="flex flex-col gap-5">
-      {/* Encabezado de la página */}
-      <header className="flex items-center justify-between">
-        <div>
-          <h1 className="font-display text-xl font-bold tracking-tight">{title}</h1>
-          {subtitle && <p className="mt-0.5 text-xs text-text-muted">{subtitle}</p>}
-        </div>
-        {hasImage && onReset && (
+    <ToolShell
+      title={title}
+      subtitle={subtitle}
+      pro={pro}
+      actions={
+        hasImage && onReset ? (
           <button
             type="button"
             onClick={onReset}
@@ -75,9 +77,10 @@ export default function SingleImageLayout({
             </svg>
             {t.common.newImage}
           </button>
-        )}
-      </header>
-
+        ) : undefined
+      }
+    >
+      <div className="flex flex-col gap-5">
       {error && (
         <div role="alert" className="flex items-start gap-2 rounded-xl border border-error/40 bg-error/10 px-4 py-3 text-sm text-error">
           <svg viewBox="0 0 24 24" className="mt-0.5 h-4 w-4 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -112,6 +115,7 @@ export default function SingleImageLayout({
           <section className="flex flex-col gap-4">{stage}</section>
         </div>
       )}
-    </div>
+      </div>
+    </ToolShell>
   );
 }

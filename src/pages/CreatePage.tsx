@@ -5,6 +5,7 @@ import GifTool from '../components/create/GifTool';
 import SpritesheetTool from '../components/create/SpritesheetTool';
 import GridSplitTool from '../components/create/GridSplitTool';
 import CollageTool from '../components/create/CollageTool';
+import ToolShell from '../components/ToolShell';
 import { useI18n } from '../i18n/I18nContext';
 
 type ToolId = 'gif' | 'sprite' | 'split' | 'collage';
@@ -36,12 +37,8 @@ export default function CreatePage() {
   const tools: EditorTool[] = TOOL_META.map((m) => ({ ...m, label: t.createTools[m.id], available: true }));
 
   return (
-    <div className="flex flex-col gap-5">
-      <header>
-        <h1 className="font-display text-xl font-bold tracking-tight">{t.pages.create.title}</h1>
-        <p className="mt-0.5 text-xs text-text-muted">{t.pages.create.subtitle}</p>
-      </header>
-
+    <ToolShell title={t.pages.create.title} subtitle={t.pages.create.subtitle}>
+      <div className="flex flex-col gap-5">
       <ToolPalette
         tools={tools}
         active={active}
@@ -58,6 +55,7 @@ export default function CreatePage() {
       )}
 
       <Panel onError={setError} />
-    </div>
+      </div>
+    </ToolShell>
   );
 }

@@ -1,8 +1,9 @@
 import { Suspense, useCallback, useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { IconChevronLeft, IconChevronRight, IconDots, IconX, IconHistory, IconClipboardCheck, IconLock, IconHeart } from '@tabler/icons-react';
-import { NAV_ITEMS } from '../navItems';
+import { IconChevronLeft, IconChevronRight, IconDots, IconX, IconHistory, IconClipboardCheck, IconLock, IconHeart, IconHome2 } from '@tabler/icons-react';
+import { liveTools, FAMILIES, toolsByFamily, tr } from '../catalog';
 import { useI18n } from '../i18n/I18nContext';
+import { useModal } from '../hooks/useModal';
 import { useSeo } from '../seo/useSeo';
 import SeoContent from './SeoContent';
 import { useHistoryStore } from '../store/useHistoryStore';
@@ -74,6 +75,7 @@ const DONATE_URL = (import.meta.env.VITE_DONATE_URL as string | undefined)?.trim
 function DonateButton({ collapsed }: { collapsed: boolean }) {
   const { t } = useI18n();
   const [open, setOpen] = useState(false);
+  const dialogRef = useModal<HTMLDivElement>(() => setOpen(false), open);
   if (!DONATE_URL) return null;
   return (
     <>
@@ -93,14 +95,16 @@ function DonateButton({ collapsed }: { collapsed: boolean }) {
 
       {open && (
         <div
+          ref={dialogRef}
           className="fixed inset-0 z-[70] flex items-center justify-center bg-black/70 p-4"
           role="dialog"
           aria-modal="true"
-          onClick={() => setOpen(false)}
+          onMouseDown={() => setOpen(false)}
         >
           <div
-            className="w-full max-w-xs rounded-2xl border border-border bg-bg-surface p-5 text-center"
-            onClick={(e) => e.stopPropagation()}
+            tabIndex={-1}
+            className="w-full max-w-xs rounded-2xl border border-border bg-bg-surface p-5 text-center focus:outline-none"
+            onMouseDown={(e) => e.stopPropagation()}
           >
             <div className="mb-3 flex items-center justify-between">
               <span className="flex items-center gap-2 text-sm font-semibold text-text-primary">
@@ -140,13 +144,14 @@ function DonateButton({ collapsed }: { collapsed: boolean }) {
  * solo íconos) y barra inferior en móvil. Envuelve todas las rutas vía <Outlet />.
  */
 export default function RailLayout() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   useSeo(); // Sincroniza title/description/canonical/OG con la ruta y el idioma.
   const [collapsed, setCollapsed] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
   const historyCount = useHistoryStore((s) => s.entries.length);
   const [toast, setToast] = useState<string | null>(null);
+  const moreRef = useModal<HTMLDivElement>(() => setMoreOpen(false), moreOpen);
 
   // Atajo global: pegar una imagen del portapapeles. Muestra un aviso transitorio.
   const handlePasted = useCallback(
@@ -158,8 +163,8 @@ export default function RailLayout() {
   );
   useClipboardPaste(handlePasted);
 
-  const primary = NAV_ITEMS.filter((i) => i.primary);
-  const secondary = NAV_ITEMS.filter((i) => !i.primary);
+  const primary = liveTools.filter((i) => i.primary);
+  const secondary = liveTools.filter((i) => !i.primary);
 
   const linkBase =
     'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors';
@@ -177,19 +182,48 @@ export default function RailLayout() {
         <Logo collapsed={collapsed} />
 
         <nav className="flex flex-1 flex-col gap-1 overflow-y-auto px-2">
-          {NAV_ITEMS.map(({ to, key, Icon }) => (
-            <NavLink
-              key={to}
-              to={to}
-              title={collapsed ? t.nav[key] : undefined}
-              className={({ isActive }) =>
-                `${linkBase} ${isActive ? linkActive : linkIdle} ${collapsed ? 'justify-center' : ''}`
-              }
-            >
-              <Icon size={20} stroke={1.8} className="flex-shrink-0" />
-              {!collapsed && <span className="truncate">{t.nav[key]}</span>}
-            </NavLink>
-          ))}
+          {/* Inicio (hub) */}
+          <NavLink
+            to="/"
+            end
+            title={collapsed ? t.home.inicio : undefined}
+            className={({ isActive }) =>
+              `${linkBase} ${isActive ? linkActive : linkIdle} ${collapsed ? 'justify-center' : ''}`
+            }
+          >
+            <IconHome2 size={20} stroke={1.8} className="flex-shrink-0" />
+            {!collapsed && <span className="truncate">{t.home.inicio}</span>}
+          </NavLink>
+
+          {/* Herramientas agrupadas por familia (solo las que existen hoy) */}
+          {FAMILIES.map((family) => {
+            const tools = toolsByFamily(family.id, 'live');
+            if (tools.length === 0) return null;
+            return (
+              <div key={family.id} className="mt-1.5">
+                {collapsed ? (
+                  <div className="mx-2 my-1.5 border-t border-border" />
+                ) : (
+                  <p className="px-3 pb-1 pt-1.5 text-[10px] font-semibold uppercase tracking-wide text-text-muted">
+                    {tr(family.name, lang)}
+                  </p>
+                )}
+                {tools.map(({ to, name, Icon }) => (
+                  <NavLink
+                    key={to}
+                    to={to}
+                    title={collapsed ? tr(name, lang) : undefined}
+                    className={({ isActive }) =>
+                      `${linkBase} ${isActive ? linkActive : linkIdle} ${collapsed ? 'justify-center' : ''}`
+                    }
+                  >
+                    <Icon size={20} stroke={1.8} className="flex-shrink-0" />
+                    {!collapsed && <span className="truncate">{tr(name, lang)}</span>}
+                  </NavLink>
+                ))}
+              </div>
+            );
+          })}
         </nav>
 
         <button
@@ -249,7 +283,19 @@ export default function RailLayout() {
 
       {/* ── Barra inferior (móvil) ── */}
       <nav className="fixed inset-x-0 bottom-0 z-40 flex border-t border-border bg-bg-surface md:hidden">
-        {primary.map(({ to, key, Icon }) => (
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) =>
+            `flex flex-1 flex-col items-center gap-1 py-2 text-[11px] font-medium transition-colors ${
+              isActive ? 'text-accent' : 'text-text-muted'
+            }`
+          }
+        >
+          <IconHome2 size={22} stroke={1.8} />
+          <span>{t.home.inicio}</span>
+        </NavLink>
+        {primary.map(({ to, name, Icon }) => (
           <NavLink
             key={to}
             to={to}
@@ -260,7 +306,7 @@ export default function RailLayout() {
             }
           >
             <Icon size={22} stroke={1.8} />
-            <span>{t.nav[key]}</span>
+            <span>{tr(name, lang)}</span>
           </NavLink>
         ))}
         <button
@@ -276,12 +322,16 @@ export default function RailLayout() {
       {/* ── Hoja "Más" (móvil) ── */}
       {moreOpen && (
         <div
+          ref={moreRef}
           className="fixed inset-0 z-50 flex flex-col justify-end bg-black/70 md:hidden"
-          onClick={() => setMoreOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          onMouseDown={() => setMoreOpen(false)}
         >
           <div
-            className="rounded-t-2xl border-t border-border bg-bg-surface p-3"
-            onClick={(e) => e.stopPropagation()}
+            tabIndex={-1}
+            className="rounded-t-2xl border-t border-border bg-bg-surface p-3 focus:outline-none"
+            onMouseDown={(e) => e.stopPropagation()}
           >
             <div className="mb-2 flex items-center justify-between px-1">
               <span className="text-sm font-semibold text-text-primary">{t.nav.moreTools}</span>
@@ -289,7 +339,7 @@ export default function RailLayout() {
                 <IconX size={18} className="text-text-muted" />
               </button>
             </div>
-            {secondary.map(({ to, key, Icon }) => (
+            {secondary.map(({ to, name, Icon }) => (
               <NavLink
                 key={to}
                 to={to}
@@ -299,7 +349,7 @@ export default function RailLayout() {
                 }
               >
                 <Icon size={20} stroke={1.8} />
-                <span>{t.nav[key]}</span>
+                <span>{tr(name, lang)}</span>
               </NavLink>
             ))}
             <button

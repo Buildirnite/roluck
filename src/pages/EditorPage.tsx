@@ -395,6 +395,7 @@ export default function EditorPage() {
       <SingleImageLayout
         title={t.pages.editor.title}
         subtitle={t.pages.editor.subtitle}
+        pro
         hasImage={!!img.file}
         onImage={img.setActiveFile}
         onReset={img.reset}

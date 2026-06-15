@@ -16,7 +16,7 @@ export default {
         },
         text: {
           primary: '#f5f5f5',
-          muted: '#737373',
+          muted: '#909090',
         },
         border: '#2a2a2a',
         success: '#22c55e',

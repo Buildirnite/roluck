@@ -6,6 +6,7 @@ import Base64Tool from '../components/tools/Base64Tool';
 import PaletteTool from '../components/tools/PaletteTool';
 import ExifTool from '../components/tools/ExifTool';
 import OcrTool from '../components/tools/OcrTool';
+import ToolShell from '../components/ToolShell';
 import { useI18n } from '../i18n/I18nContext';
 
 type ToolId = 'favicon' | 'base64' | 'palette' | 'exif' | 'ocr';
@@ -39,12 +40,8 @@ export default function ToolsPage() {
   const tools: EditorTool[] = TOOL_META.map((m) => ({ ...m, label: t.toolsTools[m.id], available: true }));
 
   return (
-    <div className="flex flex-col gap-5">
-      <header>
-        <h1 className="font-display text-xl font-bold tracking-tight">{t.pages.tools.title}</h1>
-        <p className="mt-0.5 text-xs text-text-muted">{t.pages.tools.subtitle}</p>
-      </header>
-
+    <ToolShell title={t.pages.tools.title} subtitle={t.pages.tools.subtitle}>
+      <div className="flex flex-col gap-5">
       <ToolPalette
         tools={tools}
         active={active}
@@ -61,6 +58,7 @@ export default function ToolsPage() {
       )}
 
       <Panel onError={setError} />
-    </div>
+      </div>
+    </ToolShell>
   );
 }

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import ReactCrop, {
   centerCrop,
   makeAspectCrop,
@@ -9,6 +9,7 @@ import ReactCrop, {
 import 'react-image-crop/dist/ReactCrop.css';
 import { getCroppedBlob } from '../utils/cropImage';
 import { useI18n } from '../i18n/I18nContext';
+import { useModal } from '../hooks/useModal';
 
 interface CropModalProps {
   imageSrc: string;
@@ -49,14 +50,8 @@ export default function CropModal({ imageSrc, onCancel, onConfirm }: CropModalPr
   const [zoom, setZoom] = useState(1);
   const [working, setWorking] = useState(false);
 
-  // Cerrar con la tecla Esc.
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onCancel();
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [onCancel]);
+  // Escape + focus-trap + restauración de foco.
+  const dialogRef = useModal<HTMLDivElement>(onCancel);
 
   function onImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
     const { width, height } = e.currentTarget;
@@ -105,6 +100,7 @@ export default function CropModal({ imageSrc, onCancel, onConfirm }: CropModalPr
 
   return (
     <div
+      ref={dialogRef}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
       role="dialog"
       aria-modal="true"
@@ -114,7 +110,7 @@ export default function CropModal({ imageSrc, onCancel, onConfirm }: CropModalPr
         if (e.target === e.currentTarget) onCancel();
       }}
     >
-      <div className="flex w-full max-w-2xl flex-col gap-4 rounded-2xl border border-border bg-bg-surface p-4">
+      <div tabIndex={-1} className="flex w-full max-w-2xl flex-col gap-4 rounded-2xl border border-border bg-bg-surface p-4 focus:outline-none">
         <h3 className="font-display text-lg font-semibold text-text-primary">{t.crop.title}</h3>
 
         {/* Área del recorte: arrastra las manijas para redimensionar */}

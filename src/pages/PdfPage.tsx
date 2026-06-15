@@ -7,9 +7,61 @@ import { ACCEPT_ATTR, isAcceptedImage } from '../utils/imageUtils';
 import DropZone from '../components/DropZone';
 import PdfPanel from '../components/PdfPanel';
 import ConvertButton from '../components/ConvertButton';
+import ToolShell from '../components/ToolShell';
+import MergePdf from '../components/pdf/MergePdf';
+import OrganizePdf from '../components/pdf/OrganizePdf';
 
-/** Ruta /pdf — combinar imágenes en un PDF multipágina. */
+type Tab = 'images' | 'merge' | 'organize';
+
+/**
+ * Ruta /pdf — PDF Toolbox. Tres modos: combinar imágenes en un PDF (flujo original, jsPDF),
+ * unir varios PDF y organizar páginas (rotar/eliminar/reordenar). Las operaciones sobre PDF
+ * usan pdf-lib + pdf.js (lazy), ver utils/pdfTools.ts.
+ */
 export default function PdfPage() {
+  const { t } = useI18n();
+  const [tab, setTab] = useState<Tab>('images');
+
+  const tabs: { id: Tab; label: string }[] = [
+    { id: 'images', label: t.pdfTools.tabImages },
+    { id: 'merge', label: t.pdfTools.tabMerge },
+    { id: 'organize', label: t.pdfTools.tabOrganize },
+  ];
+
+  return (
+    <ToolShell title={t.pdfTools.title} subtitle={t.pdfTools.subtitle}>
+      <div className="flex flex-col gap-5">
+        <div className="flex flex-wrap gap-2">
+          {tabs.map((tb) => {
+            const active = tb.id === tab;
+            return (
+              <button
+                key={tb.id}
+                type="button"
+                onClick={() => setTab(tb.id)}
+                aria-pressed={active}
+                className={`rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors ${
+                  active
+                    ? 'border-accent bg-accent/15 text-accent'
+                    : 'border-border bg-bg-surface text-text-muted hover:border-accent/40 hover:text-text-primary'
+                }`}
+              >
+                {tb.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {tab === 'images' && <ImagesToPdf />}
+        {tab === 'merge' && <MergePdf />}
+        {tab === 'organize' && <OrganizePdf />}
+      </div>
+    </ToolShell>
+  );
+}
+
+/** Flujo original: combinar imágenes de la cola compartida en un PDF multipágina. */
+function ImagesToPdf() {
   const { t } = useI18n();
   const queue = useAppStore((s) => s.queue);
   const addToQueue = useAppStore((s) => s.addToQueue);
@@ -25,7 +77,6 @@ export default function PdfPage() {
   });
   const [localError, setLocalError] = useState<string | null>(null);
 
-  // La cola compartida como ítems para PdfPanel (solo usa id + file.name).
   const items: BatchItem[] = queue.map((q) => ({ id: q.id, file: q.file, status: 'pending' }));
 
   function handleAddMore(list: FileList | null) {
@@ -38,12 +89,7 @@ export default function PdfPage() {
   }
 
   return (
-    <div className="flex flex-col gap-5">
-      <header>
-        <h1 className="font-display text-xl font-bold tracking-tight">{t.pages.pdf.title}</h1>
-        <p className="mt-0.5 text-xs text-text-muted">{t.pages.pdf.subtitle}</p>
-      </header>
-
+    <div className="flex flex-col gap-4">
       {localError && (
         <div role="alert" className="rounded-xl border border-error/40 bg-error/10 px-4 py-3 text-sm text-error">
           {localError}

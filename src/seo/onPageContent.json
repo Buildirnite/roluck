@@ -185,27 +185,29 @@
   },
   "/pdf": {
     "es": {
-      "heading": "Convertir imágenes a PDF online",
+      "heading": "PDF Toolbox: imágenes a PDF, unir y organizar páginas",
       "intro": [
-        "Combina varias imágenes JPG, PNG o WebP en un solo documento PDF. Ordena las páginas, ajusta el tamaño y descarga un PDF limpio, sin marcas de agua.",
-        "La generación del PDF ocurre íntegramente en tu navegador, así que tus documentos siguen siendo privados."
+        "Un set de herramientas PDF en un solo lugar: convierte imágenes JPG, PNG o WebP a PDF, une varios PDF en uno y organiza las páginas (rotar, eliminar y reordenar) con vista de miniaturas.",
+        "Todo ocurre íntegramente en tu navegador: tus documentos no se suben a ningún servidor y el resultado sale limpio, sin marcas de agua."
       ],
       "faq": [
-        { "q": "¿Cómo convierto varias imágenes en un solo PDF?", "a": "Añade las imágenes en el orden que quieras y RoLuck las combina en un único PDF descargable." },
-        { "q": "¿El PDF lleva marca de agua?", "a": "No. El PDF se genera limpio, sin marcas de agua ni límites de páginas." },
-        { "q": "¿Mis documentos son privados?", "a": "Sí. El PDF se crea en tu navegador; las imágenes no se envían a ningún servidor." }
+        { "q": "¿Cómo convierto varias imágenes en un solo PDF?", "a": "En la pestaña Imágenes a PDF, añade las imágenes en el orden que quieras y RoLuck las combina en un único PDF descargable." },
+        { "q": "¿Cómo uno varios archivos PDF?", "a": "En la pestaña Unir PDFs, agrega los archivos, ordénalos y descarga un único PDF con todas las páginas en secuencia." },
+        { "q": "¿Puedo rotar, eliminar o reordenar páginas?", "a": "Sí. En la pestaña Organizar páginas se carga el PDF, se muestran las miniaturas y puedes rotar, eliminar y reordenar antes de exportar." },
+        { "q": "¿Mis documentos son privados?", "a": "Sí. Todo el procesamiento ocurre en tu navegador; los archivos no se envían a ningún servidor y el PDF sale sin marcas de agua." }
       ]
     },
     "en": {
-      "heading": "Convert images to PDF online",
+      "heading": "PDF Toolbox: images to PDF, merge and organize pages",
       "intro": [
-        "Combine several JPG, PNG or WebP images into a single PDF document. Reorder the pages, adjust the size and download a clean PDF with no watermarks.",
-        "PDF generation happens entirely in your browser, so your documents stay private."
+        "A set of PDF tools in one place: convert JPG, PNG or WebP images to PDF, merge several PDFs into one, and organize pages (rotate, delete and reorder) with a thumbnail view.",
+        "Everything happens entirely in your browser: your documents are never uploaded, and the result comes out clean, with no watermarks."
       ],
       "faq": [
-        { "q": "How do I combine several images into one PDF?", "a": "Add the images in any order and RoLuck merges them into a single downloadable PDF." },
-        { "q": "Does the PDF have a watermark?", "a": "No. The PDF is generated clean, with no watermarks or page limits." },
-        { "q": "Are my documents private?", "a": "Yes. The PDF is created in your browser; the images are never sent to any server." }
+        { "q": "How do I combine several images into one PDF?", "a": "In the Images to PDF tab, add the images in any order and RoLuck merges them into a single downloadable PDF." },
+        { "q": "How do I merge several PDF files?", "a": "In the Merge PDFs tab, add the files, order them and download a single PDF with all pages in sequence." },
+        { "q": "Can I rotate, delete or reorder pages?", "a": "Yes. In the Organize pages tab you load the PDF, see the thumbnails, and can rotate, delete and reorder before exporting." },
+        { "q": "Are my documents private?", "a": "Yes. All processing happens in your browser; files are never sent to any server and the PDF comes out with no watermarks." }
       ]
     }
   },
@@ -258,6 +260,342 @@
         { "q": "How do I generate a favicon for my site?", "a": "Upload an image and RoLuck creates the .ico in multiple sizes, the PNGs and a manifest, packed into a ZIP." },
         { "q": "Can I extract text from an image (OCR)?", "a": "Yes. OCR recognizes the text in the image directly in your browser." },
         { "q": "What is EXIF metadata?", "a": "It's the data the camera stores in a photo (model, date, exposure, GPS). The EXIF viewer shows it without sending the image anywhere." }
+      ]
+    }
+  },
+  "/unidades": {
+    "es": {
+      "heading": "Conversor de unidades online y gratis",
+      "intro": [
+        "Convierte entre unidades de longitud, peso y masa, temperatura, volumen, área, velocidad, tiempo, datos digitales y unidades de cocina. Elige la categoría, escribe el valor y mira la equivalencia al instante, además de una tabla con el resto de unidades.",
+        "Todo el cálculo ocurre en tu navegador, sin conexión ni servidores: funciona aunque estés offline y es preciso incluso con la temperatura, que no es una conversión lineal."
+      ],
+      "faq": [
+        { "q": "¿Cómo convierto kg a libras?", "a": "Elige la categoría Peso / masa, selecciona kilogramo como unidad de origen y libra como destino, y escribe el valor: verás el resultado en vivo." },
+        { "q": "¿El conversor funciona sin conexión?", "a": "Sí. No depende de ninguna red: toda la conversión se calcula en tu navegador, así que funciona offline." },
+        { "q": "¿Qué unidades puedo convertir?", "a": "Longitud, peso/masa, temperatura, volumen, área, velocidad, tiempo, datos digitales y unidades de cocina como cucharaditas, cucharadas y tazas." },
+        { "q": "¿La conversión de temperatura es exacta?", "a": "Sí. Celsius, Fahrenheit y Kelvin usan la fórmula afín correcta, no una simple multiplicación." }
+      ]
+    },
+    "en": {
+      "heading": "Free online unit converter",
+      "intro": [
+        "Convert between units of length, weight and mass, temperature, volume, area, speed, time, digital data and cooking units. Pick a category, type a value and see the equivalent instantly, plus a table with the remaining units.",
+        "All the math runs in your browser, with no network or servers: it works even offline and is accurate even for temperature, which is not a linear conversion."
+      ],
+      "faq": [
+        { "q": "How do I convert kg to pounds?", "a": "Pick the Weight / mass category, choose kilogram as the source unit and pound as the target, then type the value to see the live result." },
+        { "q": "Does the converter work offline?", "a": "Yes. It relies on no network: every conversion is computed in your browser, so it works offline." },
+        { "q": "Which units can I convert?", "a": "Length, weight/mass, temperature, volume, area, speed, time, digital data and cooking units like teaspoons, tablespoons and cups." },
+        { "q": "Is the temperature conversion accurate?", "a": "Yes. Celsius, Fahrenheit and Kelvin use the correct affine formula, not a simple multiplication." }
+      ]
+    }
+  },
+  "/fechas": {
+    "es": {
+      "heading": "Calculadora de fechas, edad y cuenta regresiva",
+      "intro": [
+        "Calcula los días, semanas, meses y años entre dos fechas; suma o resta un plazo a una fecha; obtén tu edad exacta desde tu fecha de nacimiento; y crea una cuenta regresiva en vivo hasta un evento futuro.",
+        "Todo se calcula en tu navegador, sin conexión ni servidores. El desglose en años, meses y días usa aritmética de calendario real, no una simple división."
+      ],
+      "faq": [
+        { "q": "¿Cómo calculo los días entre dos fechas?", "a": "Abre la pestaña Entre fechas, elige la fecha inicial y la final, y verás el desglose en años, meses y días más el total de días y semanas." },
+        { "q": "¿Cómo calculo mi edad exacta?", "a": "En la pestaña Edad ingresa tu fecha de nacimiento: obtienes tu edad en años, meses y días, y cuántos días faltan para tu próximo cumpleaños." },
+        { "q": "¿Funciona sin conexión?", "a": "Sí. No usa ninguna red: todos los cálculos ocurren en tu navegador, así que funciona offline." },
+        { "q": "¿La cuenta regresiva se actualiza sola?", "a": "Sí. Una vez que eliges la fecha y hora objetivo, la cuenta regresiva se actualiza cada segundo en tiempo real." }
+      ]
+    },
+    "en": {
+      "heading": "Date, age and countdown calculator",
+      "intro": [
+        "Work out the days, weeks, months and years between two dates; add or subtract a period to a date; get your exact age from your date of birth; and build a live countdown to a future event.",
+        "Everything is computed in your browser, with no network or servers. The years/months/days breakdown uses real calendar arithmetic, not a plain division."
+      ],
+      "faq": [
+        { "q": "How do I calculate the days between two dates?", "a": "Open the Between dates tab, pick the start and end dates, and you'll see the breakdown in years, months and days plus the total days and weeks." },
+        { "q": "How do I calculate my exact age?", "a": "In the Age tab enter your date of birth: you get your age in years, months and days, and how many days are left until your next birthday." },
+        { "q": "Does it work offline?", "a": "Yes. It uses no network: all calculations happen in your browser, so it works offline." },
+        { "q": "Does the countdown update by itself?", "a": "Yes. Once you choose the target date and time, the countdown updates every second in real time." }
+      ]
+    }
+  },
+  "/tallas": {
+    "es": {
+      "heading": "Conversor de tallas de ropa y calzado",
+      "intro": [
+        "Convierte tallas de calzado y ropa entre los sistemas US, EU, UK y centímetros, con tablas separadas para mujer, hombre y niños. Elige tu categoría, tu sistema y tu talla, y verás al instante el equivalente en los demás sistemas.",
+        "Todo funciona en tu navegador, sin conexión ni servidores. En Chile y LATAM el calzado suele numerarse en EU y la ropa en el sistema internacional (XS/S/M/L), columnas que también incluye la tabla."
+      ],
+      "faq": [
+        { "q": "¿Qué talla EU soy si uso US 8?", "a": "Depende de la categoría: en calzado de mujer una US 8 equivale aproximadamente a EU 38, y en calzado de hombre una US 8 equivale a EU 41. Elige la categoría correcta para ver la fila exacta." },
+        { "q": "¿Las tallas son exactas?", "a": "Son tablas estándar de referencia. Las tallas reales varían según la marca y el corte, así que úsalas como una guía aproximada y revisa la guía de cada marca cuando puedas." },
+        { "q": "¿Sirve para tallas de Chile?", "a": "Sí. En Chile el calzado sigue la numeración EU y la ropa el sistema internacional (XS/S/M/L), ambos presentes en las tablas." },
+        { "q": "¿Funciona sin conexión?", "a": "Sí. Las tablas están en la propia herramienta y no usa ninguna red: todo el cálculo ocurre en tu navegador, así que funciona offline." }
+      ]
+    },
+    "en": {
+      "heading": "Clothing and shoe size converter",
+      "intro": [
+        "Convert shoe and clothing sizes across the US, EU, UK and centimeter systems, with separate tables for women, men and kids. Pick your category, your system and your size, and instantly see the equivalent in the other systems.",
+        "Everything runs in your browser, with no network or servers. In Chile and LATAM shoes are usually numbered in EU and clothing follows the international system (XS/S/M/L), columns that the table also includes."
+      ],
+      "faq": [
+        { "q": "What EU size am I if I wear US 8?", "a": "It depends on the category: for women's shoes a US 8 is roughly EU 38, and for men's shoes a US 8 is roughly EU 41. Pick the right category to see the exact row." },
+        { "q": "Are the sizes exact?", "a": "They are standard reference tables. Actual sizes vary by brand and cut, so use them as an approximate guide and check each brand's own size guide when you can." },
+        { "q": "Does it work for sizes in Chile?", "a": "Yes. In Chile shoes follow EU numbering and clothing the international system (XS/S/M/L), both included in the tables." },
+        { "q": "Does it work offline?", "a": "Yes. The tables ship with the tool and it uses no network: all the lookup happens in your browser, so it works offline." }
+      ]
+    }
+  },
+  "/costo-viaje": {
+    "es": {
+      "heading": "Calculadora de costo de viaje en auto",
+      "intro": [
+        "Calcula cuánta bencina gasta un viaje en auto y cuánto te costará. Ingresa la distancia, el rendimiento de tu vehículo (en km/L o L/100km) y el precio por litro; activa ida y vuelta y suma los peajes si corresponde.",
+        "Si viajas acompañado, indica el número de pasajeros y la herramienta divide el total en partes iguales. Todo se calcula en tu navegador, sin conexión ni servidores."
+      ],
+      "faq": [
+        { "q": "¿Cómo calculo cuánta bencina gasta el viaje?", "a": "Ingresa la distancia y el rendimiento de tu auto. Si lo tienes en km/L, deja esa unidad; si lo tienes en L/100km, cámbiala. La herramienta estima los litros y, con el precio por litro, el costo." },
+        { "q": "¿Puedo dividir el costo entre los pasajeros?", "a": "Sí. Indica cuántas personas viajan y verás cuánto le toca a cada una, incluyendo los peajes si los agregaste." },
+        { "q": "¿Qué rendimiento debo poner?", "a": "El consumo promedio de tu vehículo. Puedes usar el dato del fabricante o calcularlo tú: kilómetros recorridos divididos por los litros cargados te da el rendimiento en km/L." },
+        { "q": "¿Funciona sin conexión?", "a": "Sí. No usa ninguna red: todos los cálculos ocurren en tu navegador, así que funciona offline." }
+      ]
+    },
+    "en": {
+      "heading": "Road trip fuel cost calculator",
+      "intro": [
+        "Work out how much fuel a road trip uses and what it will cost. Enter the distance, your vehicle's fuel economy (in km/L or L/100km) and the price per liter; turn on round trip and add tolls if needed.",
+        "If you travel with others, set the number of passengers and the tool splits the total evenly. Everything is computed in your browser, with no network or servers."
+      ],
+      "faq": [
+        { "q": "How do I calculate how much fuel the trip uses?", "a": "Enter the distance and your car's fuel economy. If you have it in km/L, keep that unit; if it's in L/100km, switch the toggle. The tool estimates the liters and, with the price per liter, the cost." },
+        { "q": "Can I split the cost between passengers?", "a": "Yes. Set how many people are traveling and you'll see each person's share, including tolls if you added them." },
+        { "q": "What fuel economy should I enter?", "a": "Your vehicle's average consumption. Use the manufacturer's figure or work it out yourself: kilometers driven divided by liters filled gives the economy in km/L." },
+        { "q": "Does it work offline?", "a": "Yes. It uses no network: all calculations happen in your browser, so it works offline." }
+      ]
+    }
+  },
+  "/qr": {
+    "es": {
+      "heading": "Generador y escáner de códigos QR",
+      "intro": [
+        "Crea códigos QR para texto, una URL, una red WiFi o una tarjeta de contacto (vCard) y descárgalos en PNG o SVG. También puedes escanear un QR con la cámara de tu dispositivo o subiendo una imagen.",
+        "Todo ocurre en tu navegador: el contenido del código y las imágenes que escaneas nunca salen de tu equipo, ni siquiera el video de la cámara."
+      ],
+      "faq": [
+        { "q": "¿Cómo creo un código QR?", "a": "Elige el tipo (texto, URL, WiFi o contacto), escribe el contenido y el código se genera al instante. Luego descárgalo en PNG, o en SVG con RoLuck Pro." },
+        { "q": "¿Puedo escanear un QR con la cámara?", "a": "Sí. Pulsa Usar cámara y apunta al código; también puedes subir una foto que ya tengas. La lectura ocurre en tu navegador, sin enviar nada a ningún servidor." },
+        { "q": "¿Qué es el nivel de corrección de error?", "a": "Determina cuánto daño (o cuánto logo encima) puede resistir el código sin dejar de leerse. Un nivel más alto es más robusto pero hace el código más denso." },
+        { "q": "¿Es gratis?", "a": "Generar QR de texto y URL y escanear es gratis. Los códigos de WiFi y contacto y la exportación en SVG se desbloquean con RoLuck Pro." }
+      ]
+    },
+    "en": {
+      "heading": "QR code generator and scanner",
+      "intro": [
+        "Create QR codes for text, a URL, a WiFi network or a contact card (vCard) and download them as PNG or SVG. You can also scan a QR with your device camera or by uploading an image.",
+        "Everything happens in your browser: the code content and the images you scan never leave your device, not even the camera video."
+      ],
+      "faq": [
+        { "q": "How do I create a QR code?", "a": "Pick the type (text, URL, WiFi or contact), type the content and the code is generated instantly. Then download it as PNG, or as SVG with RoLuck Pro." },
+        { "q": "Can I scan a QR with the camera?", "a": "Yes. Tap Use camera and point at the code; you can also upload a photo you already have. Reading happens in your browser, with nothing sent to any server." },
+        { "q": "What is the error correction level?", "a": "It sets how much damage (or how much logo on top) the code can take and still be readable. A higher level is more robust but makes the code denser." },
+        { "q": "Is it free?", "a": "Generating text and URL QR codes and scanning are free. WiFi and contact codes and SVG export are unlocked with RoLuck Pro." }
+      ]
+    }
+  },
+  "/cotizaciones": {
+    "es": {
+      "heading": "Generador de cotizaciones y presupuestos en PDF",
+      "intro": [
+        "Crea cotizaciones y presupuestos profesionales en PDF: agrega tus datos, los del cliente, los ítems con cantidad y precio, el IVA y las notas, y descarga el documento listo para enviar.",
+        "Todo se genera en tu navegador, sin registro ni servidores. Tus datos de emisor se guardan solo en tu dispositivo para que no tengas que reescribirlos en cada cotización."
+      ],
+      "faq": [
+        { "q": "¿Cómo hago una cotización?", "a": "Completa tus datos y los del cliente, agrega los ítems con su cantidad y precio, ajusta el IVA si corresponde y pulsa Descargar PDF. El total se calcula solo." },
+        { "q": "¿Se guardan mis datos?", "a": "Tus datos de emisor (nombre, RUT, dirección, contacto) se guardan en tu navegador para reutilizarlos. No se envían a ningún servidor; el cliente y los ítems son por documento." },
+        { "q": "¿Puedo quitar la marca de RoLuck del PDF?", "a": "Sí. El PDF gratuito incluye un pie discreto con la marca; con RoLuck Pro el documento sale sin ninguna marca." },
+        { "q": "¿Sirve para Chile?", "a": "Sí. Puedes incluir el RUT y el IVA chileno (19% por defecto, editable) y elegir el símbolo de moneda." }
+      ]
+    },
+    "en": {
+      "heading": "Quote and estimate PDF generator",
+      "intro": [
+        "Create professional quotes and estimates as PDF: add your details, the client's, the line items with quantity and price, the tax and notes, and download the document ready to send.",
+        "Everything is generated in your browser, with no signup or servers. Your issuer details are saved only on your device so you don't have to retype them on every quote."
+      ],
+      "faq": [
+        { "q": "How do I make a quote?", "a": "Fill in your details and the client's, add the line items with their quantity and price, set the tax if needed and tap Download PDF. The total is calculated for you." },
+        { "q": "Is my data saved?", "a": "Your issuer details (name, tax ID, address, contact) are saved in your browser to reuse. Nothing is sent to any server; the client and items are per document." },
+        { "q": "Can I remove the RoLuck mark from the PDF?", "a": "Yes. The free PDF includes a discreet footer with the brand; with RoLuck Pro the document comes out with no mark at all." },
+        { "q": "Does it support custom tax and currency?", "a": "Yes. You can toggle and edit the tax rate (defaults to 19%) and choose the currency symbol." }
+      ]
+    }
+  },
+  "/indicadores": {
+    "es": {
+      "heading": "Conversor de UF, UTM, dólar y euro a peso chileno",
+      "intro": [
+        "Convierte entre peso chileno, UF, UTM, dólar y euro usando el valor del día. Escribe el monto, elige desde y hacia qué unidad, y obtén el resultado al instante, además de la tabla con los valores de hoy.",
+        "Los valores se obtienen de la API pública de mindicador.cl y se guardan en tu navegador, de modo que la herramienta sigue funcionando aunque estés sin conexión (con los últimos valores guardados)."
+      ],
+      "faq": [
+        { "q": "¿De dónde salen los valores?", "a": "De la API pública de mindicador.cl, que publica la UF, la UTM, el dólar y el euro oficiales. La fecha del dato se muestra bajo la tabla." },
+        { "q": "¿Cuánto vale la UF hoy?", "a": "El valor de la UF del día aparece en la tabla \"Valores de hoy\". Pulsa Actualizar para volver a consultarlo si llevas rato con la página abierta." },
+        { "q": "¿Funciona sin conexión?", "a": "Sí. Guarda los últimos valores en tu navegador y los usa si no hay conexión; en ese caso verás un aviso de que pueden estar desactualizados." },
+        { "q": "¿Cómo convierto UF a pesos?", "a": "Elige UF en \"desde\", peso chileno en \"hacia\" y escribe la cantidad de UF: verás el equivalente en pesos al valor del día." }
+      ]
+    },
+    "en": {
+      "heading": "UF, UTM, dollar and euro to Chilean peso converter",
+      "intro": [
+        "Convert between Chilean peso, UF, UTM, dollar and euro using today's rate. Type the amount, pick the from and to units, and get the result instantly, plus a table with today's values.",
+        "Values come from the public mindicador.cl API and are saved in your browser, so the tool keeps working even when you're offline (with the last saved values)."
+      ],
+      "faq": [
+        { "q": "Where do the values come from?", "a": "From the public mindicador.cl API, which publishes the official UF, UTM, dollar and euro. The value's date is shown below the table." },
+        { "q": "What is the UF worth today?", "a": "Today's UF value appears in the \"Today's values\" table. Tap Refresh to fetch it again if the page has been open for a while." },
+        { "q": "Does it work offline?", "a": "Yes. It saves the last values in your browser and uses them if there's no connection; in that case you'll see a notice that they may be out of date." },
+        { "q": "How do I convert UF to pesos?", "a": "Pick UF as \"from\", Chilean peso as \"to\" and type the number of UF: you'll see the equivalent in pesos at today's rate." }
+      ]
+    }
+  },
+  "/sueldo-liquido": {
+    "es": {
+      "heading": "Calculadora de sueldo líquido en Chile",
+      "intro": [
+        "Calcula tu sueldo líquido a partir del sueldo bruto imponible. La herramienta descuenta la cotización de AFP (10% más la comisión de tu administradora), la salud (Fonasa 7% o tu plan de Isapre), el seguro de cesantía y el impuesto único de segunda categoría.",
+        "Usa los valores de UF y UTM del día (desde mindicador.cl) para los topes imponibles y los tramos del impuesto. Todo se calcula en tu navegador; nada se envía a ningún servidor."
+      ],
+      "faq": [
+        { "q": "¿Cómo se calcula el sueldo líquido?", "a": "Se parte del bruto imponible y se descuentan la AFP (10% + comisión), la salud (7% o tu plan de Isapre), el seguro de cesantía y el impuesto único. El líquido es lo que queda, más los haberes no imponibles." },
+        { "q": "¿Qué descuentos considera?", "a": "AFP (cotización del 10% más la comisión de tu AFP), salud (Fonasa 7% o el plan de Isapre en UF), seguro de cesantía (0,6% en contrato indefinido) e impuesto único de segunda categoría." },
+        { "q": "¿Es exacto?", "a": "Es una estimación referencial. El cálculo real depende de tu contrato, gratificación, cargas y otros factores, y de los topes y tramos vigentes. No reemplaza tu liquidación oficial." },
+        { "q": "¿Por qué necesita la UF y la UTM?", "a": "Los topes imponibles se expresan en UF y los tramos del impuesto en UTM, así que se usan sus valores del día para el cálculo en pesos." }
+      ]
+    },
+    "en": {
+      "heading": "Net salary calculator for Chile",
+      "intro": [
+        "Work out your net salary from the gross taxable salary. The tool deducts the pension contribution (AFP: 10% plus your fund's fee), health (Fonasa 7% or your Isapre plan), unemployment insurance and the second-category income tax.",
+        "It uses today's UF and UTM values (from mindicador.cl) for the taxable caps and the tax brackets. Everything is computed in your browser; nothing is sent to any server."
+      ],
+      "faq": [
+        { "q": "How is the net salary calculated?", "a": "It starts from the gross taxable salary and deducts AFP (10% + fee), health (7% or your Isapre plan), unemployment insurance and income tax. The net is what's left, plus any non-taxable income." },
+        { "q": "Which deductions does it consider?", "a": "AFP (the 10% contribution plus your AFP's fee), health (Fonasa 7% or the Isapre plan in UF), unemployment insurance (0.6% on indefinite contracts) and second-category income tax." },
+        { "q": "Is it exact?", "a": "It's a reference estimate. The real figure depends on your contract, bonuses, dependents and other factors, and on the current caps and brackets. It does not replace your official payslip." },
+        { "q": "Why does it need the UF and UTM?", "a": "The taxable caps are expressed in UF and the tax brackets in UTM, so their current values are used to compute the figures in pesos." }
+      ]
+    }
+  },
+  "/dias-habiles": {
+    "es": {
+      "heading": "Calculadora de días hábiles y plazos en Chile",
+      "intro": [
+        "Cuenta los días hábiles entre dos fechas o calcula un plazo sumando días hábiles a una fecha, saltando los fines de semana y los feriados legales de Chile. Útil para plazos legales, administrativos y de entrega.",
+        "Todo se calcula en tu navegador con un calendario de feriados versionado. Pueden faltar feriados regionales o eventuales (como elecciones), así que verifica los casos límite."
+      ],
+      "faq": [
+        { "q": "¿Qué cuenta como día hábil?", "a": "De lunes a viernes que no sean feriado. La herramienta excluye sábados, domingos y los feriados legales nacionales de Chile del año correspondiente." },
+        { "q": "¿Cómo calculo un plazo en días hábiles?", "a": "Usa la pestaña Sumar plazo: elige la fecha inicial y la cantidad de días hábiles, y obtienes la fecha resultante. El día inicial no se cuenta." },
+        { "q": "¿Incluye los feriados de Chile?", "a": "Sí, los feriados legales nacionales. No incluye feriados regionales ni eventuales (por ejemplo, días de elecciones), que debes verificar aparte." },
+        { "q": "¿Funciona sin conexión?", "a": "Sí. El calendario de feriados viene incluido y no usa ninguna red: todo el cálculo ocurre en tu navegador." }
+      ]
+    },
+    "en": {
+      "heading": "Business days and deadline calculator for Chile",
+      "intro": [
+        "Count the business days between two dates or work out a deadline by adding business days to a date, skipping weekends and Chile's legal holidays. Handy for legal, administrative and delivery deadlines.",
+        "Everything is computed in your browser with a versioned holiday calendar. Regional or one-off holidays (such as elections) may be missing, so double-check edge cases."
+      ],
+      "faq": [
+        { "q": "What counts as a business day?", "a": "Monday to Friday that isn't a holiday. The tool excludes Saturdays, Sundays and Chile's national legal holidays for the relevant year." },
+        { "q": "How do I calculate a deadline in business days?", "a": "Use the Add deadline tab: pick the start date and the number of business days, and you get the resulting date. The start day is not counted." },
+        { "q": "Does it include Chile's holidays?", "a": "Yes, the national legal holidays. It does not include regional or one-off holidays (for example, election days), which you should verify separately." },
+        { "q": "Does it work offline?", "a": "Yes. The holiday calendar ships with the tool and it uses no network: all the calculation happens in your browser." }
+      ]
+    }
+  },
+  "/credito": {
+    "es": {
+      "heading": "Simulador de dividendo de crédito hipotecario",
+      "intro": [
+        "Calcula el dividendo mensual de un crédito hipotecario con amortización francesa (cuota fija). Ingresa el valor de la propiedad, el pie, la tasa de interés anual y el plazo en años, en UF o en pesos, y obtén la cuota, el monto del crédito, los intereses totales y el total a pagar.",
+        "Si trabajas en UF, la herramienta también muestra el equivalente en pesos con el valor de la UF del día. Todo se calcula en tu navegador, sin registro ni servidores."
+      ],
+      "faq": [
+        { "q": "¿Cómo se calcula el dividendo?", "a": "Con amortización francesa: a partir del monto del crédito, la tasa mensual (la anual dividida en 12) y el número de meses, se obtiene una cuota fija que se paga durante todo el plazo." },
+        { "q": "¿El dividendo incluye los seguros?", "a": "No. Es el dividendo base por capital e interés. El dividendo real suma los seguros de desgravamen e incendio y otros gastos que dependen del banco; por eso es una estimación referencial." },
+        { "q": "¿Puedo simular en UF o en pesos?", "a": "En ambas. Elige la unidad: si usas UF, además verás la conversión a pesos con el valor de la UF del día." },
+        { "q": "¿Qué es la amortización francesa?", "a": "Un sistema de pago con cuota fija mensual donde al principio pagas más interés y menos capital, y esa proporción se invierte con el tiempo. Es el más usado en los créditos hipotecarios en Chile." }
+      ]
+    },
+    "en": {
+      "heading": "Mortgage payment simulator",
+      "intro": [
+        "Calculate the monthly payment of a mortgage with French amortization (fixed installment). Enter the property value, the down payment, the annual interest rate and the term in years, in UF or pesos, and get the installment, loan amount, total interest and total paid.",
+        "If you work in UF, the tool also shows the equivalent in pesos using today's UF value. Everything is computed in your browser, with no signup or servers."
+      ],
+      "faq": [
+        { "q": "How is the payment calculated?", "a": "With French amortization: from the loan amount, the monthly rate (the annual one divided by 12) and the number of months, it gives a fixed installment paid over the whole term." },
+        { "q": "Does the payment include insurance?", "a": "No. It's the base payment for principal and interest. The real payment adds life and fire insurance and other fees that depend on the bank, so it's a reference estimate." },
+        { "q": "Can I simulate in UF or pesos?", "a": "Both. Pick the unit: if you use UF, you'll also see the conversion to pesos with today's UF value." },
+        { "q": "What is French amortization?", "a": "A repayment scheme with a fixed monthly installment where you pay more interest and less principal at first, and that ratio reverses over time. It's the most common in Chilean mortgages." }
+      ]
+    }
+  },
+  "/finiquito": {
+    "es": {
+      "heading": "Calculadora de finiquito en Chile",
+      "intro": [
+        "Estima tu finiquito a partir de la última remuneración y las fechas de inicio y término del contrato. Calcula la indemnización por años de servicio, la indemnización sustitutiva del aviso previo y el feriado (vacaciones) proporcional.",
+        "Aplica el tope legal de 90 UF a la base de cálculo con el valor de la UF del día. Todo se calcula en tu navegador; es una estimación referencial que no reemplaza el cálculo oficial."
+      ],
+      "faq": [
+        { "q": "¿Qué incluye el finiquito?", "a": "Principalmente la indemnización por años de servicio (cuando la causal lo amerita), la indemnización sustitutiva del aviso previo y el feriado proporcional. Pueden existir otros haberes según el caso." },
+        { "q": "¿Cuándo corresponde indemnización por años de servicio?", "a": "Cuando el despido es por necesidades de la empresa (art. 161). En la renuncia voluntaria o en otras causales generalmente no corresponde, y la herramienta no la suma." },
+        { "q": "¿Qué es el tope de 90 UF?", "a": "La base de cálculo de las indemnizaciones se limita por ley a 90 UF. Si tu remuneración supera ese tope, el cálculo usa 90 UF (con el valor de la UF del día)." },
+        { "q": "¿Es exacto?", "a": "Es una estimación referencial. El finiquito real depende de la causal, el contrato, otros haberes y descuentos. Ante dudas, consulta a la Dirección del Trabajo." }
+      ]
+    },
+    "en": {
+      "heading": "Severance calculator for Chile",
+      "intro": [
+        "Estimate your severance from the last salary and the contract start and end dates. It calculates the severance for years of service, the payment in lieu of prior notice, and the prorated vacation.",
+        "It applies the legal cap of 90 UF to the calculation base using today's UF value. Everything is computed in your browser; it's a reference estimate that does not replace the official calculation."
+      ],
+      "faq": [
+        { "q": "What does severance include?", "a": "Mainly the severance for years of service (when the cause warrants it), the payment in lieu of notice, and prorated vacation. Other pay may apply depending on the case." },
+        { "q": "When is severance for years of service due?", "a": "When the dismissal is for company needs (art. 161). For voluntary resignation or other causes it generally doesn't apply, and the tool doesn't add it." },
+        { "q": "What is the 90 UF cap?", "a": "By law the severance calculation base is capped at 90 UF. If your salary exceeds that cap, the calculation uses 90 UF (with today's UF value)." },
+        { "q": "Is it exact?", "a": "It's a reference estimate. The real severance depends on the cause, the contract, other pay and deductions. If in doubt, consult the Labor Directorate." }
+      ]
+    }
+  },
+  "/precio-venta": {
+    "es": {
+      "heading": "Calculadora de precio de venta con margen e IVA",
+      "intro": [
+        "Calcula a qué precio vender tus productos a partir del costo y la ganancia que quieres obtener, ya sea por margen (sobre el precio) o por markup (sobre el costo). Agrega el IVA y obtén el precio neto, el IVA y el precio final.",
+        "Pensada para pymes y emprendedores: muestra además la utilidad y los porcentajes de margen y markup resultantes, que suelen confundirse. Todo se calcula en tu navegador."
+      ],
+      "faq": [
+        { "q": "¿Cuál es la diferencia entre margen y markup?", "a": "El markup mide la ganancia sobre el costo (cuánto le sumas al costo), y el margen la mide sobre el precio de venta. Un mismo precio tiene un markup mayor que su margen." },
+        { "q": "¿Cómo calculo el precio con un margen del 30%?", "a": "Elige Margen, escribe el costo y 30: el precio neto será el costo dividido por 0,7. Luego se le agrega el IVA para obtener el precio final." },
+        { "q": "¿Incluye el IVA?", "a": "Sí. Calcula el precio neto y le aplica el IVA (19% por defecto, editable) para mostrarte el precio final con impuesto." },
+        { "q": "¿Sirve para cualquier negocio?", "a": "Sí. Funciona para cualquier producto o servicio; solo ajusta el costo, el porcentaje de ganancia y el IVA de tu rubro." }
+      ]
+    },
+    "en": {
+      "heading": "Selling price calculator with margin and VAT",
+      "intro": [
+        "Work out what price to sell your products at from the cost and the profit you want, either by margin (on the price) or markup (on the cost). Add VAT and get the net price, the VAT and the final price.",
+        "Made for small businesses: it also shows the profit and the resulting margin and markup percentages, which are often confused. Everything is computed in your browser."
+      ],
+      "faq": [
+        { "q": "What's the difference between margin and markup?", "a": "Markup measures profit on the cost (how much you add to the cost), while margin measures it on the selling price. The same price has a higher markup than its margin." },
+        { "q": "How do I price with a 30% margin?", "a": "Pick Margin, enter the cost and 30: the net price is the cost divided by 0.7. Then VAT is added to get the final price." },
+        { "q": "Does it include VAT?", "a": "Yes. It calculates the net price and applies VAT (19% by default, editable) to show you the final price with tax." },
+        { "q": "Does it work for any business?", "a": "Yes. It works for any product or service; just adjust the cost, the profit percentage and the VAT for your sector." }
       ]
     }
   }

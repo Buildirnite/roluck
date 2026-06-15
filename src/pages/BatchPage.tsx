@@ -10,6 +10,7 @@ import TargetSizePanel, { type TargetSizeState } from '../components/TargetSizeP
 import TransformPanel, { INITIAL_TRANSFORM, type TransformState } from '../components/TransformPanel';
 import ConvertButton from '../components/ConvertButton';
 import BatchList from '../components/BatchList';
+import ToolShell from '../components/ToolShell';
 
 const SCALE_OPTIONS = [100, 75, 50, 25] as const;
 
@@ -48,12 +49,8 @@ export default function BatchPage() {
   }
 
   return (
-    <div className="flex flex-col gap-5">
-      <header>
-        <h1 className="font-display text-xl font-bold tracking-tight">{t.pages.batch.title}</h1>
-        <p className="mt-0.5 text-xs text-text-muted">{t.pages.batch.subtitle}</p>
-      </header>
-
+    <ToolShell title={t.pages.batch.title} subtitle={t.pages.batch.subtitle}>
+      <div className="flex flex-col gap-5">
       {localError && (
         <div role="alert" className="rounded-xl border border-error/40 bg-error/10 px-4 py-3 text-sm text-error">
           {localError}
@@ -137,6 +134,7 @@ export default function BatchPage() {
           </section>
         </div>
       )}
-    </div>
+      </div>
+    </ToolShell>
   );
 }

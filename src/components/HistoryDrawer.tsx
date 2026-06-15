@@ -3,6 +3,7 @@ import { IconX, IconDownload, IconTrash } from '@tabler/icons-react';
 import { useHistoryStore } from '../store/useHistoryStore';
 import { downloadBlob, formatBytes } from '../utils/imageUtils';
 import { useI18n } from '../i18n/I18nContext';
+import { useModal } from '../hooks/useModal';
 import FormatBadge from './FormatBadge';
 
 interface HistoryDrawerProps {
@@ -32,20 +33,16 @@ export default function HistoryDrawer({ open, onClose }: HistoryDrawerProps) {
     return () => Object.values(map).forEach((u) => URL.revokeObjectURL(u));
   }, [open, entries]);
 
-  // Cerrar con Escape.
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [open, onClose]);
+  // Escape + focus-trap + restauración de foco.
+  const dialogRef = useModal<HTMLDivElement>(onClose, open);
 
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end bg-black/60" onMouseDown={onClose}>
+    <div ref={dialogRef} className="fixed inset-0 z-50 flex justify-end bg-black/60" role="dialog" aria-modal="true" onMouseDown={onClose}>
       <aside
-        className="flex h-full w-full max-w-sm flex-col border-l border-border bg-bg-surface"
+        tabIndex={-1}
+        className="flex h-full w-full max-w-sm flex-col border-l border-border bg-bg-surface focus:outline-none"
         onMouseDown={(e) => e.stopPropagation()}
       >
         <header className="flex items-center justify-between border-b border-border px-4 py-3">

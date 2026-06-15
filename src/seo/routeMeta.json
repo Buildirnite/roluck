@@ -61,12 +61,12 @@
   },
   "/pdf": {
     "es": {
-      "title": "Imágenes a PDF online — convierte JPG y PNG a PDF gratis | RoLuck",
-      "description": "Combina tus imágenes JPG, PNG o WebP en un único PDF. Gratis, sin marcas de agua y sin subir nada: todo se genera en tu navegador."
+      "title": "PDF Toolbox — imágenes a PDF, unir y organizar páginas | RoLuck",
+      "description": "Convierte imágenes a PDF, une varios PDF y organiza páginas (rotar, eliminar, reordenar). Gratis, sin marcas de agua y sin subir nada: todo en tu navegador."
     },
     "en": {
-      "title": "Images to PDF Online — convert JPG and PNG to PDF free | RoLuck",
-      "description": "Combine your JPG, PNG or WebP images into a single PDF. Free, no watermarks and nothing uploaded — generated in your browser."
+      "title": "PDF Toolbox — images to PDF, merge and organize pages | RoLuck",
+      "description": "Convert images to PDF, merge several PDFs and organize pages (rotate, delete, reorder). Free, no watermarks and nothing uploaded — all in your browser."
     }
   },
   "/crear": {
@@ -87,6 +87,136 @@
     "en": {
       "title": "Image Tools — favicon, Base64, EXIF, OCR | RoLuck",
       "description": "Generate favicons, convert to Base64/Data URI, extract color palettes, read EXIF metadata and run OCR. Free and private in your browser."
+    }
+  },
+  "/unidades": {
+    "es": {
+      "title": "Conversor de unidades online gratis — longitud, peso, temperatura | RoLuck",
+      "description": "Convierte unidades de longitud, peso, temperatura, volumen, área, velocidad, tiempo, datos y cocina. Gratis, sin conexión y en tu navegador."
+    },
+    "en": {
+      "title": "Free Online Unit Converter — length, weight, temperature | RoLuck",
+      "description": "Convert units of length, weight, temperature, volume, area, speed, time, data and cooking. Free, offline and in your browser."
+    }
+  },
+  "/fechas": {
+    "es": {
+      "title": "Calculadora de fechas, edad y cuenta regresiva | RoLuck",
+      "description": "Calcula los días entre dos fechas, tu edad exacta, suma o resta plazos y crea una cuenta regresiva en vivo. Gratis, sin conexión y en tu navegador."
+    },
+    "en": {
+      "title": "Date, Age and Countdown Calculator | RoLuck",
+      "description": "Work out the days between two dates, your exact age, add or subtract periods and build a live countdown. Free, offline and in your browser."
+    }
+  },
+  "/tallas": {
+    "es": {
+      "title": "Conversor de tallas de ropa y calzado US/EU/UK | RoLuck",
+      "description": "Convierte tallas de zapatos y ropa entre US, EU, UK y CL/LATAM con tablas de referencia para mujer, hombre y niños. Gratis, sin conexión y en tu navegador."
+    },
+    "en": {
+      "title": "Clothing & Shoe Size Converter US/EU/UK | RoLuck",
+      "description": "Convert shoe and clothing sizes across US, EU, UK and CL/LATAM with reference tables for women, men and kids. Free, offline and in your browser."
+    }
+  },
+  "/costo-viaje": {
+    "es": {
+      "title": "Calculadora de costo de viaje en auto y bencina | RoLuck",
+      "description": "Calcula cuánta bencina gasta tu viaje, su costo con peajes y divídelo entre los pasajeros. Acepta rendimiento en km/L o L/100km. Gratis, sin conexión y en tu navegador."
+    },
+    "en": {
+      "title": "Road Trip Fuel Cost Calculator | RoLuck",
+      "description": "Work out how much fuel your trip uses, its cost with tolls, and split it between passengers. Supports km/L or L/100km. Free, offline and in your browser."
+    }
+  },
+  "/qr": {
+    "es": {
+      "title": "Generador y escáner de códigos QR | RoLuck",
+      "description": "Crea códigos QR de texto, URL, WiFi o contacto y escanéalos con la cámara o desde una imagen. Descarga en PNG o SVG. Gratis, sin conexión y en tu navegador."
+    },
+    "en": {
+      "title": "QR Code Generator and Scanner | RoLuck",
+      "description": "Create QR codes for text, URL, WiFi or contact and scan them with your camera or from an image. Download as PNG or SVG. Free, offline and in your browser."
+    }
+  },
+  "/cotizaciones": {
+    "es": {
+      "title": "Generador de cotizaciones y presupuestos en PDF | RoLuck",
+      "description": "Crea cotizaciones y presupuestos profesionales en PDF con tus datos, ítems, IVA y total. Tus datos se guardan en tu navegador. Gratis, sin conexión y sin registro."
+    },
+    "en": {
+      "title": "Quote and Estimate PDF Generator | RoLuck",
+      "description": "Create professional quotes and estimates as PDF with your details, line items, tax and total. Your data stays in your browser. Free, offline and no signup."
+    }
+  },
+  "/indicadores": {
+    "es": {
+      "title": "Conversor UF, UTM, dólar y euro a peso chileno | RoLuck",
+      "description": "Convierte UF, UTM, dólar y euro a pesos chilenos con el valor del día desde mindicador.cl. Gratis, sin registro y en tu navegador."
+    },
+    "en": {
+      "title": "UF, UTM, Dollar and Euro to Chilean Peso Converter | RoLuck",
+      "description": "Convert UF, UTM, dollar and euro to Chilean pesos at today's rate from mindicador.cl. Free, no signup and in your browser."
+    }
+  },
+  "/sueldo-liquido": {
+    "es": {
+      "title": "Calculadora de sueldo líquido en Chile | RoLuck",
+      "description": "Calcula tu sueldo líquido a partir del bruto: descuenta AFP, salud, seguro de cesantía e impuesto único con los valores del día. Gratis y en tu navegador."
+    },
+    "en": {
+      "title": "Net Salary Calculator for Chile | RoLuck",
+      "description": "Work out your net salary from the gross: deduct pension (AFP), health, unemployment insurance and income tax at today's values. Free and in your browser."
+    }
+  },
+  "/dias-habiles": {
+    "es": {
+      "title": "Calculadora de días hábiles y plazos en Chile | RoLuck",
+      "description": "Cuenta días hábiles entre dos fechas y calcula plazos sumando días hábiles, considerando los feriados de Chile. Gratis, sin conexión y en tu navegador."
+    },
+    "en": {
+      "title": "Business Days and Deadline Calculator for Chile | RoLuck",
+      "description": "Count business days between two dates and work out deadlines by adding business days, accounting for Chile's holidays. Free, offline and in your browser."
+    }
+  },
+  "/credito": {
+    "es": {
+      "title": "Simulador de dividendo de crédito hipotecario | RoLuck",
+      "description": "Calcula el dividendo mensual de tu crédito hipotecario con amortización francesa, en UF o pesos: monto, tasa, plazo y total de intereses. Gratis y en tu navegador."
+    },
+    "en": {
+      "title": "Mortgage Payment Simulator | RoLuck",
+      "description": "Work out your monthly mortgage payment with French amortization, in UF or pesos: amount, rate, term and total interest. Free and in your browser."
+    }
+  },
+  "/finiquito": {
+    "es": {
+      "title": "Calculadora de finiquito en Chile | RoLuck",
+      "description": "Calcula tu finiquito: indemnización por años de servicio, aviso previo y feriado proporcional, con el tope de 90 UF. Estimación gratis y en tu navegador."
+    },
+    "en": {
+      "title": "Severance Calculator for Chile | RoLuck",
+      "description": "Calculate your severance: years-of-service payment, notice and prorated vacation, with the 90 UF cap. Free estimate in your browser."
+    }
+  },
+  "/precio-venta": {
+    "es": {
+      "title": "Calculadora de precio de venta con margen e IVA | RoLuck",
+      "description": "Calcula el precio de venta de tus productos a partir del costo, el margen o markup y el IVA. Ideal para pymes y emprendedores. Gratis y en tu navegador."
+    },
+    "en": {
+      "title": "Selling Price Calculator with Margin and VAT | RoLuck",
+      "description": "Calculate the selling price of your products from the cost, margin or markup and VAT. Great for small businesses. Free and in your browser."
+    }
+  },
+  "/pro": {
+    "es": {
+      "title": "RoLuck Pro — desbloquea todas las herramientas sin anuncios | RoLuck",
+      "description": "Una sola compra desbloquea todas las herramientas de RoLuck: sin anuncios y con funciones avanzadas. Mismo principio: todo sigue en tu navegador."
+    },
+    "en": {
+      "title": "RoLuck Pro — unlock every tool, ad-free | RoLuck",
+      "description": "A single purchase unlocks every RoLuck tool: no ads and advanced features. Same principle: everything stays in your browser."
     }
   }
 }

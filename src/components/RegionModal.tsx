@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ReactCrop, { centerCrop, type Crop, type PercentCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import { applyRegionEffect, type RegionMode } from '../utils/editUtils';
 import { useI18n } from '../i18n/I18nContext';
+import { useModal } from '../hooks/useModal';
 
 interface RegionModalProps {
   file: File;
@@ -21,12 +22,7 @@ export default function RegionModal({ file, imageSrc, kind, onCancel, onConfirm 
   const [mode, setMode] = useState<RegionMode>(kind === 'redact' ? 'redact' : 'blur');
   const [intensity, setIntensity] = useState(12);
   const [working, setWorking] = useState(false);
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onCancel();
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [onCancel]);
+  const dialogRef = useModal<HTMLDivElement>(onCancel);
 
   function onImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
     const { width, height } = e.currentTarget;
@@ -49,12 +45,13 @@ export default function RegionModal({ file, imageSrc, kind, onCancel, onConfirm 
 
   return (
     <div
+      ref={dialogRef}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
       role="dialog"
       aria-modal="true"
       onMouseDown={(e) => e.target === e.currentTarget && onCancel()}
     >
-      <div className="flex w-full max-w-2xl flex-col gap-4 rounded-2xl border border-border bg-bg-surface p-4">
+      <div tabIndex={-1} className="flex w-full max-w-2xl flex-col gap-4 rounded-2xl border border-border bg-bg-surface p-4 focus:outline-none">
         <h3 className="font-display text-lg font-semibold text-text-primary">
           {kind === 'redact' ? t.region.redaction : t.region.blurPixelate}
         </h3>

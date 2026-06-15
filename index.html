@@ -76,12 +76,10 @@
     <meta name="apple-mobile-web-app-title" content="RoLuck" />
     <meta name="mobile-web-app-capable" content="yes" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Fuentes self-hosted (en /fonts, generadas por scripts/gen-fonts.cjs). Precargamos
+         las críticas del primer render: Space Grotesk 500 (cuerpo) y JetBrains Mono 400. -->
+    <link rel="preload" href="/fonts/space-grotesk-500-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/jetbrains-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body>
     <div id="root"></div>

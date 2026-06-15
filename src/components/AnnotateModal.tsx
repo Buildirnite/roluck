@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { canvasToBlob } from '../utils/canvasUtils';
 import { loadImageFile } from '../utils/heicDecoder';
 import { useI18n } from '../i18n/I18nContext';
+import { useModal } from '../hooks/useModal';
 
 interface AnnotateModalProps {
   file: File;
@@ -54,11 +55,7 @@ export default function AnnotateModal({ file, onCancel, onConfirm }: AnnotateMod
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [file]);
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onCancel();
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [onCancel]);
+  const dialogRef = useModal<HTMLDivElement>(onCancel);
 
   function redraw() {
     const canvas = canvasRef.current;
@@ -146,12 +143,13 @@ export default function AnnotateModal({ file, onCancel, onConfirm }: AnnotateMod
 
   return (
     <div
+      ref={dialogRef}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
       role="dialog"
       aria-modal="true"
       onMouseDown={(e) => e.target === e.currentTarget && onCancel()}
     >
-      <div className="flex w-full max-w-2xl flex-col gap-4 rounded-2xl border border-border bg-bg-surface p-4">
+      <div tabIndex={-1} className="flex w-full max-w-2xl flex-col gap-4 rounded-2xl border border-border bg-bg-surface p-4 focus:outline-none">
         <h3 className="font-display text-lg font-semibold text-text-primary">{t.annotate.title}</h3>
         <p className="text-xs text-text-muted">{t.annotate.hint}</p>
 

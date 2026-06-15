@@ -1,3 +1,7 @@
+/* Fuentes self-hosted (generadas por scripts/gen-fonts.cjs). El @import va primero
+   por requisito de CSS; reemplaza al <link> de Google Fonts que había en index.html. */
+@import './styles/fonts.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,7 +14,7 @@
   --accent: #a3e635; /* lime-400 */
   --accent-dim: #4d7c0f;
   --text-primary: #f5f5f5;
-  --text-muted: #737373;
+  --text-muted: #909090; /* ≥4.5:1 sobre los fondos oscuros (WCAG AA) */
   --border: #2a2a2a;
   --success: #22c55e;
   --error: #ef4444;
@@ -25,6 +29,14 @@
     @apply bg-bg-primary text-text-primary font-display antialiased;
     margin: 0;
     min-height: 100vh;
+  }
+
+  /* Foco de teclado visible y consistente (lima) en todo lo interactivo.
+     Los inputs que usan `outline-none` siguen marcando el foco con `focus:border-accent`. */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 
   /* Track del slider de calidad — estilizado para los acentos lime */
@@ -66,6 +78,31 @@
     background: var(--accent);
     border: 3px solid var(--bg-primary);
   }
+}
+
+/* Respeta la preferencia de movimiento reducido del sistema: neutraliza
+   animaciones, transiciones y el scroll suave para quienes lo piden. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Oculta las flechas (spinner) de los inputs numéricos: look consistente en dark y
+   evita clics accidentales. Se mantiene type="number" por el teclado numérico y el min/max. */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 /* Patrón de cuadrícula para previsualizar transparencia */

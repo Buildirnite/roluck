@@ -22,6 +22,11 @@ pnpm-debug.log*
 logs/
 *.log
 
+# Tooling de agentes / skills (no son parte de la app)
+.agents/
+skills-lock.json
+.claude/
+
 # Editores / SO
 .DS_Store
 .idea/

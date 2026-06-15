@@ -4,14 +4,14 @@
  * Usa caché en tiempo de ejecución para no depender de los nombres con hash que
  * genera Vite: los assets se cachean a medida que la app los pide. Estrategias:
  *  - Navegación (HTML): network-first con fallback al index cacheado → funciona offline.
- *  - Assets propios con hash (/assets/...): cache-first (son inmutables).
- *  - Cross-origin (fuentes de Google): stale-while-revalidate (respuestas opacas).
+ *  - Assets propios con hash (/assets/...) y fuentes (/fonts/...): cache-first.
+ *  - Cross-origin (CDN de OCR, etc.): stale-while-revalidate (respuestas opacas).
  *
  * El procesamiento de imágenes es 100% client-side, así que con el app shell y los
  * chunks cacheados la app funciona sin conexión (excepto OCR, que descarga sus datos
  * de idioma desde un CDN).
  */
-const VERSION = 'v2';
+const VERSION = 'v3';
 const SHELL_CACHE = `roluck-shell-${VERSION}`;
 const ASSET_CACHE = `roluck-assets-${VERSION}`;
 
