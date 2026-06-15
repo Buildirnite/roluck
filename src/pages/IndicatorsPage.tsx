@@ -1,16 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { IconArrowsExchange, IconRefresh, IconAlertTriangle } from '@tabler/icons-react';
 import ToolShell from '../components/ToolShell';
 import { useI18n } from '../i18n/I18nContext';
+import { useIndicators } from '../hooks/useIndicators';
 import {
   INDICATORS,
-  cachedOrFallback,
-  fetchIndicators,
   convertIndicator,
   formatValue,
   formatSnapshotDate,
   type IndicatorCode,
-  type Snapshot,
 } from '../utils/indicators';
 
 const selectClass =
@@ -23,30 +21,13 @@ const selectClass =
  */
 export default function IndicatorsPage() {
   const { t, lang } = useI18n();
-  const [snap, setSnap] = useState<Snapshot>(() => cachedOrFallback());
-  const [loading, setLoading] = useState(false);
-  const [failed, setFailed] = useState(false);
+  // Indicadores con auto-actualización (caché instantánea + re-consulta al montar, al volver
+  // a la pestaña y cada 30 min). Ver hooks/useIndicators.
+  const { snap, loading, failed, refresh } = useIndicators();
 
   const [amount, setAmount] = useState('1');
   const [from, setFrom] = useState<IndicatorCode>('uf');
   const [to, setTo] = useState<IndicatorCode>('clp');
-
-  async function refresh() {
-    setLoading(true);
-    setFailed(false);
-    try {
-      setSnap(await fetchIndicators());
-    } catch {
-      setFailed(true);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  // Al montar, intenta refrescar en segundo plano (la caché/fallback ya se muestra).
-  useEffect(() => {
-    refresh();
-  }, []);
 
   const numeric = Number.parseFloat(amount.replace(',', '.'));
   const valid = Number.isFinite(numeric);

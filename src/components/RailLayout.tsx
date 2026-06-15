@@ -267,7 +267,7 @@ export default function RailLayout() {
       </aside>
 
       {/* ── Contenido de la ruta ── */}
-      <main className="min-w-0 flex-1 pb-20 md:pb-0">
+      <main className="min-w-0 flex-1 pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0">
         <div className="mx-auto max-w-5xl px-4 py-6 sm:px-6">
           <Suspense
             fallback={
@@ -285,7 +285,7 @@ export default function RailLayout() {
       </main>
 
       {/* ── Barra inferior (móvil) ── */}
-      <nav className="fixed inset-x-0 bottom-0 z-40 flex border-t border-border bg-bg-surface md:hidden">
+      <nav className="fixed inset-x-0 bottom-0 z-40 flex border-t border-border bg-bg-surface pb-[env(safe-area-inset-bottom)] md:hidden">
         <NavLink
           to="/"
           end
@@ -333,7 +333,7 @@ export default function RailLayout() {
         >
           <div
             tabIndex={-1}
-            className="rounded-t-2xl border-t border-border bg-bg-surface p-3 focus:outline-none"
+            className="rounded-t-2xl border-t border-border bg-bg-surface p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] focus:outline-none"
             onMouseDown={(e) => e.stopPropagation()}
           >
             <div className="mb-2 flex items-center justify-between px-1">

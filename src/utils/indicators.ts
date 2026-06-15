@@ -44,12 +44,13 @@ const CACHE_KEY = 'roluck-indicators';
 const API_URL = 'https://mindicador.cl/api';
 
 /**
- * Valores de respaldo (aproximados, junio 2026). Solo se usan si NUNCA se pudo contactar
- * la API ni hay caché. Se muestran con un aviso de "valores referenciales".
+ * Valores de respaldo. SOLO se usan si NUNCA se pudo contactar la API ni hay caché; en ese
+ * caso se muestran con un aviso de "valores referenciales". Son una foto puntual desde
+ * mindicador.cl (actualizar cada cierto tiempo). Última actualización: 2026-06-15.
  */
 const FALLBACK: Snapshot = {
-  values: { clp: 1, uf: 39200, utm: 68900, dolar: 945, euro: 1025 },
-  date: '2026-06-01',
+  values: { clp: 1, uf: 40777, utm: 71506, dolar: 909, euro: 1051 },
+  date: '2026-06-15',
   fetchedAt: 0,
   fallback: true,
 };
