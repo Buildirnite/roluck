@@ -1,4 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react';
+import { IconCake, IconCheck } from '@tabler/icons-react';
 import ToolShell from '../components/ToolShell';
 import { useI18n } from '../i18n/I18nContext';
 import {
@@ -177,8 +178,15 @@ export default function DatesPage() {
         <p className="text-sm text-text-primary">
           {t.dates.totalDays(formatInt(totalDays, lang))}
         </p>
-        <p className="text-sm text-accent">
-          {toBirthday === 0 ? t.dates.birthdayToday : t.dates.nextBirthday(formatInt(toBirthday, lang))}
+        <p className="flex items-center gap-1.5 text-sm text-accent">
+          {toBirthday === 0 ? (
+            <>
+              <IconCake size={16} stroke={1.8} className="flex-shrink-0" />
+              {t.dates.birthdayToday}
+            </>
+          ) : (
+            t.dates.nextBirthday(formatInt(toBirthday, lang))
+          )}
         </p>
       </div>
     );
@@ -206,8 +214,15 @@ export default function DatesPage() {
               <Stat value={String(cd.minutes).padStart(2, '0')} label={t.dates.minutes} />
               <Stat value={String(cd.seconds).padStart(2, '0')} label={t.dates.seconds} />
             </div>
-            <p className={`text-sm font-medium ${cd.past ? 'text-accent' : 'text-text-muted'}`}>
-              {cd.past ? t.dates.reached : `${t.dates.remaining} · ${formatDate(target_!, lang)}`}
+            <p className={`flex items-center gap-1.5 text-sm font-medium ${cd.past ? 'text-accent' : 'text-text-muted'}`}>
+              {cd.past ? (
+                <>
+                  <IconCheck size={16} stroke={2} className="flex-shrink-0" />
+                  {t.dates.reached}
+                </>
+              ) : (
+                `${t.dates.remaining} · ${formatDate(target_!, lang)}`
+              )}
             </p>
           </>
         ) : (

@@ -51,8 +51,15 @@ export default function ProPage() {
         ))}
       </ul>
 
-      <p className="mt-6 text-center text-sm text-text-muted">
-        {isPro ? (lang === 'es' ? '✓ Pro activo en este dispositivo.' : '✓ Pro active on this device.') : soonNote}
+      <p className="mt-6 flex items-center justify-center gap-1.5 text-center text-sm text-text-muted">
+        {isPro ? (
+          <>
+            <IconCheck size={16} stroke={2.4} className="flex-shrink-0 text-accent" />
+            {lang === 'es' ? 'Pro activo en este dispositivo.' : 'Pro active on this device.'}
+          </>
+        ) : (
+          soonNote
+        )}
       </p>
     </div>
   );

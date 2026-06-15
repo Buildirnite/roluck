@@ -10,9 +10,11 @@ interface UseBackgroundRemoval {
 
 /**
  * Hook para quitar el fondo de una imagen con @imgly/background-removal (Función 10).
- * Corre un modelo de ML en el navegador. El paquete (y el modelo, ~5MB) se importa
- * de forma diferida: solo se descarga cuando el usuario activa la función.
- * El resultado es siempre un PNG con canal alfa (fondo transparente).
+ * Corre un modelo de ML en el navegador. El paquete y el modelo se importan de forma
+ * diferida (solo al usar la función) y el modelo queda cacheado tras la primera vez.
+ * Calidad: usa el modelo ISNet COMPLETO (`isnet`, mejores bordes que el `isnet_fp16`
+ * por defecto) y acelera con WebGPU (`device:'gpu'`) cuando el navegador lo soporta,
+ * con fallback automático a CPU. El resultado es siempre un PNG con canal alfa.
  */
 export function useBackgroundRemoval(): UseBackgroundRemoval {
   const [isRemoving, setIsRemoving] = useState(false);
@@ -30,16 +32,30 @@ export function useBackgroundRemoval(): UseBackgroundRemoval {
       // Lazy import: el modelo de ML solo se descarga al usar esta función.
       const { removeBackground } = await import('@imgly/background-removal');
 
-      const blob = await removeBackground(source, {
-        output: { format: 'image/png' },
-        progress: (key, current, total) => {
+      // Config por dispositivo: ISNet completo + el progreso amigable. `device` cambia
+      // entre WebGPU (rápido) y CPU (universal).
+      const config = (device: 'cpu' | 'gpu') => ({
+        model: 'isnet' as const,
+        device,
+        output: { format: 'image/png' as const },
+        progress: (key: string, current: number, total: number) => {
           if (total > 0) setProgress(current / total);
           // Las claves vienen como "fetch:<url>" o "compute:..." → texto amigable.
-          setStage(
-            key.startsWith('fetch') ? 'Descargando modelo…' : 'Quitando fondo…',
-          );
+          setStage(key.startsWith('fetch') ? 'Descargando modelo…' : 'Quitando fondo…');
         },
       });
+
+      const canUseGpu = typeof navigator !== 'undefined' && 'gpu' in navigator;
+      let blob: Blob;
+      try {
+        blob = await removeBackground(source, config(canUseGpu ? 'gpu' : 'cpu'));
+      } catch (gpuError) {
+        if (!canUseGpu) throw gpuError;
+        // WebGPU disponible pero falló (adaptador/SO/driver): reintenta en CPU.
+        setProgress(0);
+        setStage('Quitando fondo…');
+        blob = await removeBackground(source, config('cpu'));
+      }
 
       setProgress(1);
       return blob;

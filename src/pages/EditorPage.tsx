@@ -3,7 +3,9 @@ import {
   IconCrop,
   IconEraser,
   IconRotate,
+  IconRotateClockwise,
   IconFlipHorizontal,
+  IconFlipVertical,
   IconAdjustments,
   IconDroplet,
   IconBlurOff,
@@ -220,10 +222,12 @@ export default function EditorPage() {
       case 'rotate':
         return (
           <div className="grid grid-cols-2 gap-2">
-            <button type="button" onClick={() => handleTransform({ rotation: 270 }, 'Rotada')} disabled={editing} className="min-h-[44px] rounded-lg border border-border bg-bg-elevated text-sm text-text-muted hover:text-text-primary disabled:opacity-40">
+            <button type="button" onClick={() => handleTransform({ rotation: 270 }, 'Rotada')} disabled={editing} className="flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-border bg-bg-elevated text-sm text-text-muted hover:text-text-primary disabled:opacity-40">
+              <IconRotate size={16} stroke={1.8} />
               {t.editor.rotateLeft}
             </button>
-            <button type="button" onClick={() => handleTransform({ rotation: 90 }, 'Rotada')} disabled={editing} className="min-h-[44px] rounded-lg border border-border bg-bg-elevated text-sm text-text-muted hover:text-text-primary disabled:opacity-40">
+            <button type="button" onClick={() => handleTransform({ rotation: 90 }, 'Rotada')} disabled={editing} className="flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-border bg-bg-elevated text-sm text-text-muted hover:text-text-primary disabled:opacity-40">
+              <IconRotateClockwise size={16} stroke={1.8} />
               {t.editor.rotateRight}
             </button>
           </div>
@@ -231,10 +235,12 @@ export default function EditorPage() {
       case 'flip':
         return (
           <div className="grid grid-cols-2 gap-2">
-            <button type="button" onClick={() => handleTransform({ flipH: true }, 'Espejada')} disabled={editing} className="min-h-[44px] rounded-lg border border-border bg-bg-elevated text-sm text-text-muted hover:text-text-primary disabled:opacity-40">
+            <button type="button" onClick={() => handleTransform({ flipH: true }, 'Espejada')} disabled={editing} className="flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-border bg-bg-elevated text-sm text-text-muted hover:text-text-primary disabled:opacity-40">
+              <IconFlipHorizontal size={16} stroke={1.8} />
               {t.editor.flipH}
             </button>
-            <button type="button" onClick={() => handleTransform({ flipV: true }, 'Espejada')} disabled={editing} className="min-h-[44px] rounded-lg border border-border bg-bg-elevated text-sm text-text-muted hover:text-text-primary disabled:opacity-40">
+            <button type="button" onClick={() => handleTransform({ flipV: true }, 'Espejada')} disabled={editing} className="flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-border bg-bg-elevated text-sm text-text-muted hover:text-text-primary disabled:opacity-40">
+              <IconFlipVertical size={16} stroke={1.8} />
               {t.editor.flipV}
             </button>
           </div>

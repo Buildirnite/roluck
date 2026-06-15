@@ -1,3 +1,4 @@
+import { IconAlertTriangle } from '@tabler/icons-react';
 import type { OutputFormat } from '../types';
 import { formatLabel } from '../utils/imageUtils';
 import { useI18n } from '../i18n/I18nContext';
@@ -103,8 +104,9 @@ export default function ConversionPanel({
           {warnings.map((w) => (
             <li
               key={w}
-              className="rounded-lg border border-accent/30 bg-accent/5 px-3 py-2 text-xs leading-relaxed text-text-primary"
+              className="flex items-start gap-2 rounded-lg border border-accent/30 bg-accent/5 px-3 py-2 text-xs leading-relaxed text-text-primary"
             >
+              <IconAlertTriangle size={14} stroke={1.8} className="mt-0.5 flex-shrink-0 text-accent" />
               {w}
             </li>
           ))}

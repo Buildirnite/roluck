@@ -123,11 +123,11 @@ export function lossWarnings(inputType: string, format: OutputFormat): string[] 
   const list: string[] = [];
   if (format === 'image/jpeg' && TRANSPARENT_CAPABLE.has(inputType)) {
     list.push(
-      '⚠️ JPEG no soporta transparencia. El fondo transparente se rellenará con blanco.',
+      'JPEG no soporta transparencia. El fondo transparente se rellenará con blanco.',
     );
   }
   if (inputType === 'image/gif') {
-    list.push('⚠️ Solo se convertirá el primer frame de la animación.');
+    list.push('Solo se convertirá el primer frame de la animación.');
   }
   return list;
 }
