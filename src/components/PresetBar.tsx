@@ -74,7 +74,7 @@ export default function PresetBar({ current, onApply }: PresetBarProps) {
             onClick={handleSave}
             disabled={!name.trim()}
             aria-label={t.presets.saveAction}
-            className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-bg-primary transition-colors hover:bg-accent/90 disabled:cursor-not-allowed disabled:bg-bg-elevated disabled:text-text-muted"
+            className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-ink transition-colors hover:bg-accent/90 disabled:cursor-not-allowed disabled:bg-bg-elevated disabled:text-text-muted"
           >
             <IconCheck size={16} stroke={2.2} />
           </button>

@@ -1,5 +1,5 @@
 /**
- * Service worker de RoLuck Convertidor (PWA, escrito a mano — sin Workbox).
+ * Service worker de RoLuck (PWA, escrito a mano — sin Workbox).
  *
  * Usa caché en tiempo de ejecución para no depender de los nombres con hash que
  * genera Vite: los assets se cachean a medida que la app los pide. Estrategias:
@@ -11,7 +11,7 @@
  * chunks cacheados la app funciona sin conexión (excepto OCR, que descarga sus datos
  * de idioma desde un CDN).
  */
-const VERSION = 'v3';
+const VERSION = 'v4';
 const SHELL_CACHE = `roluck-shell-${VERSION}`;
 const ASSET_CACHE = `roluck-assets-${VERSION}`;
 

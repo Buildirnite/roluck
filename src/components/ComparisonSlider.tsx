@@ -82,7 +82,7 @@ export default function ComparisonSlider({ originalSrc, resultSrc }: ComparisonS
       <span className="pointer-events-none absolute left-2 top-2 rounded bg-black/60 px-2 py-0.5 font-mono text-xs text-text-primary">
         {t.comparison.original}
       </span>
-      <span className="pointer-events-none absolute right-2 top-2 rounded bg-accent/80 px-2 py-0.5 font-mono text-xs text-bg-primary">
+      <span className="pointer-events-none absolute right-2 top-2 rounded bg-accent/80 px-2 py-0.5 font-mono text-xs text-accent-ink">
         {t.comparison.converted}
       </span>
 

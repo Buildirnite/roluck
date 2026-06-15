@@ -201,7 +201,7 @@ export default function EditorPage() {
             type="button"
             onClick={() => setShowCrop(true)}
             disabled={editing}
-            className="min-h-[44px] rounded-xl bg-accent px-4 text-sm font-semibold text-bg-primary transition-colors hover:bg-accent/90 disabled:opacity-40"
+            className="min-h-[44px] rounded-xl bg-accent px-4 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent/90 disabled:opacity-40"
           >
             {t.editor.openCrop}
           </button>
@@ -212,7 +212,7 @@ export default function EditorPage() {
             type="button"
             onClick={handleRemoveBackground}
             disabled={editing}
-            className="min-h-[44px] rounded-xl bg-accent px-4 text-sm font-semibold text-bg-primary transition-colors hover:bg-accent/90 disabled:opacity-40"
+            className="min-h-[44px] rounded-xl bg-accent px-4 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent/90 disabled:opacity-40"
           >
             {t.editor.removeBg}
           </button>
@@ -256,7 +256,7 @@ export default function EditorPage() {
             type="button"
             onClick={() => setRegion('obscure')}
             disabled={editing}
-            className="min-h-[44px] w-full rounded-xl bg-accent px-4 text-sm font-semibold text-bg-primary transition-colors hover:bg-accent/90 disabled:opacity-40"
+            className="min-h-[44px] w-full rounded-xl bg-accent px-4 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent/90 disabled:opacity-40"
           >
             {t.editor.selectRegion}
           </button>
@@ -267,7 +267,7 @@ export default function EditorPage() {
             type="button"
             onClick={() => setRegion('redact')}
             disabled={editing}
-            className="min-h-[44px] w-full rounded-xl bg-accent px-4 text-sm font-semibold text-bg-primary transition-colors hover:bg-accent/90 disabled:opacity-40"
+            className="min-h-[44px] w-full rounded-xl bg-accent px-4 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent/90 disabled:opacity-40"
           >
             {t.editor.selectRegion}
           </button>
@@ -278,7 +278,7 @@ export default function EditorPage() {
             type="button"
             onClick={() => setShowAnnotate(true)}
             disabled={editing}
-            className="min-h-[44px] w-full rounded-xl bg-accent px-4 text-sm font-semibold text-bg-primary transition-colors hover:bg-accent/90 disabled:opacity-40"
+            className="min-h-[44px] w-full rounded-xl bg-accent px-4 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent/90 disabled:opacity-40"
           >
             {t.editor.openAnnotate}
           </button>
@@ -314,7 +314,7 @@ export default function EditorPage() {
               type="button"
               onClick={handleReplaceBg}
               disabled={editing}
-              className="min-h-[44px] rounded-xl bg-accent px-4 text-sm font-semibold text-bg-primary transition-colors hover:bg-accent/90 disabled:opacity-40"
+              className="min-h-[44px] rounded-xl bg-accent px-4 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent/90 disabled:opacity-40"
             >
               {t.common.apply}
             </button>
@@ -358,7 +358,7 @@ export default function EditorPage() {
         <img src={bgResult.url} alt={t.editor.bgAlt} className="max-h-[300px] w-auto max-w-full object-contain" />
       </div>
       <div className="grid grid-cols-3 gap-2">
-        <button type="button" onClick={handleUseBackground} className="min-h-[44px] rounded-lg bg-accent px-3 text-sm font-semibold text-bg-primary transition-colors hover:bg-accent/90">
+        <button type="button" onClick={handleUseBackground} className="min-h-[44px] rounded-lg bg-accent px-3 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent/90">
           {t.editor.use}
         </button>
         <button type="button" onClick={handleDownloadBackground} className="min-h-[44px] rounded-lg border border-border bg-bg-elevated px-3 text-sm font-medium text-text-muted transition-colors hover:text-text-primary">

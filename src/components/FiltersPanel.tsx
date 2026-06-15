@@ -85,7 +85,7 @@ export default function FiltersPanel({ values, onChange, onApply, disabled }: Fi
           type="button"
           onClick={onApply}
           disabled={disabled || neutral}
-          className="flex-1 rounded-lg bg-accent px-3 py-2 text-sm font-semibold text-bg-primary transition-colors hover:bg-accent/90 disabled:cursor-not-allowed disabled:bg-bg-elevated disabled:text-text-muted"
+          className="flex-1 rounded-lg bg-accent px-3 py-2 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent/90 disabled:cursor-not-allowed disabled:bg-bg-elevated disabled:text-text-muted"
         >
           {t.filters.apply}
         </button>

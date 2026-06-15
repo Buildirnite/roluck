@@ -437,6 +437,10 @@ export const es = {
     notPdf: 'Selecciona archivos PDF válidos.',
     error: 'No se pudo procesar el PDF.',
   },
+  theme: {
+    toLight: 'Tema claro',
+    toDark: 'Tema oscuro',
+  },
   donate: {
     label: 'Apóyanos',
     title: 'Invítanos un café',
@@ -1157,6 +1161,10 @@ export const en: Dict = {
     moveDown: 'Move later',
     notPdf: 'Select valid PDF files.',
     error: 'Could not process the PDF.',
+  },
+  theme: {
+    toLight: 'Light theme',
+    toDark: 'Dark theme',
   },
   donate: {
     label: 'Support us',

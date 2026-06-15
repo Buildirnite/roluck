@@ -28,7 +28,7 @@ function Stat({ value, label }: { value: ReactNode; label: string }) {
 }
 
 const inputClass =
-  'w-full rounded-lg border border-border bg-bg-elevated px-3 py-2.5 text-sm text-text-primary outline-none transition-colors focus:border-accent [color-scheme:dark]';
+  'w-full rounded-lg border border-border bg-bg-elevated px-3 py-2.5 text-sm text-text-primary outline-none transition-colors focus:border-accent';
 
 const fieldLabel = 'mb-1.5 block text-xs font-semibold uppercase tracking-wide text-text-muted';
 

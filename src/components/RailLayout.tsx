@@ -9,6 +9,7 @@ import SeoContent from './SeoContent';
 import { useHistoryStore } from '../store/useHistoryStore';
 import { useClipboardPaste } from '../hooks/useClipboardPaste';
 import LanguageSwitcher from './LanguageSwitcher';
+import ThemeToggle from './ThemeToggle';
 import HistoryDrawer from './HistoryDrawer';
 
 /** Logo de RoLuck: lockup completo expandido, solo el símbolo de la llama colapsado. */
@@ -26,7 +27,7 @@ function Logo({ collapsed }: { collapsed: boolean }) {
     <div className="flex justify-center px-3 py-4">
       <img
         src="/logo.png"
-        alt="RoLuck Convertidor"
+        alt="RoLuck — Hub de herramientas"
         className="h-auto w-full max-w-[150px]"
         width={480}
         height={455}
@@ -127,7 +128,7 @@ function DonateButton({ collapsed }: { collapsed: boolean }) {
               href={DONATE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-bg-primary transition-opacity hover:opacity-90"
+              className="flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-accent-ink transition-opacity hover:opacity-90"
             >
               <IconHeart size={16} stroke={2} />
               {t.donate.cta}
@@ -235,7 +236,7 @@ export default function RailLayout() {
           <span className="relative flex-shrink-0">
             <IconHistory size={20} stroke={1.8} />
             {historyCount > 0 && (
-              <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-accent px-1 font-mono text-[10px] font-bold text-bg-primary">
+              <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-accent px-1 font-mono text-[10px] font-bold text-accent-ink">
                 {historyCount}
               </span>
             )}
@@ -246,6 +247,8 @@ export default function RailLayout() {
         <DonateButton collapsed={collapsed} />
 
         <PrivacyNote collapsed={collapsed} />
+
+        <ThemeToggle compact={collapsed} />
 
         <LanguageSwitcher compact={collapsed} />
 
@@ -365,6 +368,7 @@ export default function RailLayout() {
             </button>
             <DonateButton collapsed={false} />
             <PrivacyNote collapsed={false} />
+            <ThemeToggle />
             <LanguageSwitcher />
           </div>
         </div>

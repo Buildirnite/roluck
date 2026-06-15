@@ -8,7 +8,7 @@ import { countBusinessDays, addBusinessDays, hasHolidayData, isBusinessDay } fro
 type Tab = 'count' | 'add';
 
 const inputClass =
-  'w-full rounded-lg border border-border bg-bg-elevated px-3 py-2.5 text-sm text-text-primary outline-none transition-colors focus:border-accent [color-scheme:dark]';
+  'w-full rounded-lg border border-border bg-bg-elevated px-3 py-2.5 text-sm text-text-primary outline-none transition-colors focus:border-accent';
 const fieldLabel = 'mb-1.5 block text-xs font-semibold uppercase tracking-wide text-text-muted';
 
 function Stat({ value, label }: { value: ReactNode; label: string }) {
@@ -37,7 +37,7 @@ export default function BusinessDaysPage() {
   const invalid = <p className="text-sm text-text-muted">{t.business.invalid}</p>;
 
   const warning = (
-    <p className="flex items-start gap-2 rounded-lg border border-amber-500/30 bg-amber-500/5 p-3 text-xs text-amber-300/90">
+    <p className="flex items-start gap-2 rounded-lg border border-amber-500/30 bg-amber-500/5 light:bg-amber-500/10 p-3 text-xs text-amber-300/90 light:text-amber-700">
       <IconAlertTriangle size={15} stroke={1.8} className="mt-0.5 flex-shrink-0" />
       {t.business.warning}
     </p>

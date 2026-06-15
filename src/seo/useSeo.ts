@@ -9,14 +9,14 @@ const SITE_URL = 'https://roluck.app';
 // Valores por defecto (home) — coinciden con los estáticos de index.html.
 const DEFAULT = {
   es: {
-    title: 'RoLuck Convertidor — Convierte imágenes gratis en tu navegador',
+    title: 'RoLuck — Hub de herramientas gratis en tu navegador',
     description:
-      'Convierte PNG, JPEG, WebP y AVIF. Quita fondos, recorta, comprime, exporta a PDF y más — todo desde tu navegador. Tus imágenes nunca se suben a ningún servidor.',
+      'Herramientas gratis en tu navegador: imágenes (convertir, comprimir, editar, PDF), conversores (unidades, QR, fechas) y calculadoras chilenas (UF, sueldo líquido, finiquito). Sin subir nada a ningún servidor.',
   },
   en: {
-    title: 'RoLuck Convertidor — Convert images free in your browser',
+    title: 'RoLuck — Free tools hub in your browser',
     description:
-      'Convert PNG, JPEG, WebP and AVIF. Remove backgrounds, crop, compress, export to PDF and more — all in your browser. Your images are never uploaded to any server.',
+      'Free tools that run in your browser: images (convert, compress, edit, PDF), converters (units, QR, dates) and calculators. Nothing is uploaded to any server.',
   },
 } as const;
 

@@ -68,7 +68,7 @@ export default function HomePage() {
         <p className="mt-3 max-w-xl text-base leading-relaxed text-text-muted">{t.home.heroSubtitle}</p>
         <a
           href="#herramientas"
-          className="mt-5 inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-bg-primary transition-opacity hover:opacity-90"
+          className="mt-5 inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-accent-ink transition-opacity hover:opacity-90"
         >
           {t.home.heroCta}
           <IconArrowRight size={16} stroke={2.2} />
@@ -126,7 +126,7 @@ export default function HomePage() {
         </div>
         <Link
           to="/pro"
-          className="inline-flex flex-shrink-0 items-center gap-2 rounded-lg border border-accent px-4 py-2.5 text-sm font-semibold text-accent transition-colors hover:bg-accent hover:text-bg-primary"
+          className="inline-flex flex-shrink-0 items-center gap-2 rounded-lg border border-accent px-4 py-2.5 text-sm font-semibold text-accent transition-colors hover:bg-accent hover:text-accent-ink"
         >
           {t.pro.cta}
           <IconArrowRight size={16} stroke={2.2} />

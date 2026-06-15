@@ -21,7 +21,7 @@ export default function ConvertButton({
       type="button"
       onClick={onClick}
       disabled={disabled || isConverting}
-      className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-accent px-6 font-display text-base font-semibold text-bg-primary transition-colors hover:bg-accent/90 disabled:cursor-not-allowed disabled:bg-bg-elevated disabled:text-text-muted"
+      className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-accent px-6 font-display text-base font-semibold text-accent-ink transition-colors hover:bg-accent/90 disabled:cursor-not-allowed disabled:bg-bg-elevated disabled:text-text-muted"
     >
       {isConverting ? (
         <>

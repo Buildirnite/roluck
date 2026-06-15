@@ -200,7 +200,7 @@ export default function AnnotateModal({ file, onCancel, onConfirm }: AnnotateMod
           <button type="button" onClick={onCancel} disabled={working} className="min-h-[48px] flex-1 rounded-xl border border-border bg-bg-elevated px-6 text-sm font-medium text-text-muted hover:text-text-primary disabled:opacity-40">
             {t.common.cancel}
           </button>
-          <button type="button" onClick={handleConfirm} disabled={working || count === 0} className="min-h-[48px] flex-1 rounded-xl bg-accent px-6 text-sm font-semibold text-bg-primary hover:bg-accent/90 disabled:cursor-not-allowed disabled:bg-bg-elevated disabled:text-text-muted">
+          <button type="button" onClick={handleConfirm} disabled={working || count === 0} className="min-h-[48px] flex-1 rounded-xl bg-accent px-6 text-sm font-semibold text-accent-ink hover:bg-accent/90 disabled:cursor-not-allowed disabled:bg-bg-elevated disabled:text-text-muted">
             {working ? t.region.applying : t.common.apply}
           </button>
         </div>

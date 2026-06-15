@@ -74,7 +74,7 @@ export default function WatermarkPanel({ onApply, disabled }: WatermarkPanelProp
         type="button"
         onClick={() => onApply({ text, position, opacity: opacity / 100, color, sizePct })}
         disabled={disabled || !text.trim()}
-        className="rounded-lg bg-accent px-3 py-2 text-sm font-semibold text-bg-primary transition-colors hover:bg-accent/90 disabled:cursor-not-allowed disabled:bg-bg-elevated disabled:text-text-muted"
+        className="rounded-lg bg-accent px-3 py-2 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent/90 disabled:cursor-not-allowed disabled:bg-bg-elevated disabled:text-text-muted"
       >
         {t.watermark.apply}
       </button>

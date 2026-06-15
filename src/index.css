@@ -6,24 +6,42 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Identidad RoLuck — paleta dark tech como CSS variables ─────────────── */
+/* ── Identidad RoLuck — paleta como variables CSS en formato canal (R G B) ──
+   El tema por defecto es OSCURO (:root). El claro se activa con la clase .light en
+   <html> (la pone un script inline en index.html antes del primer render → sin parpadeo,
+   y el store useThemeStore al alternar). En formato canal para que Tailwind aplique
+   opacidades: rgb(var(--x) / <alpha-value>). */
 :root {
-  --bg-primary: #0a0a0a;
-  --bg-surface: #141414;
-  --bg-elevated: #1e1e1e;
-  --accent: #a3e635; /* lime-400 */
-  --accent-dim: #4d7c0f;
-  --text-primary: #f5f5f5;
-  --text-muted: #909090; /* ≥4.5:1 sobre los fondos oscuros (WCAG AA) */
-  --border: #2a2a2a;
-  --success: #22c55e;
-  --error: #ef4444;
+  --bg-primary: 10 10 10;
+  --bg-surface: 20 20 20;
+  --bg-elevated: 30 30 30;
+  --accent: 163 230 53; /* lime-400 */
+  --accent-dim: 77 124 15;
+  --accent-ink: 10 10 10; /* texto sobre el acento (oscuro sobre lima) */
+  --text-primary: 245 245 245;
+  --text-muted: 144 144 144; /* ≥4.5:1 sobre los fondos oscuros (WCAG AA) */
+  --border: 42 42 42;
+  --success: 34 197 94;
+  --error: 239 68 68;
+  color-scheme: dark;
+}
+
+html.light {
+  --bg-primary: 255 255 255;
+  --bg-surface: 247 247 247;
+  --bg-elevated: 237 237 237;
+  --accent: 77 124 15; /* verde más oscuro: legible como texto y con tinta blanca encima */
+  --accent-dim: 63 98 18;
+  --accent-ink: 255 255 255; /* texto sobre el acento (blanco sobre verde) */
+  --text-primary: 23 23 23;
+  --text-muted: 90 90 90; /* ≥4.5:1 sobre fondos claros */
+  --border: 224 224 224;
+  --success: 21 128 61;
+  --error: 220 38 38;
+  color-scheme: light;
 }
 
 @layer base {
-  html {
-    color-scheme: dark;
-  }
 
   body {
     @apply bg-bg-primary text-text-primary font-display antialiased;
@@ -34,7 +52,7 @@
   /* Foco de teclado visible y consistente (lima) en todo lo interactivo.
      Los inputs que usan `outline-none` siguen marcando el foco con `focus:border-accent`. */
   :focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid rgb(var(--accent));
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -50,13 +68,13 @@
   input[type='range']::-webkit-slider-runnable-track {
     height: 6px;
     border-radius: 9999px;
-    background: var(--bg-elevated);
+    background: rgb(var(--bg-elevated));
   }
 
   input[type='range']::-moz-range-track {
     height: 6px;
     border-radius: 9999px;
-    background: var(--bg-elevated);
+    background: rgb(var(--bg-elevated));
   }
 
   input[type='range']::-webkit-slider-thumb {
@@ -66,17 +84,17 @@
     height: 20px;
     width: 20px;
     border-radius: 9999px;
-    background: var(--accent);
-    border: 3px solid var(--bg-primary);
-    box-shadow: 0 0 0 1px var(--accent-dim);
+    background: rgb(var(--accent));
+    border: 3px solid rgb(var(--bg-primary));
+    box-shadow: 0 0 0 1px rgb(var(--accent-dim));
   }
 
   input[type='range']::-moz-range-thumb {
     height: 18px;
     width: 18px;
     border-radius: 9999px;
-    background: var(--accent);
-    border: 3px solid var(--bg-primary);
+    background: rgb(var(--accent));
+    border: 3px solid rgb(var(--bg-primary));
   }
 }
 
@@ -115,4 +133,13 @@ input[type='number'] {
     linear-gradient(-45deg, transparent 75%, #262626 75%);
   background-size: 20px 20px;
   background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+}
+
+html.light .checkerboard {
+  background-color: #e5e5e5;
+  background-image:
+    linear-gradient(45deg, #cfcfcf 25%, transparent 25%),
+    linear-gradient(-45deg, #cfcfcf 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #cfcfcf 75%),
+    linear-gradient(-45deg, transparent 75%, #cfcfcf 75%);
 }

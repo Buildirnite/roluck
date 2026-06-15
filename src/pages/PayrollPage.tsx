@@ -153,7 +153,7 @@ export default function PayrollPage() {
       </div>
 
       {/* Disclaimer */}
-      <p className="mt-6 flex items-start gap-2 rounded-lg border border-amber-500/30 bg-amber-500/5 p-3 text-xs text-amber-300/90">
+      <p className="mt-6 flex items-start gap-2 rounded-lg border border-amber-500/30 bg-amber-500/5 light:bg-amber-500/10 p-3 text-xs text-amber-300/90 light:text-amber-700">
         <IconAlertTriangle size={15} stroke={1.8} className="mt-0.5 flex-shrink-0" />
         {t.payroll.disclaimer}
       </p>

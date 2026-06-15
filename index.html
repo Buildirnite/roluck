@@ -5,27 +5,27 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>RoLuck Convertidor — Convierte imágenes gratis en tu navegador</title>
-    <meta name="description" content="Convierte PNG, JPEG, WebP y AVIF. Quita fondos, recorta, comprime, exporta a PDF y más — todo desde tu navegador. Tus imágenes nunca se suben a ningún servidor." />
+    <title>RoLuck — Hub de herramientas gratis en tu navegador</title>
+    <meta name="description" content="Herramientas gratis que funcionan en tu navegador: imágenes (convertir, comprimir, editar, PDF), conversores (unidades, QR, fechas) y calculadoras chilenas (UF, sueldo líquido, finiquito). Sin subir nada a ningún servidor." />
     <link rel="canonical" href="https://roluck.app" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="RoLuck Convertidor" />
+    <meta property="og:site_name" content="RoLuck" />
     <meta property="og:url" content="https://roluck.app" />
-    <meta property="og:title" content="RoLuck Convertidor — Convierte imágenes gratis" />
-    <meta property="og:description" content="Convierte, edita y comprime imágenes en tu navegador. PNG, JPEG, WebP, AVIF, quitar fondo, PDF y más. Sin subir nada a ningún servidor." />
+    <meta property="og:title" content="RoLuck — Hub de herramientas gratis" />
+    <meta property="og:description" content="Imágenes, PDF, conversores y calculadoras chilenas — todo gratis y en tu navegador, sin subir archivos a ningún servidor." />
     <meta property="og:image" content="https://roluck.app/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="RoLuck Convertidor" />
+    <meta property="og:image:alt" content="RoLuck — Hub de herramientas" />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:locale:alternate" content="en_US" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="RoLuck Convertidor" />
-    <meta name="twitter:description" content="Convierte y edita imágenes en tu navegador. Privado, gratis y sin límites." />
+    <meta name="twitter:title" content="RoLuck — Hub de herramientas" />
+    <meta name="twitter:description" content="Imágenes, PDF, conversores y calculadoras en tu navegador. Privado, gratis y sin límites." />
     <meta name="twitter:image" content="https://roluck.app/og-image.png" />
 
     <!-- Structured data: marca (Organization + WebSite) y la propia app (WebApplication).
@@ -41,23 +41,23 @@
           "url": "https://roluck.app",
           "logo": "https://roluck.app/pwa-512.png",
           "image": "https://roluck.app/og-image.png",
-          "description": "RoLuck es un conjunto gratuito de herramientas de imagen que funcionan dentro del navegador, sin subir archivos a ningún servidor."
+          "description": "RoLuck es un hub gratuito de herramientas (imágenes, PDF, conversores y calculadoras) que funcionan dentro del navegador, sin subir archivos a ningún servidor."
         },
         {
           "@type": "WebSite",
           "@id": "https://roluck.app/#website",
-          "name": "RoLuck Convertidor",
-          "alternateName": "RoLuck",
+          "name": "RoLuck",
+          "alternateName": "RoLuck — Hub de herramientas",
           "url": "https://roluck.app",
           "inLanguage": "es",
           "publisher": { "@id": "https://roluck.app/#organization" }
         },
         {
           "@type": "WebApplication",
-          "name": "RoLuck Convertidor",
+          "name": "RoLuck",
           "url": "https://roluck.app",
-          "description": "Convierte y edita imágenes directamente en el navegador. Sin subir archivos.",
-          "applicationCategory": "MultimediaApplication",
+          "description": "Hub de herramientas (imágenes, PDF, conversores y calculadoras) que funcionan directamente en el navegador. Sin subir archivos.",
+          "applicationCategory": "UtilitiesApplication",
           "operatingSystem": "Any",
           "browserRequirements": "Requires JavaScript. Requires HTML5.",
           "publisher": { "@id": "https://roluck.app/#organization" },
@@ -80,6 +80,24 @@
          las críticas del primer render: Space Grotesk 500 (cuerpo) y JetBrains Mono 400. -->
     <link rel="preload" href="/fonts/space-grotesk-500-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/jetbrains-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Tema claro/oscuro antes del primer render (evita parpadeo). Oscuro por defecto;
+         respeta lo guardado en localStorage o la preferencia del sistema. -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('roluck-theme');
+          if (t !== 'light' && t !== 'dark') {
+            t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+          }
+          if (t === 'light') {
+            document.documentElement.classList.add('light');
+            var m = document.querySelector('meta[name="theme-color"]');
+            if (m) m.setAttribute('content', '#ffffff');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

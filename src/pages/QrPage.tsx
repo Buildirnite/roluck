@@ -279,7 +279,7 @@ function Generate({ isPro }: { isPro: boolean }) {
             <button
               type="button"
               onClick={downloadPng}
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-bg-base transition-opacity hover:opacity-90"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-accent-ink transition-opacity hover:opacity-90"
             >
               <IconDownload size={17} stroke={1.8} />
               {t.qr.downloadPng}
@@ -321,7 +321,7 @@ function ProNotice() {
       <p className="text-sm text-text-muted">{t.qr.proFeatureDesc}</p>
       <Link
         to="/pro"
-        className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg-base transition-opacity hover:opacity-90"
+        className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-accent-ink transition-opacity hover:opacity-90"
       >
         <IconSparkles size={16} stroke={2} />
         {t.qr.proCta}
@@ -451,7 +451,7 @@ function Scan() {
           <button
             type="button"
             onClick={startCamera}
-            className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-bg-base transition-opacity hover:opacity-90"
+            className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-accent-ink transition-opacity hover:opacity-90"
           >
             <IconCamera size={17} stroke={1.8} />
             {t.qr.useCamera}

@@ -13,7 +13,7 @@ import {
 } from '../utils/quote';
 
 const inputClass =
-  'w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-sm text-text-primary outline-none transition-colors focus:border-accent [color-scheme:dark]';
+  'w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-sm text-text-primary outline-none transition-colors focus:border-accent';
 const fieldLabel = 'mb-1 block text-xs font-semibold uppercase tracking-wide text-text-muted';
 
 function todayStr() {
@@ -243,7 +243,7 @@ export default function QuotesPage() {
               type="button"
               onClick={download}
               disabled={busy}
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-bg-base transition-opacity hover:opacity-90 disabled:opacity-50"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-accent-ink transition-opacity hover:opacity-90 disabled:opacity-50"
             >
               <IconDownload size={17} stroke={1.8} />
               {busy ? t.quotes.generating : t.quotes.downloadPdf}

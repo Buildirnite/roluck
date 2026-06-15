@@ -129,7 +129,7 @@ export default function FormatComparison({
                     {formatLabel(r.format)}
                   </span>
                   {best && (
-                    <span className="rounded bg-accent px-1.5 py-0.5 font-mono text-[10px] font-semibold text-bg-primary">
+                    <span className="rounded bg-accent px-1.5 py-0.5 font-mono text-[10px] font-semibold text-accent-ink">
                       {t.formatCmp.best}
                     </span>
                   )}

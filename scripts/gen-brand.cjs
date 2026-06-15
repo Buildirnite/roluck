@@ -56,22 +56,23 @@ async function icon(file, size, { rounded = true, factor = 0.72 } = {}) {
 }
 
 async function ogImage() {
-  const LH = 360;
-  const llama = await sharp(await llamaTight()).resize({ height: LH }).toBuffer();
-  const lw = (await sharp(llama).metadata()).width;
-  const llamaX = 70;
-  const textX = llamaX + lw + 55;
   const W = 1200, H = 630;
+  // Llama acotada en alto y ancho para dejar siempre espacio al texto a la derecha.
+  const llama = await sharp(await llamaTight()).resize({ height: 320, width: 360, fit: 'inside' }).toBuffer();
+  const meta = await sharp(llama).metadata();
+  const lw = meta.width, lh = meta.height;
+  const llamaX = 60;
+  const textX = llamaX + lw + 50;
   const overlay = Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
     <rect width="8" height="${H}" fill="#a3e635"/>
-    <text x="${textX}" y="285" font-family="Verdana,Arial,sans-serif" font-size="56" font-weight="700" fill="#f5f5f5">RoLuck</text>
-    <text x="${textX}" y="350" font-family="Verdana,Arial,sans-serif" font-size="56" font-weight="700" fill="#a3e635">Convertidor</text>
-    <text x="${textX}" y="402" font-family="Verdana,Arial,sans-serif" font-size="23" fill="#a3a3a3">Convierte imágenes gratis en tu navegador</text>
+    <text x="${textX}" y="288" font-family="Verdana,Arial,sans-serif" font-size="54" font-weight="700" fill="#f5f5f5">RoLuck</text>
+    <text x="${textX}" y="346" font-family="Verdana,Arial,sans-serif" font-size="44" font-weight="700" fill="#a3e635">Hub de herramientas</text>
+    <text x="${textX}" y="394" font-family="Verdana,Arial,sans-serif" font-size="22" fill="#a3a3a3">Imágenes, PDF y calculadoras · gratis</text>
     <text x="${W - 40}" y="${H - 34}" text-anchor="end" font-family="Verdana,Arial,sans-serif" font-size="24" fill="#737373">roluck.app</text>
   </svg>`);
   await sharp({ create: { width: W, height: H, channels: 4, background: DARK } })
     .composite([
-      { input: llama, left: llamaX, top: Math.round((H - LH) / 2) },
+      { input: llama, left: llamaX, top: Math.round((H - lh) / 2) },
       { input: overlay, left: 0, top: 0 },
     ])
     .png({ compressionLevel: 9 })

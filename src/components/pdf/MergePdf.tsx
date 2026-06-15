@@ -92,7 +92,7 @@ export default function MergePdf() {
         type="button"
         onClick={merge}
         disabled={busy || files.length < 2}
-        className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-accent px-6 text-sm font-semibold text-bg-base transition-opacity hover:opacity-90 disabled:opacity-40"
+        className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-accent px-6 text-sm font-semibold text-accent-ink transition-opacity hover:opacity-90 disabled:opacity-40"
       >
         <IconDownload size={17} stroke={1.8} />
         {busy ? t.pdfTools.processing : t.pdfTools.mergeBtn(files.length)}

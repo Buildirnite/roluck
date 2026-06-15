@@ -1,7 +1,7 @@
 {
-  "name": "RoLuck Convertidor",
+  "name": "RoLuck — Hub de herramientas",
   "short_name": "RoLuck",
-  "description": "Convierte, comprime, edita y crea imágenes directamente en tu navegador. Tus imágenes nunca se suben a ningún servidor.",
+  "description": "Imágenes, PDF, conversores y calculadoras que funcionan directamente en tu navegador. Tus archivos nunca se suben a ningún servidor.",
   "lang": "es",
   "start_url": "/",
   "scope": "/",

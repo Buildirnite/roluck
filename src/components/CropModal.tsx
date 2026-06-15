@@ -191,7 +191,7 @@ export default function CropModal({ imageSrc, onCancel, onConfirm }: CropModalPr
             type="button"
             onClick={handleConfirm}
             disabled={working || !completed || completed.width === 0}
-            className="min-h-[48px] flex-1 rounded-xl bg-accent px-6 font-display text-sm font-semibold text-bg-primary transition-colors hover:bg-accent/90 disabled:cursor-not-allowed disabled:bg-bg-elevated disabled:text-text-muted"
+            className="min-h-[48px] flex-1 rounded-xl bg-accent px-6 font-display text-sm font-semibold text-accent-ink transition-colors hover:bg-accent/90 disabled:cursor-not-allowed disabled:bg-bg-elevated disabled:text-text-muted"
           >
             {working ? t.crop.cropping : t.crop.apply}
           </button>
