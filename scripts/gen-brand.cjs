@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Generador de todos los assets de marca a partir del master `brand/logo-master.png`
- * (lockup de la llama RoLuck). Produce el logo del sidebar, el símbolo, los favicons,
+ * (lockup del perro tech RoLuck). Produce el logo del sidebar, el símbolo, los favicons,
  * los iconos PWA y la imagen Open Graph, todo sobre el fondo de marca #0a0a0a.
  *
  * REQUIERE `sharp` (dependencia solo de generación, no del runtime ni del build):
@@ -29,13 +29,13 @@ const DARK = '#0a0a0a';
 const out = (f) => path.join(PUB, f);
 const kb = (f) => (fs.statSync(out(f)).size / 1024).toFixed(1) + ' KB';
 
-/** Lockup completo recortado (llama + texto ROLUCK), sin artefactos tenues. */
+/** Lockup completo recortado (símbolo + texto ROLUCK), sin artefactos tenues. */
 function lockup() {
   return sharp(MASTER).trim({ threshold: 30 });
 }
 
-/** Solo el símbolo de la llama (recorta por encima del texto ROLUCK), buffer ajustado. */
-async function llamaTight() {
+/** Solo el símbolo (recorta por encima del texto ROLUCK), buffer ajustado. */
+async function symbolTight() {
   const tr = await lockup().toBuffer({ resolveWithObject: true });
   const { width, height } = tr.info;
   const top = Math.round(height * 0.72);
@@ -48,9 +48,9 @@ function bg(size, rounded) {
 }
 
 async function icon(file, size, { rounded = true, factor = 0.72 } = {}) {
-  const llama = await sharp(await llamaTight()).resize({ width: Math.round(size * factor) }).toBuffer();
+  const symbol = await sharp(await symbolTight()).resize({ width: Math.round(size * factor) }).toBuffer();
   await sharp(bg(size, rounded))
-    .composite([{ input: llama, gravity: 'center' }])
+    .composite([{ input: symbol, gravity: 'center' }])
     .png({ palette: true, compressionLevel: 9, effort: 10 })
     .toFile(out(file));
 }
@@ -58,11 +58,11 @@ async function icon(file, size, { rounded = true, factor = 0.72 } = {}) {
 async function ogImage() {
   const W = 1200, H = 630;
   // Llama acotada en alto y ancho para dejar siempre espacio al texto a la derecha.
-  const llama = await sharp(await llamaTight()).resize({ height: 320, width: 360, fit: 'inside' }).toBuffer();
-  const meta = await sharp(llama).metadata();
+  const symbol = await sharp(await symbolTight()).resize({ height: 320, width: 360, fit: 'inside' }).toBuffer();
+  const meta = await sharp(symbol).metadata();
   const lw = meta.width, lh = meta.height;
-  const llamaX = 60;
-  const textX = llamaX + lw + 50;
+  const symbolX = 60;
+  const textX = symbolX + lw + 50;
   const overlay = Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
     <rect width="8" height="${H}" fill="#a3e635"/>
     <text x="${textX}" y="288" font-family="Verdana,Arial,sans-serif" font-size="54" font-weight="700" fill="#f5f5f5">RoLuck</text>
@@ -72,7 +72,7 @@ async function ogImage() {
   </svg>`);
   await sharp({ create: { width: W, height: H, channels: 4, background: DARK } })
     .composite([
-      { input: llama, left: llamaX, top: Math.round((H - lh) / 2) },
+      { input: symbol, left: symbolX, top: Math.round((H - lh) / 2) },
       { input: overlay, left: 0, top: 0 },
     ])
     .png({ compressionLevel: 9 })
@@ -82,7 +82,7 @@ async function ogImage() {
 (async () => {
   // Logo del sidebar (lockup) y símbolo.
   await lockup().resize({ width: 480 }).png({ palette: true, compressionLevel: 9, effort: 10 }).toFile(out('logo.png'));
-  const tight = await llamaTight();
+  const tight = await symbolTight();
   await sharp(tight)
     .resize({ width: 256, height: 256, fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .png({ palette: true, compressionLevel: 9, effort: 10 })

@@ -11,7 +11,7 @@
  * chunks cacheados la app funciona sin conexión (excepto OCR, que descarga sus datos
  * de idioma desde un CDN).
  */
-const VERSION = 'v4';
+const VERSION = 'v5';
 const SHELL_CACHE = `roluck-shell-${VERSION}`;
 const ASSET_CACHE = `roluck-assets-${VERSION}`;
 

@@ -1,7 +1,7 @@
 import { Suspense, useCallback, useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { IconChevronLeft, IconChevronRight, IconDots, IconX, IconHistory, IconClipboardCheck, IconLock, IconHeart, IconHome2 } from '@tabler/icons-react';
-import { liveTools, FAMILIES, toolsByFamily, tr } from '../catalog';
+import { IconChevronLeft, IconChevronRight, IconDots, IconX, IconHistory, IconClipboardCheck, IconLock, IconHeart, IconHome2, IconSearch, IconLayoutGrid, IconArrowLeft, IconStack2, IconBuildingStore } from '@tabler/icons-react';
+import { liveTools, FAMILIES, toolsByFamily, tr, type Family } from '../catalog';
 import { useI18n } from '../i18n/I18nContext';
 import { localize } from '../i18n/localize';
 import { useModal } from '../hooks/useModal';
@@ -13,7 +13,17 @@ import LanguageSwitcher from './LanguageSwitcher';
 import ThemeToggle from './ThemeToggle';
 import HistoryDrawer from './HistoryDrawer';
 
-/** Logo de RoLuck: lockup completo expandido, solo el símbolo de la llama colapsado. */
+/** Ícono representativo de cada familia para la grilla de categorías (móvil). */
+const FAMILY_ICONS: Record<Family, typeof IconStack2> = {
+  files: IconStack2,
+  chile: IconBuildingStore,
+};
+
+/** Normaliza para buscar sin distinguir acentos ni mayúsculas. */
+const norm = (s: string) =>
+  s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
+/** Logo de RoLuck: lockup completo expandido, solo el símbolo (perro) colapsado. */
 function Logo({ collapsed }: { collapsed: boolean }) {
   if (collapsed) {
     return (
@@ -150,10 +160,28 @@ export default function RailLayout() {
   useSeo(); // Sincroniza title/description/canonical/OG con la ruta y el idioma.
   const [collapsed, setCollapsed] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
+  const [catOpen, setCatOpen] = useState(false);
+  const [activeFamily, setActiveFamily] = useState<Family | null>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState('');
   const [historyOpen, setHistoryOpen] = useState(false);
   const historyCount = useHistoryStore((s) => s.entries.length);
   const [toast, setToast] = useState<string | null>(null);
   const moreRef = useModal<HTMLDivElement>(() => setMoreOpen(false), moreOpen);
+  const catRef = useModal<HTMLDivElement>(() => setCatOpen(false), catOpen);
+  const searchRef = useModal<HTMLDivElement>(() => setSearchOpen(false), searchOpen);
+
+  // Cierra la hoja de categorías volviendo siempre al nivel raíz.
+  const closeCategories = useCallback(() => {
+    setCatOpen(false);
+    setActiveFamily(null);
+  }, []);
+
+  // Resultados de búsqueda: todo el catálogo si está vacío; filtra por nombre/descripción.
+  const q = norm(query.trim());
+  const searchResults = q
+    ? liveTools.filter((tool) => norm(tr(tool.name, lang)).includes(q) || norm(tr(tool.desc, lang)).includes(q))
+    : liveTools;
 
   // Atajo global: pegar una imagen del portapapeles. Muestra un aviso transitorio.
   const handlePasted = useCallback(
@@ -164,9 +192,6 @@ export default function RailLayout() {
     [t.paste.queued, t.paste.pasted],
   );
   useClipboardPaste(handlePasted);
-
-  const primary = liveTools.filter((i) => i.primary);
-  const secondary = liveTools.filter((i) => !i.primary);
 
   const linkBase =
     'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors';
@@ -285,7 +310,7 @@ export default function RailLayout() {
         </div>
       </main>
 
-      {/* ── Barra inferior (móvil) ── */}
+      {/* ── Barra inferior (móvil): Inicio · Buscar · Categorías · Más ── */}
       <nav className="fixed inset-x-0 bottom-0 z-40 flex border-t border-border bg-bg-surface pb-[env(safe-area-inset-bottom)] md:hidden">
         <NavLink
           to={localize('/', lang)}
@@ -299,31 +324,178 @@ export default function RailLayout() {
           <IconHome2 size={22} stroke={1.8} />
           <span>{t.home.inicio}</span>
         </NavLink>
-        {primary.map(({ to, name, Icon }) => (
-          <NavLink
-            key={to}
-            to={localize(to, lang)}
-            className={({ isActive }) =>
-              `flex flex-1 flex-col items-center gap-1 py-2 text-[11px] font-medium transition-colors ${
-                isActive ? 'text-accent' : 'text-text-muted'
-              }`
-            }
-          >
-            <Icon size={22} stroke={1.8} />
-            <span>{tr(name, lang)}</span>
-          </NavLink>
-        ))}
+        <button
+          type="button"
+          onClick={() => setSearchOpen(true)}
+          className={`flex flex-1 flex-col items-center gap-1 py-2 text-[11px] font-medium transition-colors ${
+            searchOpen ? 'text-accent' : 'text-text-muted'
+          }`}
+        >
+          <IconSearch size={22} stroke={1.8} />
+          <span>{t.nav.search}</span>
+        </button>
+        <button
+          type="button"
+          onClick={() => setCatOpen(true)}
+          className={`flex flex-1 flex-col items-center gap-1 py-2 text-[11px] font-medium transition-colors ${
+            catOpen ? 'text-accent' : 'text-text-muted'
+          }`}
+        >
+          <IconLayoutGrid size={22} stroke={1.8} />
+          <span>{t.nav.categories}</span>
+        </button>
         <button
           type="button"
           onClick={() => setMoreOpen(true)}
-          className="flex flex-1 flex-col items-center gap-1 py-2 text-[11px] font-medium text-text-muted"
+          className={`flex flex-1 flex-col items-center gap-1 py-2 text-[11px] font-medium transition-colors ${
+            moreOpen ? 'text-accent' : 'text-text-muted'
+          }`}
         >
           <IconDots size={22} stroke={1.8} />
           <span>{t.nav.more}</span>
         </button>
       </nav>
 
-      {/* ── Hoja "Más" (móvil) ── */}
+      {/* ── Hoja "Categorías" (móvil): grilla de familias → herramientas de cada una ── */}
+      {catOpen && (
+        <div
+          ref={catRef}
+          className="fixed inset-0 z-50 flex flex-col justify-end bg-black/70 md:hidden"
+          role="dialog"
+          aria-modal="true"
+          onMouseDown={closeCategories}
+        >
+          <div
+            tabIndex={-1}
+            className="max-h-[80vh] overflow-y-auto overscroll-contain rounded-t-2xl border-t border-border bg-bg-surface p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] focus:outline-none"
+            onMouseDown={(e) => e.stopPropagation()}
+          >
+            {activeFamily === null ? (
+              <>
+                <div className="mb-3 flex items-center justify-between px-1">
+                  <span className="text-sm font-semibold text-text-primary">{t.nav.categories}</span>
+                  <button type="button" onClick={closeCategories} aria-label={t.nav.close}>
+                    <IconX size={18} className="text-text-muted" />
+                  </button>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  {FAMILIES.map((family) => {
+                    const tools = toolsByFamily(family.id, 'live');
+                    if (tools.length === 0) return null;
+                    const FIcon = FAMILY_ICONS[family.id];
+                    return (
+                      <button
+                        key={family.id}
+                        type="button"
+                        onClick={() => setActiveFamily(family.id)}
+                        className="flex flex-col items-start gap-2 rounded-xl border border-border bg-bg-elevated/40 p-3 text-left transition-colors hover:border-accent/40"
+                      >
+                        <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-bg-elevated text-accent">
+                          <FIcon size={20} stroke={1.8} />
+                        </span>
+                        <span className="text-sm font-semibold text-text-primary">{tr(family.name, lang)}</span>
+                        <span className="text-[11px] text-text-muted">{t.nav.toolCount(tools.length)}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="mb-2 flex items-center justify-between px-1">
+                  <button
+                    type="button"
+                    onClick={() => setActiveFamily(null)}
+                    className="flex items-center gap-1.5 text-sm font-semibold text-text-primary"
+                    aria-label={t.nav.back}
+                  >
+                    <IconArrowLeft size={18} stroke={1.8} className="text-text-muted" />
+                    {tr(FAMILIES.find((f) => f.id === activeFamily)!.name, lang)}
+                  </button>
+                  <button type="button" onClick={closeCategories} aria-label={t.nav.close}>
+                    <IconX size={18} className="text-text-muted" />
+                  </button>
+                </div>
+                {toolsByFamily(activeFamily, 'live').map(({ to, name, Icon }) => (
+                  <NavLink
+                    key={to}
+                    to={localize(to, lang)}
+                    onClick={closeCategories}
+                    className={({ isActive }) => `${linkBase} ${isActive ? linkActive : linkIdle}`}
+                  >
+                    <Icon size={20} stroke={1.8} />
+                    <span>{tr(name, lang)}</span>
+                  </NavLink>
+                ))}
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ── Buscador (móvil): filtra todo el catálogo por nombre/descripción ── */}
+      {searchOpen && (
+        <div
+          ref={searchRef}
+          className="fixed inset-0 z-50 flex flex-col bg-bg-primary md:hidden"
+          role="dialog"
+          aria-modal="true"
+        >
+          <div className="flex items-center gap-2 border-b border-border p-3 pt-[calc(0.5rem+env(safe-area-inset-top))]">
+            <IconSearch size={20} stroke={1.8} className="flex-shrink-0 text-text-muted" />
+            {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
+            <input
+              autoFocus
+              type="search"
+              inputMode="search"
+              enterKeyHint="search"
+              autoComplete="off"
+              autoCorrect="off"
+              spellCheck={false}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder={t.nav.searchPlaceholder}
+              aria-label={t.nav.search}
+              className="min-w-0 flex-1 bg-transparent text-base text-text-primary outline-none placeholder:text-text-muted sm:text-sm"
+            />
+            <button
+              type="button"
+              onClick={() => {
+                setSearchOpen(false);
+                setQuery('');
+              }}
+              aria-label={t.nav.close}
+            >
+              <IconX size={20} className="text-text-muted" />
+            </button>
+          </div>
+          <div className="flex-1 overflow-y-auto overscroll-contain p-2">
+            {searchResults.length === 0 ? (
+              <p className="p-6 text-center text-sm text-text-muted">{t.nav.noResults}</p>
+            ) : (
+              searchResults.map(({ to, name, desc, Icon }) => (
+                <NavLink
+                  key={to}
+                  to={localize(to, lang)}
+                  onClick={() => {
+                    setSearchOpen(false);
+                    setQuery('');
+                  }}
+                  className={({ isActive }) => `${linkBase} ${isActive ? linkActive : linkIdle}`}
+                >
+                  <Icon size={20} stroke={1.8} className="flex-shrink-0" />
+                  <span className="flex min-w-0 flex-col">
+                    <span className="truncate text-text-primary">{tr(name, lang)}</span>
+                    <span className="truncate text-[11px] text-text-muted">{tr(desc, lang)}</span>
+                  </span>
+                </NavLink>
+              ))
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ── Hoja "Más" (móvil): solo ajustes y utilidades ── */}
       {moreOpen && (
         <div
           ref={moreRef}
@@ -338,24 +510,11 @@ export default function RailLayout() {
             onMouseDown={(e) => e.stopPropagation()}
           >
             <div className="mb-2 flex items-center justify-between px-1">
-              <span className="text-sm font-semibold text-text-primary">{t.nav.moreTools}</span>
+              <span className="text-sm font-semibold text-text-primary">{t.nav.settings}</span>
               <button type="button" onClick={() => setMoreOpen(false)} aria-label={t.nav.close}>
                 <IconX size={18} className="text-text-muted" />
               </button>
             </div>
-            {secondary.map(({ to, name, Icon }) => (
-              <NavLink
-                key={to}
-                to={localize(to, lang)}
-                onClick={() => setMoreOpen(false)}
-                className={({ isActive }) =>
-                  `${linkBase} ${isActive ? linkActive : linkIdle}`
-                }
-              >
-                <Icon size={20} stroke={1.8} />
-                <span>{tr(name, lang)}</span>
-              </NavLink>
-            ))}
             <button
               type="button"
               onClick={() => {
